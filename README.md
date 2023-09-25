@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# Macquarie PropertyIQ
+Macquarie Bank PropertyIQ site on Edge Delivery Services (Franklin)
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--macquarie-propertyiq--hlxsites.hlx.page/
+- Live: https://main--macquarie-propertyiq--hlxsites.hlx.live/
 
 ## Installation
 
