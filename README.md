@@ -1,9 +1,9 @@
-# Macquarie PropertyIQ
-Macquarie Bank PropertyIQ site on Edge Delivery Services (Franklin)
+# Macquarie Help Centre
+Macquarie Bank Help Centre site on Edge Delivery Services.
 
 ## Environments
-- Preview: https://main--macquarie-propertyiq--hlxsites.hlx.page/
-- Live: https://main--macquarie-propertyiq--hlxsites.hlx.live/
+- Preview: https://main--macquarie-help-centre--hlxsites.hlx.page/
+- Live: https://main--macquarie-help-centre--hlxsites.hlx.live/
 
 ## Installation
 
