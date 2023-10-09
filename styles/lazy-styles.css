@@ -1,1 +1,81 @@
 /* add global styles that can be loaded post LCP here */
+
+@font-face {
+    font-family: MCQGlobal-Bold-Normal;
+    src: url("../fonts/macquarie/MCQGlobal_Bd.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_Bd.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_Bd.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Display-Normal;
+    src: url("../fonts/macquarie//MCQGlobal_Display.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_Display.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_Display.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Light-Normal;
+    src: url("../fonts/macquarie/MCQGlobal_Lt.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_Lt.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_Lt.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Medium-Normal;
+    src: url("../fonts/macquarie/MCQGlobal_Md.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_Md.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_Md.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Reg-Cond-Normal;
+    src: url("../fonts/macquarie/MCQGlobal_CdRg.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_CdRg.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_CdRg.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Regular-Normal;
+    src: url("../fonts/macquarie/MCQGlobal_Rg.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobal_W_Rg.woff") format("woff"),url("../fonts/macquarie/MCQGlobal_W_Rg.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Bold-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_Bd.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_Bd.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_Bd.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Display-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_Display.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_Display.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_Display.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Light-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_Lt.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_Lt.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_Lt.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Medium-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_Md.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_Md.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_Md.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Reg-Cond-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_CdRg.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_CdRg.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_CdRg.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: MCQGlobal-Regular-Heavy;
+    src: url("../fonts/macquarie/MCQGlobalDark_Rg.ttf") format("truetype"),url("../fonts/macquarie/MCQGlobalDark_W_Rg.woff") format("woff"),url("../fonts/macquarie/MCQGlobalDark_W_Rg.woff2") format("woff2");
+    font-display: swap
+}
+
+@font-face {
+    font-family: SouthCoast;
+    font-weight: normal;
+    font-style: normal;
+    src: url("../fonts/macquarie/SouthCoastMacquarie.ttf") format("truetype"),url("../fonts/macquarie/SouthCoastMacquarie.woff") format("woff"),url("../fonts/macquarie/SouthCoastMacquarie.woff2") format("woff2");
+    font-display: swap
+}
