@@ -25,6 +25,8 @@
 
   /* fonts */
   --body-font-family: "MCQGlobal-Regular-Normal","Helvetica","Arial","sans-serif";
+  --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
+  --body-font-family-regular-heavy: "MCQGlobal-Regular-Heavy","Helvetica","Arial","sans-serif";
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
