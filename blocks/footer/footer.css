@@ -1,8 +1,6 @@
 footer {
-  --footer-text-color: #fff;
-
   color: var(--footer-text-color);
-  background-color: #000;
+  background-color: var(--footer-background-color);
   font-size: var(--body-font-size-xxs);
   line-height: 1rem;
   font-family: MCQGlobal-Regular-Heavy,Helvetica,Arial,sans-serif;
@@ -46,6 +44,13 @@ footer li:last-child {
 }
 
 @media (min-width: 900px) {
+  footer p {
+    font-size: var(--body-font-size-xs);
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
   footer {
     font-size: var(--body-font-size-xs);
     line-height: 1.25rem;
