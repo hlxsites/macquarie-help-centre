@@ -14,44 +14,62 @@ header nav {
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 2em;
+
+  /* gap: 0 2em; */
   margin: auto;
-  max-width: 1264px;
+  max-width: 1280px;
   height: var(--nav-height);
-  padding: 0 1rem;
+
+  /* padding: 0 1rem; */
   font-family: var(--body-font-family);
+  padding-right: 0;
+  padding-left: 1rem;
 }
 
 header nav[aria-expanded="true"] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'hamburger brand tools' var(--nav-height)
+    'sections sections sections' 1fr / auto 1fr auto;
   overflow-y: auto;
   min-height: 100vh;
 }
 
 @media (min-width: 600px) {
   header nav {
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
+    padding-right: 0;
+    padding-left: 1rem;
   }
 }
 
 @media (min-width: 900px) {
-  header nav {
-    display: flex;
-    justify-content: space-between;
-  }
-
   header nav[aria-expanded="true"] {
     min-height: 0;
     overflow: visible;
+    grid-template:
+    'hamburger brand sections tools' var(--nav-height)
+    / auto 1fr 1.75fr auto;
   }
 }
 
 header nav p {
   margin: 0;
   line-height: 1;
+  height: 25px;
+}
+
+header nav p:first-child {
+  flex: 61;
+}
+
+header nav p:nth-child(2) {
+  flex: 39;
+}
+
+header nav .nav-brand span {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 header nav a:any-link {
@@ -64,6 +82,7 @@ header nav .nav-hamburger {
   height: 22px;
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 }
 
 header nav .nav-hamburger button {
@@ -72,8 +91,11 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
+  background-color: black;
+  color: white;
+
+  /* background-color: var(--background-color);
+  color: inherit; */
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
@@ -146,6 +168,19 @@ header .nav-brand {
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  max-width: 255px;
+  gap: 1rem;
+}
+
+header nav .nav-brand p:nth-child(2) a:first-child::before {
+  content: '';
+  height: 24px;
+  width: 0.5px;
+  background: grey;
+  position: absolute;
+  margin-left: -0.5rem;
 }
 
 header nav .nav-brand img {
@@ -153,9 +188,29 @@ header nav .nav-brand img {
   height: auto;
 }
 
+@media (min-width: 600px) {
+  header .nav-brand {
+    max-width: 328px;
+    gap: 1.5rem;
+  }
+
+  header nav .nav-brand p {
+    height: 32px;
+  }
+
+  header nav .nav-brand p:nth-child(2) a:first-child::before {
+    content: '';
+    height: 40px;
+    width: 1px;
+    margin-left: -0.75rem;
+    top: 24px;
+  }
+}
+
 @media (min-width: 900px) {
-  header nav .nav-brand svg {
-    width: unset;
+  header .nav-brand {
+    max-width: 376px;
+    gap: 2rem;
   }
 
   header nav .nav-brand .icon {
@@ -164,6 +219,16 @@ header nav .nav-brand img {
 
   header nav .nav-brand p {
     display: flex;
+    height: 34px;
+  }
+
+  header nav .nav-brand p:nth-child(2) a:first-child::before {
+    content: '';
+    height: 40px;
+    width: 1px;
+    background: grey;
+    position: absolute;
+    margin-left: -1.2rem;
   }
 }
 
@@ -287,4 +352,41 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  background-color: #0c6cce;
+  height: 100%;
+}
+
+header nav .nav-tools p {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+header nav .nav-tools p a {
+  text-decoration: none;
+  font-family: MCQGlobal-Medium-Heavy,Helvetica,Arial,sans-serif;
+  font-size: smaller;
+}
+
+header nav .nav-tools p a span {
+  display: none;
+}
+
+.slide-in {
+  animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+  animation: slide-out 0.5s forwards;
+}
+
+@media (min-width: 600px) {
+  header nav .nav-tools p a {
+    display: flex;
+    font-size: medium;
+  }
+
+  header nav .nav-tools p a span {
+    display: block;
+  }
 }

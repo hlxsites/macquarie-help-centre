@@ -46,7 +46,7 @@
   --heading-font-size-xs: 16px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 56px;
 
 }
 
@@ -258,6 +258,11 @@ main .section {
 }
 
 @media (min-width: 600px) {
+  :root {
+    /* nav height */
+    --nav-height: 88px;
+  }
+
   main .section {
     padding: 64px 32px;
   }
