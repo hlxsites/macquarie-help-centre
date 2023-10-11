@@ -255,13 +255,7 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
-  }
+  padding: 64px 8px;
 }
 
 @media (min-width: 900px) {
@@ -269,7 +263,18 @@ main .section {
     max-width: 1200px;
     margin: auto;
   }
+
+  main .section {
+    padding: 64px 16px;
+  }
 }
+
+@media (min-width: 1200px) {
+  main .section {
+    padding: 64px 24px;
+  }
+}
+
 
 /* section metadata */
 main .section.highlight {
