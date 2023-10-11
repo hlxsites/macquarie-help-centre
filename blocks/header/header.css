@@ -1,9 +1,10 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: black;
   width: 100%;
   z-index: 2;
   position: fixed;
+  color: white;
 }
 
 header nav {
@@ -150,6 +151,20 @@ header .nav-brand {
 header nav .nav-brand img {
   width: 128px;
   height: auto;
+}
+
+@media (min-width: 900px) {
+  header nav .nav-brand svg {
+    width: unset;
+  }
+
+  header nav .nav-brand .icon {
+    width: unset;
+  }
+
+  header nav .nav-brand p {
+    display: flex;
+  }
 }
 
 /* sections */
