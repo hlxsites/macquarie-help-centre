@@ -1,10 +1,10 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: black;
+  background-color: var(--text-color);
   width: 100%;
   z-index: 2;
   position: fixed;
-  color: white;
+  color: var(--background-color);
 }
 
 header nav {
@@ -14,13 +14,9 @@ header nav {
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-
-  /* gap: 0 2em; */
   margin: auto;
   max-width: 1280px;
   height: var(--nav-height);
-
-  /* padding: 0 1rem; */
   font-family: var(--body-font-family);
   padding-right: 0;
   padding-left: 1rem;
@@ -36,7 +32,6 @@ header nav[aria-expanded="true"] {
 
 @media (min-width: 600px) {
   header nav {
-    /* padding: 0 2rem; */
     padding-right: 0;
     padding-left: 1rem;
   }
@@ -91,11 +86,8 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: black;
-  color: white;
-
-  /* background-color: var(--background-color);
-  color: inherit; */
+  background-color: var(--text-color);
+  color: var(--background-color);
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
@@ -178,7 +170,7 @@ header nav .nav-brand p:nth-child(2) a:first-child::before {
   content: '';
   height: 24px;
   width: 0.5px;
-  background: grey;
+  background: var(--columns-border);
   position: absolute;
   margin-left: -0.5rem;
 }
@@ -226,7 +218,7 @@ header nav .nav-brand img {
     content: '';
     height: 40px;
     width: 1px;
-    background: grey;
+    background: var(--columns-border);
     position: absolute;
     margin-left: -1.2rem;
   }
@@ -266,24 +258,31 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
+header nav .nav-tools p a {
+  text-decoration: none;
+  font-family: var(--login-button-font-family);
+  font-size: smaller;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
 header nav .nav-sections ul > li > a {
   padding-bottom: 35px;
   text-decoration: none;
 }
 
-
-
 header nav .nav-sections ul > li > a::after{
   content: "";
   position: absolute;
   bottom: -32px;
-
-  /* padding-top: 49px; */
   left: 0;
   width: 0;
   height: 3px;
   text-decoration: none;
-  border-bottom: 4px solid #0c6cce;
+  border-bottom: 4px solid var(--button-color);
 }
 
 header nav .nav-sections ul li.active > a::after {
@@ -382,25 +381,12 @@ header nav .nav-sections ul > li > a:hover::after{
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
-  background-color: #0c6cce;
+  background-color: var(--button-color);
   height: 100%;
 }
 
 header nav .nav-tools p {
-  /* display: flex;
-  align-items: center; */
   height: 100%;
-}
-
-header nav .nav-tools p a {
-  text-decoration: none;
-  font-family: MCQGlobal-Medium-Heavy,Helvetica,Arial,sans-serif;
-  font-size: smaller;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  height: 100%;
-  align-items: center;
 }
 
 header nav .nav-tools p a span {
@@ -417,7 +403,6 @@ header nav .nav-tools p a span {
 
 @media (min-width: 600px) {
   header nav .nav-tools p a {
-    /* display: flex; */
     font-size: medium;
     padding-left: 25px;
     padding-right: 25px;
