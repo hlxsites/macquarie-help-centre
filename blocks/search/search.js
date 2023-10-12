@@ -4,7 +4,7 @@ export default async function decorate(block) {
   block.innerHTML = '';
   const searchContainer = createTag(
     'div',
-    { class: 'search-container' },
+    { class: 'search-outer' },
     `
 <label for="js-search-anywhere" class="search-label"></label>
 <input type="text" id="js-search-anywhere" class="search-input" placeholder="Search Help Centre" tabindex="-1">

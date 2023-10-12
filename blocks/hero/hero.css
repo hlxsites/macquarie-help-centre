@@ -1,14 +1,7 @@
 :root {
   --hero-background-color: #000;
   --hero-text-color: #fff;
-}
-
-main h1 {
-  font-size: var(--heading-font-size-l);
-}
-
-main h5 {
-  font-size: var(--heading-font-size-xs);
+  --hero-no-image-heading-font-size: 32px;
 }
 
 main .hero-container > div {
@@ -21,8 +14,16 @@ main .hero-container {
 
 main .hero {
   position: relative;
-  padding: 32px;
+  padding: 0;
   min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  main .hero {
+    display: block;
+  }
 }
 
 main .hero h1 {
@@ -30,24 +31,45 @@ main .hero h1 {
   margin-left: auto;
   margin-right: auto;
   color: white;
+  margin-bottom: 0;
 }
 
 main .hero h5 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 24px;
   color: white;
 }
 
+main .hero.hero-no-image h1 {
+  font-size: var(--hero-no-image-heading-font-size);
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --hero-no-image-heading-font-size: 44px;
+  }
+}
+
+.hero-picture {
+  max-height: 180px;
+}
+
 main .hero picture {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
   object-fit: cover;
   box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  main .hero picture {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 }
 
 main .hero img {
@@ -57,17 +79,28 @@ main .hero img {
 }
 
 .hero-outer {
-  padding: 32px 16px 80px;
-  margin: 0 auto 24px;
+  padding: 0;
+  margin: 0 0 24px;
+  max-width: 1280px;
+}
+
+.hero-no-image .hero-outer {
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-top: 32px;
+}
+
+@media (min-width: 1200px) {
+  padding-top: 40px;
 }
 
 .hero-box {
   position: relative;
-  width: calc(100% - 17px);
+  width: auto;
   display: flex;
   flex-direction: column;
-  margin-left: 17px;
-  padding: 32px 64px 32px 47px;
+  margin: 0;
+  padding: 23px 16px 40px;
   max-width: 1280px;
   color: var(--hero-text-color);
   background-color: var(--hero-background-color);
@@ -77,29 +110,65 @@ main .hero img {
 .hero-box::before {
   content: '';
   position: absolute;
-  top: 0;
-  right: calc(100% - 1px);
-  height: 64px;
-  border-bottom: 17px solid transparent;
-  border-right: 17px solid var(--hero-background-color);
-  width: 13%;
-  bottom: auto;
   box-sizing: border-box;
+  bottom: 100%;
+  right: 87%;
+  width: 13%;
+  border-bottom: 17px solid var(--hero-background-color);
+  border-right: 17px solid transparent;
 }
 
 .hero-box::after {
   content: '';
   position: absolute;
-  top: 62px;
-  bottom: 0;
-  left: calc(-87% + 1px);
-  height: auto;
-  border-top: 17px solid transparent;
-  border-right: 17px solid var(--hero-background-color);
-  border-bottom: 0 solid transparent;
-  width: 87%;
-  border-left: 17px solid transparent;
-  right: 100%;
   box-sizing: border-box;
+  bottom: 100%;
+  left: 13%;
+  width: 87%;
+  border-bottom: 17px solid var(--hero-background-color);
+  border-left: 17px solid transparent;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding: 32px;
+  }
+
+  .hero-outer {
+    padding: 32px 16px 80px;
+    margin: 0 auto 24px;
+  }
+
+  .hero-box {
+    width: calc(100% - 17px);
+    margin-left: 17px;
+    padding: 32px 64px 32px 47px;
+  }
+
+  .hero-box::before {
+    right: calc(100% - 1px);
+    border-bottom: 17px solid transparent;
+    border-right: 17px solid var(--hero-background-color);
+    bottom: auto;
+    top: 0;
+    height: 64px;
+  }
+
+  .hero-box::after  {
+    top: 62px;
+    left: calc(-87% + 1px);
+    border-bottom: 0 solid transparent;
+    border-right: 17px solid var(--hero-background-color);
+    bottom: 0;
+    height: auto;
+    border-top: 17px solid transparent;
+    right: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-box {
+    padding: 32px 24px;
+  }
 }
 
