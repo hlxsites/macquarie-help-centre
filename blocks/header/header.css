@@ -271,6 +271,7 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    padding-left: 1rem;
   }
 
   header nav[aria-expanded="true"] .nav-sections {
@@ -314,6 +315,7 @@ header nav .nav-sections ul > li > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
+    font-size: medium;
   }
 
   header nav .nav-sections > ul > li > ul {
@@ -357,15 +359,20 @@ header nav .nav-tools {
 }
 
 header nav .nav-tools p {
-  display: flex;
+  /* display: flex;
+  align-items: center; */
   height: 100%;
-  align-items: center;
 }
 
 header nav .nav-tools p a {
   text-decoration: none;
   font-family: MCQGlobal-Medium-Heavy,Helvetica,Arial,sans-serif;
   font-size: smaller;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 header nav .nav-tools p a span {
@@ -382,8 +389,10 @@ header nav .nav-tools p a span {
 
 @media (min-width: 600px) {
   header nav .nav-tools p a {
-    display: flex;
+    /* display: flex; */
     font-size: medium;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   header nav .nav-tools p a span {
