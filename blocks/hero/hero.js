@@ -2,7 +2,6 @@ import {
   buildBlock,
   createTag,
   decorateBlock,
-  decorateIcons,
   loadBlock,
 } from '../../scripts/lib-franklin.js';
 

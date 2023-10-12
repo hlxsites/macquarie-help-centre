@@ -1,5 +1,7 @@
-/* block specific CSS goes here */
-
+:root {
+  --hero-background-color: #000;
+  --hero-text-color: #fff;
+}
 main .hero-container > div {
   max-width: unset;
 }
@@ -44,3 +46,51 @@ main .hero img {
   width: 100%;
   height: 100%;
 }
+
+.hero-outer {
+  padding: 32px 16px 80px;
+  margin: 0 auto 24px;
+}
+
+.hero-box {
+  position: relative;
+  width: calc(100% - 17px);
+  display: flex;
+  flex-direction: column;
+  margin-left: 17px;
+  padding: 32px 64px 32px 47px;
+  max-width: 1280px;
+  color: var(--hero-text-color);
+  background-color: var(--hero-background-color);
+  box-sizing: border-box;
+}
+
+.hero-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: calc(100% - 1px);
+  height: 64px;
+  border-bottom: 17px solid transparent;
+  border-right: 17px solid var(--hero-background-color);
+  width: 13%;
+  bottom: auto;
+  box-sizing: border-box;
+}
+
+.hero-box::after {
+  content: '';
+  position: absolute;
+  top: 62px;
+  bottom: 0;
+  left: calc(-87% + 1px);
+  height: auto;
+  border-top: 17px solid transparent;
+  border-right: 17px solid var(--hero-background-color);
+  border-bottom: 0 solid transparent;
+  width: 87%;
+  border-left: 17px solid transparent;
+  right: 100%;
+  box-sizing: border-box;
+}
+
