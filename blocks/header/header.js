@@ -86,6 +86,22 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Create a skip to main link
+ */
+function addSkipToMain() {
+  const headerWrapper = document.querySelector('.header-wrapper');
+  // create and insert skip link before header
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-link';
+  skipLink.innerText = 'Skip to content';
+  document.body.insertBefore(skipLink, headerWrapper);
+  // add id to main element to support skip link
+  const main = document.querySelector('main');
+  main.id = 'main';
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -153,4 +169,7 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     block.append(navWrapper);
   }
+
+  // Add skip link
+  addSkipToMain();
 }

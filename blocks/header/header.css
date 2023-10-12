@@ -270,7 +270,8 @@ header nav .nav-tools p a {
 }
 
 header nav .nav-sections ul > li > a {
-  padding-bottom: 35px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   text-decoration: none;
 }
 
@@ -413,4 +414,22 @@ header nav .nav-tools p a span {
     position: relative;
     top: 1px;
   }
+}
+
+a.skip-link {
+  position: fixed;
+  top: -10rem;
+  left: -200rem;
+  font-weight: 500;
+  background-color: #0c6cce;
+  padding: 16px;
+  z-index: 20000;
+  text-decoration: underline;
+}
+
+a.skip-link:focus {
+  left: 0;
+  top: 0;
+  font-size: 1rem;
+  color: white;
 }
