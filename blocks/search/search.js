@@ -6,14 +6,14 @@ export default async function decorate(block) {
     'div',
     { class: 'search-container' },
     `
-<label for="js-search-anywhere"></label>
-<input type="text" id="js-search-anywhere" class="search_input" placeholder="Search Help Centre" tabindex="-1">
-<button type="button">
+<label for="js-search-anywhere" class="search-label"></label>
+<input type="text" id="js-search-anywhere" class="search-input" placeholder="Search Help Centre" tabindex="-1">
+<button type="button" class="search-button">
     <span class="icon icon-search"></span>
 </button>
-<div class="search_info">
+<div class="search-info">
     <span class="icon icon-error"></span>
-    <span class="search_info_text">Input search</span>
+    <span class="search-info-text">Input search</span>
 </div>
 `,
   );

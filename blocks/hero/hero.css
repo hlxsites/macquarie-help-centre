@@ -2,6 +2,15 @@
   --hero-background-color: #000;
   --hero-text-color: #fff;
 }
+
+main h1 {
+  font-size: var(--heading-font-size-l);
+}
+
+main h5 {
+  font-size: var(--heading-font-size-xs);
+}
+
 main .hero-container > div {
   max-width: unset;
 }

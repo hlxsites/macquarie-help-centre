@@ -23,6 +23,7 @@ function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const h5 = main.querySelector('h5');
   const picture = main.querySelector('picture');
+  const search = main.querySelector('.search');
   const heroElements = [];
   if (h1) {
     const section = document.createElement('div');
@@ -33,6 +34,9 @@ function buildHeroBlock(main) {
       }
     });
     heroElements.push(h1);
+    if (search && h1 === search.previousElementSibling) {
+      heroElements.push(search);
+    }
     section.append(buildBlock('hero', { elems: heroElements }));
     main.prepend(section);
   }
