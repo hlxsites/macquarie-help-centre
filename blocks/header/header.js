@@ -111,7 +111,18 @@ export default async function decorate(block) {
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
+      const currentPageURL = new URL(window.location.href);
+
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+        const sectionLink = navSection.querySelector('a');
+        if (!sectionLink) return;
+
+        const sectionURL = new URL(sectionLink.href);
+
+        if (sectionURL.href === currentPageURL.href) {
+          navSection.classList.add('active');
+        }
+
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('click', () => {
           if (isDesktop.matches) {

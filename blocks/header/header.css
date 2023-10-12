@@ -266,6 +266,34 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
+header nav .nav-sections ul > li > a {
+  padding-bottom: 35px;
+  text-decoration: none;
+}
+
+
+
+header nav .nav-sections ul > li > a::after{
+  content: "";
+  position: absolute;
+  bottom: -32px;
+
+  /* padding-top: 49px; */
+  left: 0;
+  width: 0;
+  height: 3px;
+  text-decoration: none;
+  border-bottom: 4px solid #0c6cce;
+}
+
+header nav .nav-sections ul li.active > a::after {
+  width: 100%;
+}
+
+header nav .nav-sections ul > li > a:hover::after{
+  width: 100%;
+}
+
 @media (min-width: 900px) {
   header nav .nav-sections {
     display: block;
@@ -397,5 +425,7 @@ header nav .nav-tools p a span {
 
   header nav .nav-tools p a span {
     display: block;
+    position: relative;
+    top: 1px;
   }
 }
