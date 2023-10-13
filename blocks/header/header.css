@@ -7,6 +7,10 @@ header .nav-wrapper {
   color: var(--background-color);
 }
 
+header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+  background: linear-gradient(to bottom, black 85%, rgba(255,255,255,0.7) 85%);
+}
+
 header nav {
   box-sizing: border-box;
   display: grid;
@@ -36,9 +40,21 @@ header nav[aria-expanded="true"] {
     padding-left: 0;
     margin-left: 1rem;
   }
+
+  header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+    background: linear-gradient(to bottom, black 33%, rgba(255,255,255,0.7) 33%);
+  }
 }
 
 @media (min-width: 900px) {
+  header .nav-wrapper {
+    background-color: black;
+  }
+
+  header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+    background: black;
+  }
+
   header nav[aria-expanded="true"] {
     min-height: 0;
     overflow: visible;
@@ -225,6 +241,14 @@ header nav .nav-brand img {
   }
 }
 
+.slide-in {
+  animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+  animation: slide-out 0.5s forwards;
+}
+
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
@@ -274,9 +298,6 @@ header nav .nav-tools p a {
 header nav .nav-sections ul > li > a {
   text-decoration: none;
   font-size: .875rem;
-}
-
-header nav .nav-sections ul > li > a {
   padding: 8px 0 8px 16px;
 }
 
@@ -418,14 +439,6 @@ header nav .nav-tools p {
 
 header nav .nav-tools p a span {
   display: none;
-}
-
-.slide-in {
-  animation: slide-in 0.5s forwards;
-}
-
-.slide-out {
-  animation: slide-out 0.5s forwards;
 }
 
 @media (min-width: 600px) {
