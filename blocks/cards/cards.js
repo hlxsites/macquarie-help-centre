@@ -10,6 +10,16 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
     });
+
+    /* wrap li content in the first a element */
+    const link = li.querySelector('a');
+    if (link) {
+      link.remove();
+      link.textContent = '';
+      link.append(...li.childNodes);
+      li.append(link);
+    }
+
     ul.append(li);
   });
   ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
