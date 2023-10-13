@@ -14,6 +14,7 @@
   /* colors */
   --link-color: #000;
   --link-hover-color: #000;
+  --body-background-color: #f7f7f7;
   --background-color: #fff;
   --text-color: #000;
   --button-color: #0c6cce;
@@ -82,8 +83,8 @@ body {
   line-height: 1.5rem;
   color: var(--text-color);
   display: none;
-  background-color: var(--background-color);
-  background-image: url('../images/background-image.png');
+  background-color: var(--body-background-color);
+  background-image: url('../images/background-image.png'); /* image has transparency, background-color is also needed */
 }
 
 body.appear {
@@ -273,10 +274,4 @@ main .section {
   main .section {
     padding: 64px 24px;
   }
-}
-
-
-/* section metadata */
-main .section.highlight {
-  background-color: var(--highlight-background-color);
 }
