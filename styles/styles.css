@@ -14,6 +14,7 @@
   /* colors */
   --link-color: #000;
   --link-hover-color: #000;
+  --body-background-color: #f7f7f7;
   --background-color: #fff;
   --text-color: #000;
   --button-color: #0c6cce;
@@ -109,8 +110,8 @@ body {
   line-height: 1.5rem;
   color: var(--text-color);
   display: none;
-  background-color: var(--background-color);
-  background-image: url('../images/background-image.png');
+  background-color: var(--body-background-color);
+  background-image: url('../images/background-image.png'); /* image has transparency, background-color is also needed */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -310,13 +311,7 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
-  }
+  padding: 64px 8px;
 }
 
 @media (min-width: 900px) {
@@ -324,9 +319,14 @@ main .section {
     max-width: 1200px;
     margin: auto;
   }
+
+  main .section {
+    padding: 64px 16px;
+  }
 }
 
-/* section metadata */
-main .section.highlight {
-  background-color: var(--highlight-background-color);
+@media (min-width: 1200px) {
+  main .section {
+    padding: 64px 24px;
+  }
 }
