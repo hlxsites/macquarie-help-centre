@@ -1,0 +1,34 @@
+version: 1
+indices:
+  default:
+    include:
+      - /**
+    exclude:
+      - '/drafts/**'
+      - '/tools/**'
+      - '/fragment/**'
+      - '/nav'
+      - '/footer'
+    target: /query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
+      shorttitle:
+        select: head > meta[name="shorttitle"]
+        value: attribute(el, "content")
+      subcategory:
+        select: head > meta[name="subcategory"]
+        value: attribute(el, "content")
