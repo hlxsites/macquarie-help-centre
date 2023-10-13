@@ -71,10 +71,10 @@
   }
 
   .cards .cards-card-body {
-    margin: 24px 0 24px 24px;
+    margin: 32px 0 32px 32px;
   }
 
   .cards .cards-card-body:last-child {
-    margin-right: 24px;
+    margin-right: 32px;
   }
 }
