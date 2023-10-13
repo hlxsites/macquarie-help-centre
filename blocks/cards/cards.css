@@ -21,6 +21,13 @@
   transition: all ease-in 0.2s;
 }
 
+.cards > ul > li > a {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-decoration: none;
+}
+
 .cards > ul > li:hover {
   box-shadow: 0 2px 4px 0 rgba(0 0 0 / 15%);
   transform: translateY(-4px);
