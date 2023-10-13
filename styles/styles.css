@@ -14,10 +14,10 @@
   /* colors */
   --link-color: #000;
   --link-hover-color: #000;
-  --background-color: #f7f7f7;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  --background-color: #fff;
   --text-color: #000;
+  --button-color: #0c6cce;
+  --columns-border: #f7f7f7;
 
   /* footer */
   --footer-text-color: #fff;
@@ -27,6 +27,7 @@
   --body-font-family: "MCQGlobal-Regular-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-regular-heavy: "MCQGlobal-Regular-Heavy","Helvetica","Arial","sans-serif";
+  --button-font-family: "MCQGlobal-Medium-Normal","Helvetica","Arial","sans-serif";
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
