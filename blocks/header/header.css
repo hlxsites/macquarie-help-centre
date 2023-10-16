@@ -22,7 +22,7 @@ header nav {
   margin: auto;
   max-width: 1280px;
   height: var(--nav-height);
-  font-family: var(--header-font-family);
+  font-family: var(--nav-font-family);
   padding-right: 0;
   padding-left: 1rem;
 }
@@ -294,7 +294,7 @@ header nav .nav-sections ul > li > ul > li {
 
 header nav .nav-tools p a {
   text-decoration: none;
-  font-family: var(--header-font-family);
+  font-family: var(--nav-font-family);
   font-size: smaller;
   padding-left: 10px;
   padding-right: 10px;

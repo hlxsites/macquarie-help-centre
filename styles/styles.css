@@ -40,12 +40,8 @@
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-regular-heavy: "MCQGlobal-Regular-Heavy","Helvetica","Arial","sans-serif";
   --button-font-family: "MCQGlobal-Medium-Normal","Helvetica","Arial","sans-serif";
-<<<<<<< HEAD
-  --header-font-family: "MCQGlobal-Medium-Heavy","Helvetica","Arial","sans-serif";
-  --heading-font-family: var(--body-font-family);
-=======
+  --nav-font-family: "MCQGlobal-Medium-Heavy","Helvetica","Arial","sans-serif";
   --heading-font-family: var(--body-font-family-regular-heavy);
->>>>>>> main
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
