@@ -13,7 +13,7 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -21,11 +21,23 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
  */
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
+  const h5 = main.querySelector('h5');
   const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  const search = main.querySelector('.search');
+  const heroElements = [];
+  if (h1) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
+    [picture, h5].forEach((el) => {
+      // eslint-disable-next-line no-bitwise
+      if (el && (h1.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING)) {
+        heroElements.push(el);
+      }
+    });
+    heroElements.push(h1);
+    if (search && h1 === search.previousElementSibling) {
+      heroElements.push(search);
+    }
+    section.append(buildBlock('hero', { elems: heroElements }));
     main.prepend(section);
   }
 }

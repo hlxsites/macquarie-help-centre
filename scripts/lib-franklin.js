@@ -157,6 +157,34 @@ export function toCamelCase(name) {
   return toClassName(name).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
+/**
+ * Helper function to streamline creation of new HTML elements
+ * @param tag Tag name, like 'div'
+ * @param attributes Attributes associated with the element, like class
+ * @param html Either html or array of elements to be added as children
+ * @returns {Element} HTML element
+ */
+export function createTag(tag, attributes, html) {
+  const el = document.createElement(tag);
+  if (html) {
+    if (html instanceof HTMLElement
+        || html instanceof SVGElement
+        || html instanceof DocumentFragment) {
+      el.append(html);
+    } else if (Array.isArray(html)) {
+      el.append(...html);
+    } else {
+      el.insertAdjacentHTML('beforeend', html);
+    }
+  }
+  if (attributes) {
+    Object.entries(attributes).forEach(([key, val]) => {
+      el.setAttribute(key, val);
+    });
+  }
+  return el;
+}
+
 const ICONS_CACHE = {};
 /**
  * Replace icons with inline SVG and prefix with codeBasePath.
