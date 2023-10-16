@@ -101,6 +101,16 @@ function addSkipToMain() {
   main.id = 'main';
 }
 
+function addSectionHeaderToSection() {
+  const sectionList = document.querySelectorAll('.nav-sections > ul');
+  const sectionHeader = document.createElement('li');
+  sectionHeader.textContent = getMetadata('shorttitle');
+  sectionHeader.classList.add('mobile-section-heading');
+  sectionList.forEach((ulElement) => {
+    ulElement.insertBefore(sectionHeader.cloneNode(true), ulElement.firstChild);
+  });
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -169,6 +179,9 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     block.append(navWrapper);
   }
+
+  // adding section header for nav-sections
+  addSectionHeaderToSection();
 
   // Add skip link
   addSkipToMain();

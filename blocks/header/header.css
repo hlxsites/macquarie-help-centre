@@ -44,7 +44,7 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 33%, rgba(255,255,255,70%) 33%);
+    background: linear-gradient(to bottom, var(--text-color) 37%, rgba(255,255,255,70%) 37%);
   }
 }
 
@@ -323,6 +323,10 @@ header nav .nav-sections ul > li > a:hover {
     visibility: visible;
     white-space: nowrap;
     padding-left: 1rem;
+  }
+
+  header nav .nav-sections .mobile-section-heading {
+    display: none;
   }
 
   header nav[aria-expanded="true"] .nav-sections {
