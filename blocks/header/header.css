@@ -226,6 +226,8 @@ header nav .nav-brand img {
   header .nav-brand {
     max-width: 376px;
     gap: 2rem;
+    margin-right: 24px;
+    margin-left: 16px;
   }
 
   header nav .nav-brand .icon {
