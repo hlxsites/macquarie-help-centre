@@ -7,8 +7,6 @@
 }
 
 .breadcrumbs ol {
-  margin-top: 0;
-  margin-bottom: 0;
   display: flex;
   flex-wrap: nowrap;
   font-family: var(--body-font-family);
@@ -18,7 +16,8 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   list-style-type: none;
-  padding: 24px 0;
+  margin: 24px 0;
+  padding-inline-start: 0;
 }
 
 .breadcrumbs ol li {

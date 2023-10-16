@@ -9,7 +9,6 @@ main .hero-container {
 main .hero {
   position: relative;
   padding: 0;
-  min-height: 300px;
   display: flex;
   flex-direction: column;
   max-width: 2080px;
@@ -81,9 +80,8 @@ main .hero img {
 }
 
 .hero-no-image .hero-outer {
-  padding-right: 8px;
-  padding-left: 8px;
-  padding-top: 32px;
+  padding: 0 8px;
+  margin-top: 24px;
 }
 
 @media (min-width: 900px) {
