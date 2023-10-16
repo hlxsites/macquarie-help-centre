@@ -47,6 +47,6 @@ export async function loadBreadbcrumbs() {
 
 // eslint-disable-next-line no-empty-function
 export default async function decorate(block) {
-  const ol = createTag('ol', { class: 'breadcrumbs-hidden' }, '<li>/</li>');
+  const ol = createTag('ol', { class: 'breadcrumbs-hidden' }, '<li>/</li><li>/</li>');
   block.append(ol);
 }

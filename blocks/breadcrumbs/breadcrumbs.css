@@ -16,8 +16,9 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   list-style-type: none;
-  margin: 24px 0;
   padding-inline-start: 0;
+  margin: 0;
+  padding-bottom: 56px;
 }
 
 .breadcrumbs ol li {
@@ -58,6 +59,11 @@
 }
 
 @media (min-width: 600px) {
+  .breadcrumbs ol {
+    padding: 0;
+    margin: 24px 0;
+  }
+
   .breadcrumbs ol li {
     display: flex;
   }
