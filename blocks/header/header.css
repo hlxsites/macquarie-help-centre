@@ -47,6 +47,10 @@ header nav[aria-expanded="true"] {
 }
 
 @media (min-width: 900px) {
+  header nav {
+    margin-left: auto;
+  }
+
   header .nav-wrapper {
     background-color: black;
   }
