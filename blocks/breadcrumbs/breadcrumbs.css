@@ -1,12 +1,14 @@
-.section.breadcrumbs-container {
-  padding: 24px 0;
-}
-
 .breadcrumbs {
   list-style-type: none;
 }
 
+.breadcrumbs-hidden {
+  visibility: hidden;
+}
+
 .breadcrumbs ol {
+  margin-top: 0;
+  margin-bottom: 0;
   display: flex;
   flex-wrap: nowrap;
   font-family: var(--body-font-family);
