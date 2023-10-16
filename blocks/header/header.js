@@ -111,6 +111,18 @@ function addSectionHeaderToSection() {
   });
 }
 
+function updateHelpCentreLink() {
+  const currentURL = new URL(window.location.href).pathname;
+  const helpCentreURL = document.querySelector('.nav-brand p:nth-child(2) a:first-child');
+  if (currentURL.startsWith('/help/business') || currentURL.startsWith('/business')) {
+    helpCentreURL.href = '/business';
+  } else if (currentURL.startsWith('/help/advisers') || currentURL.startsWith('/advisers')) {
+    helpCentreURL.href = '/advisers';
+  } else if (currentURL.startsWith('/help/brokers') || currentURL.startsWith('/brokers')) {
+    helpCentreURL.href = '/brokers';
+  }
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -179,6 +191,9 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     block.append(navWrapper);
   }
+
+  // update help centre link
+  updateHelpCentreLink();
 
   // adding section header for nav-sections
   addSectionHeaderToSection();
