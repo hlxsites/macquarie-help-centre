@@ -18,6 +18,7 @@
   --background-color: #fff;
   --text-color: #000;
   --button-color: #0c6cce;
+  --button-hover-color: #0458ad;
   --columns-border: #f7f7f7;
 
   /* search */
@@ -44,6 +45,7 @@
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-regular-heavy: "MCQGlobal-Regular-Heavy","Helvetica","Arial","sans-serif";
   --button-font-family: "MCQGlobal-Medium-Normal","Helvetica","Arial","sans-serif";
+  --nav-font-family: "MCQGlobal-Medium-Heavy","Helvetica","Arial","sans-serif";
   --heading-font-family: var(--body-font-family-regular-heavy);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -70,7 +72,7 @@
    --heading-line-height-s: 1.5rem;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 56px;
 
 }
 
@@ -316,6 +318,17 @@ main img {
 
 main .section {
   padding: 64px 8px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    /* nav height */
+    --nav-height: 88px;
+  }
+
+  main .section {
+    padding: 64px 32px;
+  }
 }
 
 @media (min-width: 900px) {

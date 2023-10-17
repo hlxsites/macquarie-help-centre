@@ -86,6 +86,44 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Create a skip to main link
+ */
+function addSkipToMain() {
+  const headerWrapper = document.querySelector('.header-wrapper');
+  // create and insert skip link before header
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-link';
+  skipLink.innerText = 'Skip to content';
+  document.body.insertBefore(skipLink, headerWrapper);
+  // add id to main element to support skip link
+  const main = document.querySelector('main');
+  main.id = 'main';
+}
+
+function addSectionHeaderToSection() {
+  const sectionList = document.querySelectorAll('.nav-sections > ul');
+  const sectionHeader = document.createElement('li');
+  sectionHeader.textContent = getMetadata('shorttitle');
+  sectionHeader.classList.add('mobile-section-heading');
+  sectionList.forEach((ulElement) => {
+    ulElement.insertBefore(sectionHeader.cloneNode(true), ulElement.firstChild);
+  });
+}
+
+function updateHelpCentreLink() {
+  const currentURL = new URL(window.location.href).pathname;
+  const helpCentreURL = document.querySelector('.nav-brand p:nth-child(2) a:first-child');
+  if (currentURL.startsWith('/help/business') || currentURL.startsWith('/business')) {
+    helpCentreURL.href = '/business';
+  } else if (currentURL.startsWith('/help/advisers') || currentURL.startsWith('/advisers')) {
+    helpCentreURL.href = '/advisers';
+  } else if (currentURL.startsWith('/help/brokers') || currentURL.startsWith('/brokers')) {
+    helpCentreURL.href = '/brokers';
+  }
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -111,7 +149,18 @@ export default async function decorate(block) {
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
+      const currentPageURL = new URL(window.location.href);
+
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+        const sectionLink = navSection.querySelector('a');
+        if (!sectionLink) return;
+
+        const sectionURL = new URL(sectionLink.href);
+
+        if (sectionURL.href === currentPageURL.href) {
+          navSection.classList.add('active');
+        }
+
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('click', () => {
           if (isDesktop.matches) {
@@ -142,4 +191,13 @@ export default async function decorate(block) {
     navWrapper.append(nav);
     block.append(navWrapper);
   }
+
+  // update help centre link
+  updateHelpCentreLink();
+
+  // adding section header for nav-sections
+  addSectionHeaderToSection();
+
+  // Add skip link
+  addSkipToMain();
 }
