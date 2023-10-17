@@ -44,7 +44,7 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 350px, rgba(255,255,255,70%) 350px);
+    background: linear-gradient(to bottom, var(--text-color) 370px, rgba(255,255,255,70%) 370px);
   }
 }
 
