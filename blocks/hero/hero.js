@@ -4,11 +4,16 @@ import {
   loadBlock,
 } from '../../scripts/lib-franklin.js';
 
+function hasBreadcrumbs() {
+  const parts = window.location.pathname.split('/').filter((p) => p);
+  return parts.length > 1;
+}
+
 export default async function decorate(block) {
   const title = block.querySelector('h1');
   const info = block.querySelector('h5');
   const search = block.querySelector('.search');
-  const breadcrumbs = block.querySelector('.breadcrumbs');
+  const breadcrumbs = hasBreadcrumbs() && createTag('div', { class: 'breadcrumbs' }, '');
   const picture = block.querySelector('picture');
   if (picture) {
     picture.parentElement.classList.add('hero-picture');
