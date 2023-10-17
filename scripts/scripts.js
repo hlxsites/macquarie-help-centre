@@ -24,11 +24,7 @@ function buildHeroBlock(main) {
   const h5 = main.querySelector('h5');
   const picture = main.querySelector('picture');
   const search = main.querySelector('.search');
-  const breadcrumbs = main.querySelector('.breadcrumbs');
   const heroElements = [];
-  if (breadcrumbs) {
-    heroElements.push(breadcrumbs);
-  }
   if (h1) {
     const section = document.createElement('div');
     [picture, h5].forEach((el) => {
