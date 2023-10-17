@@ -56,11 +56,15 @@ main .hero.hero-no-image h1 {
   }
 }
 
+.hero-picture.hero-animate {
+  opacity: 1;
+}
+
 .hero-picture {
   order: 2;
   max-height: 180px;
-  transition: opacity, transform 1s ease-in 1s;
   opacity: 0;
+  transition: opacity 1s ease-in 1s;
 }
 
 main .hero picture {
