@@ -25,13 +25,15 @@ function buildHeroBlock(main) {
   const picture = main.querySelector(':scope > div:first-child picture');
   const search = main.querySelector(':scope > div:first-child > .search');
   const heroElements = [];
-  let heroType = 'hero-img-bg';
+  let heroType = '';
   if (h1) {
     const section = document.createElement('div');
     if (picture) {
       // eslint-disable-next-line no-bitwise
       if (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_FOLLOWING) {
         heroType = 'hero-img-right';
+      } else {
+        heroType = 'hero-img-bg';
       }
       heroElements.push(picture);
     }

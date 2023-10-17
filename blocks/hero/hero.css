@@ -6,13 +6,21 @@ main .hero-container {
   padding: 0;
 }
 
+main .hero-container .hero-wrapper {
+  max-width: 2080px;
+}
+
 main .hero {
   position: relative;
   padding: 0;
   display: flex;
   flex-direction: column;
-  max-width: 2080px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+main .hero-img-bg.hero {
+  max-width: unset;
 }
 
 @media (min-width: 600px) {
