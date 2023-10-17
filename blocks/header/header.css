@@ -44,7 +44,7 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 37%, rgba(255,255,255,70%) 37%);
+    background: linear-gradient(to bottom, var(--text-color) 350px, rgba(255,255,255,70%) 350px);
   }
 }
 
@@ -441,6 +441,7 @@ header nav .nav-tools {
   grid-area: tools;
   background-color: var(--button-color);
   height: 100%;
+  font-weight: 700;
 }
 
 header nav .nav-tools:hover {
