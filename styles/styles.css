@@ -26,6 +26,10 @@
   --search-line-error: #e82400;
   --search-focus-color: #0c6cce;
 
+  /* breadcrumbs */
+  --breadcrumbs-text-color: #333;
+  --breadcrumbs-hover-color: #0c6cce;
+
   /* hero */
   --hero-background-color: #000;
   --hero-text-color: #fff;
