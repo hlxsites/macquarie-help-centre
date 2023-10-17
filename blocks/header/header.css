@@ -296,8 +296,8 @@ header nav .nav-tools p a {
   text-decoration: none;
   font-family: var(--nav-font-family);
   font-size: smaller;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 22px;
+  padding-right: 22px;
   display: flex;
   height: 100%;
   align-items: center;
@@ -441,6 +441,10 @@ header nav .nav-tools {
   grid-area: tools;
   background-color: var(--button-color);
   height: 100%;
+}
+
+header nav .nav-tools:hover {
+  background-color: var(--button-hover-color);
 }
 
 header nav .nav-tools p {
