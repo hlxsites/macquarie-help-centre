@@ -1,5 +1,13 @@
 .breadcrumbs {
   list-style-type: none;
+  padding: 16px 8px 32px;
+  order: 1;
+}
+
+@media (min-width: 600px) {
+  .breadcrumbs {
+    padding: 0 16px;
+  }
 }
 
 .breadcrumbs-hidden {
@@ -18,12 +26,16 @@
   list-style-type: none;
   padding-inline-start: 0;
   margin: 0;
-  padding-bottom: 56px;
+  -padding-bottom: 56px;
 }
 
 .breadcrumbs ol li {
   padding: 0;
   display: none;
+}
+
+.breadcrumbs ol li:first-child:last-child {
+  display: flex;
 }
 
 .breadcrumbs li::after {
@@ -56,6 +68,14 @@
   width: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.breadcrumbs li:first-child:last-child::before {
+  content: url("../../icons/chevron-left.svg");
+  width: 16px;
+  height: 16px;
+  left: 0;
+  bottom: 0
 }
 
 @media (min-width: 600px) {

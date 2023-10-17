@@ -20,25 +20,32 @@ const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const h5 = main.querySelector('h5');
-  const picture = main.querySelector('picture');
-  const search = main.querySelector('.search');
+  const h1 = main.querySelector(':scope > div:first-child > h1');
+  const h5 = main.querySelector(':scope > div:first-child > h5');
+  const picture = main.querySelector(':scope > div:first-child picture');
+  const search = main.querySelector(':scope > div:first-child > .search');
   const heroElements = [];
+  let heroType = 'hero-img-bg';
   if (h1) {
     const section = document.createElement('div');
-    [picture, h5].forEach((el) => {
+    if (picture) {
       // eslint-disable-next-line no-bitwise
-      if (el && (h1.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING)) {
-        heroElements.push(el);
+      if (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        heroType = 'hero-img-right';
       }
-    });
+      heroElements.push(picture);
+    }
+    if (h5) {
+      heroElements.push(h5);
+    }
     heroElements.push(h1);
-    if (search && h1 === search.previousElementSibling) {
+    if (search) {
       heroElements.push(search);
     }
     section.append(buildBlock('hero', { elems: heroElements }));
     main.prepend(section);
+    const heroBlock = main.querySelector('.hero');
+    heroBlock.classList.add(heroType);
   }
 }
 
