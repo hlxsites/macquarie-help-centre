@@ -59,11 +59,8 @@ main .hero.hero-no-image h1 {
 .hero-picture {
   order: 2;
   max-height: 180px;
-  transition-delay: 1s;
+  transition: opacity, transform 1s ease-in 1s;
   opacity: 0;
-  transition-duration: 1s;
-  transition-property: opacity, transform;
-  transition-timing-function: ease-in;
 }
 
 main .hero picture {

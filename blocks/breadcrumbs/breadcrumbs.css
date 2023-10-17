@@ -26,12 +26,15 @@
   list-style-type: none;
   padding-inline-start: 0;
   margin: 0;
-  -padding-bottom: 56px;
 }
 
 .breadcrumbs ol li {
   padding: 0;
   display: none;
+}
+
+.breadcrumbs li:nth-last-child(2) {
+  display: flex;
 }
 
 .breadcrumbs ol li:first-child:last-child {
@@ -46,10 +49,6 @@
   padding-right: 2px;
   box-sizing: border-box;
   display: none;
-}
-
-.breadcrumbs li:nth-last-child(2) {
-  display: flex;
 }
 
 .breadcrumbs li:nth-last-child(2)::before {
