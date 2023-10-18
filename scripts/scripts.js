@@ -13,7 +13,6 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 import ffetch from './ffetch.js';
-// import ffetch from './ffetch.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
@@ -186,7 +185,7 @@ function loadSiteIndex2() {
 }
 
 async function loadPage() {
-  loadSiteIndex2();
+  loadSiteIndex();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
