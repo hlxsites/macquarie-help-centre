@@ -12,6 +12,7 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
+import ffetch from './ffetch.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
@@ -147,7 +148,24 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+function loadSiteIndex() {
+  window.siteindex = window.siteindex || { data: [], loaded: false };
+  ffetch('/query-index.json')
+    .all()
+    .then((responseJson) => {
+      window.siteindex.data = responseJson;
+      window.siteindex.loaded = true;
+      const event = new Event('siteindex-ready');
+      document.dispatchEvent(event);
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log(`Error loading site index: ${error.message}`);
+    });
+}
+
 async function loadPage() {
+  loadSiteIndex();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
