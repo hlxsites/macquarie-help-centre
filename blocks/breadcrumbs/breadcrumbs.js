@@ -50,6 +50,6 @@ export default async function decorate(block) {
   } else {
     const ol = createTag('ol', { class: 'breadcrumbs-hidden' }, '<li>/</li><li>/</li>');
     block.append(ol);
-    document.addEventListener('siteindex-ready', () => renderBreadcrumbs(block));
+    document.addEventListener('dataset-ready', () => renderBreadcrumbs(block));
   }
 }

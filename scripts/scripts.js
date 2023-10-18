@@ -13,6 +13,7 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 import ffetch from './ffetch.js';
+// import ffetch from './ffetch.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
@@ -155,7 +156,27 @@ function loadSiteIndex() {
     .then((responseJson) => {
       window.siteindex.data = responseJson;
       window.siteindex.loaded = true;
-      const event = new Event('siteindex-ready');
+      const event = new Event('dataset-ready');
+      document.dispatchEvent(event);
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log(`Error loading site index: ${error.message}`);
+    });
+}
+
+function loadSiteIndex2() {
+  window.siteindex = window.siteindex || { data: [], loaded: false, entitiesByPath: {} };
+  const limit = 30000;
+  const offset = 0;
+
+  // temp: URL points to hlx.live for CDN backed .live domain
+  fetch(`/query-index.json?limit=${limit}&offset=${offset}`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      window.siteindex.data = responseJson?.data;
+      window.siteindex.loaded = true;
+      const event = new Event('dataset-ready');
       document.dispatchEvent(event);
     })
     .catch((error) => {
@@ -165,7 +186,7 @@ function loadSiteIndex() {
 }
 
 async function loadPage() {
-  loadSiteIndex();
+  loadSiteIndex2();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
