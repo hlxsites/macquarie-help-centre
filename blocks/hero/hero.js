@@ -19,7 +19,7 @@ export default async function decorate(block) {
     const pictureParent = picture.parentElement?.parentElement;
     if (pictureParent) {
       pictureParent.classList.add('hero-picture');
-      window.setTimeout(() => { pictureParent.classList.add('hero-animate'); }, 1000);
+      window.setTimeout(() => { pictureParent.classList.add('hero-animate'); }, 1500);
     }
   } else {
     block.classList.add('hero-no-image');
