@@ -148,7 +148,7 @@ function loadDelayed() {
 }
 
 function loadSiteIndex() {
-  window.siteindex = window.siteindex || { data: [], loaded: false, entitiesByPath: {} };
+  window.siteindex = window.siteindex || { data: [], loaded: false };
   const limit = 30000;
   const offset = 0;
 
@@ -163,7 +163,7 @@ function loadSiteIndex() {
     })
     .catch((error) => {
       // eslint-disable-next-line no-console
-      console.log(`Error loading site index: ${error.message}`);
+      console.log(`Error loading query index: ${error.message}`);
     });
 }
 
