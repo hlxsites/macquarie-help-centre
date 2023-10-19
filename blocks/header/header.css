@@ -3,7 +3,6 @@ header .nav-wrapper {
   background-color: var(--text-color);
   width: 100%;
   z-index: 2;
-  position: fixed;
   color: var(--background-color);
 }
 
@@ -422,7 +421,7 @@ header nav .nav-sections ul > li > a:hover {
     text-decoration: none;
     border-bottom: 4px solid var(--button-color);
   }
-  
+
   header nav .nav-sections ul li.active > a, header nav .nav-sections ul > li > a:hover {
     border-left: 0;
   }
@@ -430,7 +429,7 @@ header nav .nav-sections ul > li > a:hover {
   header nav .nav-sections ul li.active > a::after {
     width: 100%;
   }
-  
+
   header nav .nav-sections ul > li > a:hover::after{
     width: 100%;
   }

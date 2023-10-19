@@ -29,11 +29,21 @@
     font-size: 1.375rem;
     line-height: 1rem;
   }
+
+  .hero-img-right .search-input {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
 }
 
 @media (min-width: 900px) {
   .search-input {
     padding: 24px 56px 24px 24px;
+  }
+
+  .hero-img-right .search-input {
+    font-size: 1.375rem;
+    line-height: 1rem;
   }
 }
 

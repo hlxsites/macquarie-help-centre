@@ -1,4 +1,3 @@
-import ffetch from '../../scripts/ffetch.js';
 import { createTag } from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
@@ -10,15 +9,14 @@ function getName(pageIndex, path) {
   return pg && pg.shorttitle;
 }
 
-export async function loadBreadbcrumbs() {
-  const block = document.querySelector('.breadcrumbs');
+export async function renderBreadcrumbs(block) {
   if (!block) {
     return;
   }
   const breadcrumbs = [];
   const path = window.location.pathname;
   const pathSplit = path.split('/');
-  const pageIndex = await ffetch('/query-index.json').all();
+  const pageIndex = window.siteindex.data;
   const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2)
     .join('/'));
 
@@ -47,6 +45,11 @@ export async function loadBreadbcrumbs() {
 
 // eslint-disable-next-line no-empty-function
 export default async function decorate(block) {
-  const ol = createTag('ol', { class: 'breadcrumbs-hidden' }, '<li>/</li><li>/</li>');
-  block.append(ol);
+  if (window?.siteindex?.loaded) {
+    await renderBreadcrumbs(block);
+  } else {
+    const ol = createTag('ol', { class: 'breadcrumbs-hidden' }, '<li>/</li><li>/</li>');
+    block.append(ol);
+    document.addEventListener('dataset-ready', () => renderBreadcrumbs(block));
+  }
 }
