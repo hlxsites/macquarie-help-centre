@@ -203,9 +203,12 @@ export default {
         }, 250);
       });
 
-      // await WebImporter.Loader.waitForElement('.wait-for-me', document, 10000, 500);
+      // if the page contains an embedded video, wait for the related iframe to have the title attribute
+      if (document.querySelector('.video iframe')) {
+        await WebImporter.Loader.waitForElement('.video iframe[title]', document, 10000, 500);
+      }
     } catch (error) {
-      throw new Error('Error waiting for lazy loaded images to be loaded');
+      throw new Error('Error waiting for elements to be loaded');
     }
   },
 
