@@ -110,7 +110,7 @@
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.5rem;
@@ -317,7 +317,10 @@ main img {
 }
 
 main .section {
-  padding: 64px 8px;
+  box-sizing: border-box;
+  margin: 40px 8px;
+  padding: 40px 16px;
+  background-color: var(--background-color);
 }
 
 @media (min-width: 600px) {
@@ -327,23 +330,22 @@ main .section {
   }
 
   main .section {
-    padding: 64px 32px;
+    margin: 32px 16px;
+    padding: 32px 24px;
   }
 }
 
 @media (min-width: 900px) {
-  .section > div {
-    max-width: 1200px;
-    margin: auto;
-  }
-
   main .section {
-    padding: 64px 16px;
+    margin: 32px 24px;
+    padding: 40px;
   }
 }
 
 @media (min-width: 1200px) {
   main .section {
-    padding: 64px 24px;
+    max-width: 1200px;
+    margin: 48px auto;
+    padding: 48px;
   }
 }
