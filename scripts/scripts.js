@@ -152,7 +152,6 @@ function loadSiteIndex() {
   const limit = 30000;
   const offset = 0;
 
-  // temp: URL points to hlx.live for CDN backed .live domain
   fetch(`/query-index.json?limit=${limit}&offset=${offset}`)
     .then((response) => response.json())
     .then((responseJson) => {
