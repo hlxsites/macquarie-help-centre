@@ -147,7 +147,27 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+function loadSiteIndex() {
+  window.siteindex = window.siteindex || { data: [], loaded: false };
+  const limit = 30000;
+  const offset = 0;
+
+  fetch(`/query-index.json?limit=${limit}&offset=${offset}`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      window.siteindex.data = responseJson?.data;
+      window.siteindex.loaded = true;
+      const event = new Event('dataset-ready');
+      document.dispatchEvent(event);
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log(`Error loading query index: ${error.message}`);
+    });
+}
+
 async function loadPage() {
+  loadSiteIndex();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
