@@ -26,11 +26,26 @@
   transition: all ease-in 0.2s;
 }
 
-.cards > ul > li > a {
+.cards > ul > li > a, .cards > ul > li > a.button {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   text-decoration: none;
+  border: 0;
+  padding: 0;
+  color: var(--link-color);
+  background-color: transparent;
+  font-weight: unset;
+  font-size: var(--cards-heading-font-size);
+  line-height: 1.875rem;
+  letter-spacing: -1px;
+  margin: auto 0;
+  white-space: inherit;
+  text-align: inherit;
+}
+
+.cards > ul > li > a p {
+  margin: 0;
 }
 
 .cards > ul > li:hover {
