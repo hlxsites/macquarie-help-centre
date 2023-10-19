@@ -312,10 +312,10 @@ export default {
 
     makeLinks(main, document);
 
-    const iframe = main.querySelector('iframe');
-    if (iframe) {
-      iframe.remove();
-    }
+    // use helper method to remove header, footer, etc.
+    WebImporter.DOMUtils.remove(main, [
+      'iframe',
+    ]);
 
     return main;
   },
