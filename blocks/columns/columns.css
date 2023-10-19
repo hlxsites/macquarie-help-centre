@@ -5,12 +5,16 @@ main .section .columns-wrapper .columns {
 .columns > div {
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
 }
 
 .columns > div > div {
   order: 1;
-  padding: 20px;
+  padding: 40px 0;
+}
+
+.columns > div > div:first-child {
+  order: 1;
+  padding-top: 0;
 }
 
 .columns h3 {
@@ -62,21 +66,21 @@ main .section .columns-wrapper .columns {
 @media (min-width: 900px) {
   .columns > div {
     flex-direction: unset;
-    gap: 15px;
+    gap: 40px;
     display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   .columns > div > div {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 20px;
-    padding-bottom: 0;
+    padding-right: 40px;
     padding-top: 0;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    padding-bottom: 0;
+  }
+
+  .columns > div > div:last-child {
+    padding-right: 0;
   }
 
   .columns > div > div:not(:last-child) {
