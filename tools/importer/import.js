@@ -169,9 +169,9 @@ function createAccordion(main, document) {
 }
 
 function setPlayIcons(main, document) {
-  main.querySelectorAll('.image').forEach((module) => {
+  main.querySelectorAll('.image').forEach((image) => {
     // iframe tag
-    const video = module.querySelector('a.cmp-image__link');
+    const video = image.querySelector('a.cmp-image__link');
     if (video) {
       const iconLink = document.createElement('a');
       iconLink.href = video.getAttribute('href');
@@ -181,8 +181,8 @@ function setPlayIcons(main, document) {
         iconLink.textContent = ':app-store-logo:';
       }
 
-      // Append the icon link to the module
-      module.appendChild(iconLink);
+      // Append the icon link to the image
+      image.replaceWith(iconLink);
     }
   });
 }
