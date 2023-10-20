@@ -1,105 +1,87 @@
-import { decorateBlock, getMetadata, loadBlocks } from '../../scripts/lib-franklin.js';
-import { constants } from './aria-accordion.js';
-import ffetch from '../../scripts/ffetch.js';
+import { getMetadata } from '../../scripts/lib-franklin.js';
 
-function updateHeightValues(block) {
-  setTimeout(() => {
-    const accordions = block.querySelectorAll('.accordion-section');
-    [...accordions].forEach((accordion) => {
-      const text = accordion.querySelector('.text');
-      const region = accordion.querySelector('[role="region"]');
-      const height = text.offsetHeight;
-      const heightValue = height ? `${height}px` : 'auto';
-      region.style.maxHeight = `calc(${heightValue} * 2)`;
-      region.style.minHeight = heightValue;
-    });
-  }, 100);
+let sectionData = 1;
+
+function buttonClick(event) {
+  const button = event.target.closest('button');
+  if (button) {
+    const sectionNumber = button.getAttribute('data-section');
+    const subcategoryDiv = document.querySelector(`.accordion-section [data-section="${sectionNumber}"]`).parentNode.nextElementSibling;
+    if (subcategoryDiv.classList.contains('expanded')) {
+      subcategoryDiv.classList.remove('expanded');
+      button.setAttribute('aria-expanded', 'false');
+    } else {
+      subcategoryDiv.classList.add('expanded');
+      button.setAttribute('aria-expanded', 'true');
+    }
+  }
 }
 
-function getName(pageIndex, path) {
-  const pg = pageIndex.find((page) => page.path === path);
-  return pg;
+function showView(block, subcategoryUrls, categoryTitle) {
+  const accordionSection = document.createElement('div');
+  accordionSection.classList.add('accordion-section');
+  const accordionSectionHeader = document.createElement('div');
+  accordionSectionHeader.classList.add('accordion-header');
+  const button = document.createElement('button');
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('data-section', sectionData);
+  button.textContent = categoryTitle;
+  button.addEventListener('click', (event) => {
+    buttonClick(event);
+  });
+  accordionSectionHeader.appendChild(button);
+
+  accordionSection.appendChild(accordionSectionHeader);
+  sectionData += 1;
+
+  const accordionSectionSubCategoryDiv = document.createElement('div');
+  accordionSectionSubCategoryDiv.classList.add('accordion-subcategory-div');
+  subcategoryUrls.forEach((item) => {
+    const sectionAnchor = document.createElement('div');
+    sectionAnchor.classList.add('content');
+    sectionAnchor.innerHTML = `
+        <a href='${item.path}'>
+            <span>${item.shorttitle}</span>
+        </a>
+      `;
+    accordionSectionSubCategoryDiv.appendChild(sectionAnchor);
+  });
+  accordionSection.appendChild(accordionSectionSubCategoryDiv);
+  block.appendChild(accordionSection);
 }
+
+/* export async function renderAccordion() {
+
+} */
 
 export default async function decorate(block) {
-  // const path = window.location.pathname;
-  const pageIndex = await ffetch('/query-index.json').all();
-  // const indexRow = getName(pageIndex, path);
-  // const cat = indexRow.category;
-  // const subcat = indexRow.subcategory;
-
+  const pageIndex = window.siteindex.data;
   const indexPath = window.location.pathname;
   const cat = getMetadata('category');
   const subcat = getMetadata('subcategory');
 
-  // Construct a regular expression dynamically
   const regex = new RegExp(`^${indexPath}/([^/]+)?$`);
-
   const filteredUrls = pageIndex.filter((url) => regex.test(url.path));
-  let subcatList = new Map();
-  if (cat !== '') {
-    let subCatUrls;
+
+  if (cat !== '' && subcat === '') {
     filteredUrls.forEach((item) => {
       const regex1 = new RegExp(`^${item.path}/([^/]+)?$`);
-      subCatUrls = pageIndex.filter((url) => regex1.test(url.path));
-      subcatList.set(item.path, subCatUrls);
+
+      const filteredSubCatUrls = pageIndex
+        .filter((url) => regex1.test(url.path))
+        .map((url) => ({
+          path: url.path,
+          shorttitle: url.shorttitle,
+        }));
+      filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
+      showView(block, filteredSubCatUrls, item.shorttitle);
     });
+  } else if (subcat !== '') {
+    const filteredSubCatUrls = filteredUrls.map((url) => ({
+      path: url.path,
+      shorttitle: url.shorttitle,
+    }));
+    filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
+    showView(block, filteredSubCatUrls, getMetadata('shorttitle'));
   }
-  // const category = getMetadata();
-  const accordions = [...block.children];
-  accordions.forEach((accordion) => {
-    accordion.classList.add('accordion-section');
-    accordion.firstElementChild.classList.add('header');
-    if (accordion.firstElementChild.querySelector('br')) {
-      accordion.firstElementChild.classList.add('is-multiline');
-    }
-    accordion.firstElementChild.nextElementSibling.classList.add('text');
-    const lastElementChildHTML = accordion.lastElementChild.innerHTML;
-    if (lastElementChildHTML === 'expand') {
-      accordion.firstElementChild.nextElementSibling.classList.add('default-expand');
-      accordion.lastElementChild.remove();
-    } else if (lastElementChildHTML === '') {
-      accordion.lastElementChild.remove();
-    }
-  });
-  const element = document.createElement(constants.tagName);
-  element.innerHTML = block.innerHTML;
-  block.innerHTML = '';
-  block.append(element);
-  block.querySelectorAll('p:empty').forEach((el) => el.remove());
-
-  const textDivs = block.querySelectorAll('.text');
-
-  // fetch dynamic content
-  let hasAsyncBlocks = false;
-  await Promise.all([...textDivs].map(async (text) => {
-    text.parentElement.setAttribute('aria-live', 'off');
-    const path = new URL(text.textContent).pathname;
-    if (!path) {
-      return;
-    }
-    try {
-      const resp = await fetch(`${path}.plain.html`);
-      if (resp.ok) {
-        const content = await resp.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(content, 'text/html').body.firstChild;
-        text.classList.remove('button-container');
-        text.innerHTML = '';
-        text.appendChild(doc);
-        text.firstElementChild.querySelectorAll(':scope > div')
-          .forEach(decorateBlock);
-        hasAsyncBlocks = true;
-      }
-    } catch (err) {
-      text.parentElement.remove();
-    }
-  }));
-  if (hasAsyncBlocks) {
-    await loadBlocks(document.querySelector('main'));
-  }
-
-  // inline height values for accordion sections
-  updateHeightValues(block);
-  block.setAttribute('data-complete', 'true');
 }
