@@ -2,8 +2,18 @@ main .hero-container > div {
   max-width: unset;
 }
 
-main .hero-container {
+main .section.hero-container {
+  margin: 0;
   padding: 0;
+  background-color: transparent;
+}
+
+main .section.hero-container:has(.hero-no-image) {
+  margin: 24px 8px 40px;
+}
+
+main .section.hero-container:has(.hero-img-right) {
+  margin-top: 24px;
 }
 
 main .hero-container .hero-wrapper {
@@ -49,13 +59,6 @@ main .hero.hero-no-image h1 {
   font-size: var(--hero-no-image-heading-font-size);
 }
 
-@media (min-width: 900px) {
-  .hero-smaller-text h1 {
-    font-size: var(--heading-font-size-xl);
-    line-height: var(--heading-line-height-xl);
-  }
-}
-
 .hero-picture.hero-animate {
   opacity: 1;
 }
@@ -77,23 +80,6 @@ main .hero picture {
   object-position: unset;
 }
 
-
-@media (min-width: 600px) {
-  main .hero picture {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
-  main .hero.hero-img-right picture {
-    left: 35%;
-    width: calc(65% - 24px);
-  }
-}
-
 main .hero img {
   object-fit: cover;
   width: 100%;
@@ -102,23 +88,16 @@ main .hero img {
 
 .hero-outer {
   order: 3;
-  padding: 0;
-  margin: 0 0 24px;
   max-width: 1200px;
 }
 
-.hero-no-image .hero-outer {
-  padding: 0 8px;
-  margin-top: 24px;
-}
-
 .hero-img-right .hero-outer {
-  padding-left: 8px;
-  padding-right: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
-@media (min-width: 900px) {
-  padding-top: 40px;
+.hero-no-image .hero-outer {
+  margin-top: 24px;
 }
 
 .hero-box {
@@ -157,22 +136,47 @@ main .hero img {
 }
 
 @media (min-width: 600px) {
+  main .section.hero-container:has(.hero-img-right) {
+    margin: 24px 16px;
+  }
+
+  main .section.hero-container:has(.hero-no-image) {
+    margin: 24px 16px;
+  }
+
   .hero {
     padding: 32px;
   }
 
   .hero-outer {
-    padding: 32px 16px 80px;
-    margin: 0 auto 24px;
+    margin: auto 16px;
+  }
+
+  .hero.hero-img-bg {
+    padding-top: 32px;
+    padding-bottom: 80px;
   }
 
   .hero-no-image .hero-outer {
-    padding-left: 16px;
-    padding-right: 16px;
+    margin: 0;
   }
 
   .hero-img-right .hero-outer {
-    padding: 0 0 0 16px;
+    padding: 0;
+    margin: 0;
+  }
+
+  main .hero picture {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  main .hero.hero-img-right picture {
+    left: 35%;
   }
 
   .hero-box {
@@ -206,10 +210,40 @@ main .hero img {
   }
 }
 
+@media (min-width: 900px) {
+  main .section.hero-container:has(.hero-img-right) {
+    margin: 24px;
+  }
+
+  main .section.hero-container:has(.hero-no-image) {
+    margin: 24px;
+  }
+
+  .hero-outer {
+    margin: auto 24px;
+  }
+
+  .hero-smaller-text h1 {
+    font-size: var(--heading-font-size-xl);
+    line-height: var(--heading-line-height-xl);
+  }
+}
+
 @media (min-width: 1200px) {
+  main .section.hero-container {
+    max-width: unset;
+  }
+
+  .hero-outer {
+    margin: auto;
+  }
+
+  .hero.hero-img-bg {
+    padding-bottom: 80px;
+  }
+
   .hero-box {
     padding-top: 48px;
     padding-bottom: 48px;
   }
 }
-
