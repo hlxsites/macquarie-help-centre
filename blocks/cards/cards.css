@@ -83,6 +83,7 @@
 
   .cards > ul > li {
     padding: 16px 8px;
+    overflow-wrap: anywhere;
   }
 }
 
