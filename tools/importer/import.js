@@ -187,6 +187,31 @@ function setPlayIcons(main, document) {
 }
 
 export default {
+  onLoad: async ({ document, url, params }) => {
+    try {
+      await new Promise((resolve, reject) => {
+        const startTime = Date.now();
+        const intervalId = setInterval(() => {
+          const element = document.querySelector('img.cmp-image__image--is-loading');
+          if (!element) {
+            clearInterval(intervalId);
+            resolve(element);
+          } else if (Date.now() - startTime >= 10000) {
+            clearInterval(intervalId);
+            reject(new Error('Timeout waiting for element for not be present anymore'));
+          }
+        }, 250);
+      });
+
+      // if the page contains an embedded video, wait for the related iframe to have the title attribute
+      if (document.querySelector('.video iframe')) {
+        await WebImporter.Loader.waitForElement('.video iframe[title]', document, 10000, 500);
+      }
+    } catch (error) {
+      throw new Error('Error waiting for elements to be loaded');
+    }
+  },
+
   /**
      * Apply DOM operations to the provided document and return
      * the root element to be then transformed to Markdown.
@@ -215,7 +240,6 @@ export default {
       '.three-column-block',
       '.animated .back-to-top__button',
       'script',
-      'noscript',
       '.search__bar',
       '.rates-and-fees__left-panel',
     ]);
@@ -290,10 +314,11 @@ export default {
 
     makeLinks(main, document);
 
-    const iframe = main.querySelector('iframe');
-    if (iframe) {
-      iframe.remove();
-    }
+    // use helper method to remove header, footer, etc.
+    WebImporter.DOMUtils.remove(main, [
+      'iframe',
+      'noscript',
+    ]);
 
     return main;
   },
