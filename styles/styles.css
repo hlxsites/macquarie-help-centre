@@ -83,34 +83,8 @@
   src: local('Arial');
 }
 
-
-@media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 44px;
-    --heading-font-size-l: 32px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 18px;
-    --heading-font-size-xs: 16px;
-
-    /* line height */
-    --heading-line-height-xxl: 4rem;
-    --heading-line-height-xl: 3.5rem;
-    --heading-line-height-l: 2.5rem;
-    --heading-line-height-m: 1.875rem;
-
-    /* hero */
-    --hero-no-image-heading-font-size: 44px;
-  }
-
-  body {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.5rem;
@@ -317,33 +291,67 @@ main img {
 }
 
 main .section {
-  padding: 64px 8px;
+  box-sizing: border-box;
+  margin: 40px 8px;
+  padding: 40px 16px;
+  background-color: var(--background-color);
+}
+
+main .section:empty {
+  display: none;
 }
 
 @media (min-width: 600px) {
   :root {
-    /* nav height */
     --nav-height: 88px;
   }
 
   main .section {
-    padding: 64px 32px;
+    margin: 32px 16px;
+    padding: 32px 24px;
+  }
+
+  main .section > .default-content-wrapper {
+    margin: auto;
+    width: calc(100% * 2/3);
+    line-height: 1.75rem;
   }
 }
 
 @media (min-width: 900px) {
-  .section > div {
-    max-width: 1200px;
-    margin: auto;
+  :root {
+    --heading-font-size-xxl: 60px;
+    --heading-font-size-xl: 44px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 22px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
+
+    /* line height */
+    --heading-line-height-xxl: 4rem;
+    --heading-line-height-xl: 3.5rem;
+    --heading-line-height-l: 2.5rem;
+    --heading-line-height-m: 1.875rem;
+
+    /* hero */
+    --hero-no-image-heading-font-size: 44px;
+  }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   main .section {
-    padding: 64px 16px;
+    margin: 32px 24px;
+    padding: 40px;
   }
 }
 
 @media (min-width: 1200px) {
   main .section {
-    padding: 64px 24px;
+    max-width: 1200px;
+    margin: 48px auto;
+    padding: 48px;
   }
 }

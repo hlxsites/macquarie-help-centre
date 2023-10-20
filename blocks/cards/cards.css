@@ -2,6 +2,11 @@
   --cards-heading-font-size: 28px;
 }
 
+.section.cards-container {
+  padding: 0;
+  background-color: transparent;
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -16,16 +21,33 @@
   flex-wrap: nowrap;
   align-items: center;
   border-radius: 8px;
+  padding: 16px;
   background-color: var(--background-color);
   box-shadow: 0 0 4px rgba(0 0 0 / 8%),0 6px 4px -4px rgba(0 0 0 / 8%);
   transition: all ease-in 0.2s;
 }
 
-.cards > ul > li > a {
+.cards > ul > li > a, .cards > ul > li > a.button {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   text-decoration: none;
+  border: 0;
+  padding: 0;
+  color: var(--link-color);
+  background-color: transparent;
+  font-weight: unset;
+  font-size: var(--cards-heading-font-size);
+  line-height: 1.875rem;
+  letter-spacing: -1px;
+  margin: auto 0;
+  white-space: inherit;
+  text-align: inherit;
+  border-radius: inherit;
+}
+
+.cards > ul > li > a p {
+  margin: 0;
 }
 
 .cards > ul > li:hover {
@@ -35,14 +57,13 @@
 }
 
 .cards .cards-card-body {
-  margin: 16px 0 16px 16px;
   font-size: var(--cards-heading-font-size);
   line-height: 1.875rem;
   letter-spacing: -1px;
   -webkit-font-smoothing: antialiased;
 }
 
-.cards .cards-card-body:last-child {
+.cards .cards-card-body:first-child {
   margin-right: 16px;
 }
 
@@ -51,13 +72,35 @@
   width: 64px;
 }
 
+@media (min-width: 600px) {
+  .cards {
+    --cards-heading-font-size: 16px;
+  }
+
+  .cards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards > ul > li {
+    padding: 16px 8px;
+  }
+}
+
 @media (min-width: 900px) {
+  .cards > ul > li {
+    padding: 24px;
+  }
+
   .cards {
     --cards-heading-font-size: 22px;
   }
 
   .cards > ul {
-    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .cards .cards-card-body:first-child {
+    margin-right: 24px;
   }
 }
 
@@ -66,15 +109,7 @@
     --cards-heading-font-size: 28px;
   }
 
-  .cards > ul {
-    gap: 24px;
-  }
-
-  .cards .cards-card-body {
-    margin: 32px 0 32px 32px;
-  }
-
-  .cards .cards-card-body:last-child {
-    margin-right: 32px;
+  .cards > ul > li {
+    padding: 32px;
   }
 }

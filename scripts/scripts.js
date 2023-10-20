@@ -47,7 +47,9 @@ function buildHeroBlock(main) {
     section.append(buildBlock('hero', { elems: heroElements }));
     main.prepend(section);
     const heroBlock = main.querySelector('.hero');
-    heroBlock.classList.add(heroType);
+    if (heroType) {
+      heroBlock.classList.add(heroType);
+    }
   }
 }
 
