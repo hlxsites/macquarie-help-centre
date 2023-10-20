@@ -32,9 +32,13 @@ indices:
       subcategory:
         select: head > meta[name="subcategory"]
         value: attribute(el, "content")
-      visibility:
-        select: head > meta[name="visibility"]
+      category:
+        select: head > meta[name="category"]
         value: attribute(el, "content")
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
+      keywords:
+        select: head > meta[name="keywords"]
+        value: attribute(el, "content")
+      
