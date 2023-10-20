@@ -74,7 +74,7 @@ function makeLinks(main) {
 
 function createEmbedBlock(main, document) {
   main.querySelectorAll('.video-component').forEach((module) => {
-    const data = [['Embed']];
+    const data = [['video']];
     const pars = [];
 
     // poster image
@@ -93,23 +93,21 @@ function createEmbedBlock(main, document) {
       const videoSrc = video.getAttribute('src');
       const title = video.getAttribute('title');
 
+      let videoDesc = "Watch Now";
+      const videoDescEl = module.querySelector('.video__details .video__description');
+      if (videoDescEl) {
+        videoDesc = videoDescEl.textContent;
+      }
+
       a.href = videoSrc;
-      a.textContent = a.href;
+      a.textContent = videoDesc;
       p.append(a);
 
-      const pTitle = document.createElement('p');
-      const strong = pTitle.appendChild(document.createElement('strong'));
-      strong.textContent = title;
+      const pTitle = document.createElement('h2');
+      pTitle.textContent = title;
 
       pars.push(p);
       pars.push(pTitle);
-    }
-
-    const videoDesc = module.querySelector('.video__details .video__description');
-    if (videoDesc) {
-      const pDesc = document.createElement('p');
-      pDesc.textContent = videoDesc.textContent;
-      pars.push(pDesc);
     }
 
     const videoTime = module.querySelector('.video__details .video__timestamp');
