@@ -1,12 +1,11 @@
   .accordion-wrapper {
-    padding: 32px 16px;
+    padding: 32px 8px;
     max-width: 1280px;
     color: var(--text-color);
     background-color: var(--background-color);
   }
 
   .accordion-wrapper .accordion {
-    padding: 0 16px;
     max-width: 1280px;
     height: 100%;
   }
@@ -34,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-weight: 100;
+    font-weight: 600;
     border: none;
     margin: 0;
     white-space: break-spaces;
