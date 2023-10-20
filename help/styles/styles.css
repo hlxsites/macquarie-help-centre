@@ -40,6 +40,13 @@
   --footer-text-color: #fff;
   --footer-background-color: #000;
 
+  /* video */
+  --video-button-duration-color: #ccc;
+  --video-button-cta-background-color: #fff;
+  --video-button-cta-color: #000;
+  --video-button-background-color: rgb(0 0 0 / 75%);
+  --video-button-title-color: #fff;
+
   /* fonts */
   --body-font-family: "MCQGlobal-Regular-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
