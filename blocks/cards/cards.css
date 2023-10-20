@@ -74,7 +74,7 @@
 
 @media (min-width: 600px) {
   .cards {
-    --cards-heading-font-size: 22px;
+    --cards-heading-font-size: 16px;
   }
 
   .cards > ul {
@@ -83,7 +83,6 @@
 
   .cards > ul > li {
     padding: 16px 8px;
-    overflow-wrap: anywhere;
   }
 }
 
@@ -93,7 +92,7 @@
   }
 
   .cards {
-    --cards-heading-font-size: 28px;
+    --cards-heading-font-size: 22px;
   }
 
   .cards > ul {
@@ -106,6 +105,10 @@
 }
 
 @media (min-width: 1200px) {
+  .cards {
+    --cards-heading-font-size: 28px;
+  }
+
   .cards > ul > li {
     padding: 32px;
   }
