@@ -1,17 +1,11 @@
 .breadcrumbs {
   list-style-type: none;
-  padding: 16px 0;
+  padding-bottom: 16px;
   order: 1;
 }
 
 main .section.breadcrumbs-container {
   margin-top: 0;
-}
-
-@media (min-width: 600px) {
-  .breadcrumbs {
-    padding: 24px 0;
-  }
 }
 
 .breadcrumbs-hidden {
@@ -82,6 +76,10 @@ main .section.breadcrumbs-container {
 }
 
 @media (min-width: 600px) {
+  .breadcrumbs {
+    padding-bottom: 24px;
+  }
+
   .breadcrumbs ol li {
     display: flex;
   }

@@ -9,7 +9,11 @@ main .section.hero-container {
 }
 
 main .section.hero-container:has(.hero-no-image) {
-  margin: 0 8px 40px;
+  margin: 24px 8px 40px;
+}
+
+main .section.hero-container:has(.hero-img-right) {
+  margin-top: 24px;
 }
 
 main .hero-container .hero-wrapper {
@@ -87,6 +91,11 @@ main .hero img {
   max-width: 1200px;
 }
 
+.hero-img-right .hero-outer {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
 .hero-no-image .hero-outer {
   margin-top: 24px;
 }
@@ -127,6 +136,14 @@ main .hero img {
 }
 
 @media (min-width: 600px) {
+  main .section.hero-container:has(.hero-img-right) {
+    margin: 24px 16px;
+  }
+
+  main .section.hero-container:has(.hero-no-image) {
+    margin: 24px 16px;
+  }
+
   .hero {
     padding: 32px;
   }
@@ -137,15 +154,16 @@ main .hero img {
 
   .hero.hero-img-bg {
     padding-top: 32px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
   }
 
   .hero-no-image .hero-outer {
-    margin-top: 0;
+    margin: 0;
   }
 
   .hero-img-right .hero-outer {
-    padding: 0 0 0 16px;
+    padding: 0;
+    margin: 0;
   }
 
   main .hero picture {
@@ -159,7 +177,6 @@ main .hero img {
 
   main .hero.hero-img-right picture {
     left: 35%;
-    width: calc(65% - 24px);
   }
 
   .hero-box {
@@ -194,6 +211,14 @@ main .hero img {
 }
 
 @media (min-width: 900px) {
+  main .section.hero-container:has(.hero-img-right) {
+    margin: 24px;
+  }
+
+  main .section.hero-container:has(.hero-no-image) {
+    margin: 24px;
+  }
+
   .hero-outer {
     margin: auto 24px;
   }

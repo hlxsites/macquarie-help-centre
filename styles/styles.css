@@ -310,6 +310,12 @@ main .section:empty {
     margin: 32px 16px;
     padding: 32px 24px;
   }
+
+  main .section > .default-content-wrapper {
+    margin: auto;
+    width: calc(100% * 2/3);
+    line-height: 1.75rem;
+  }
 }
 
 @media (min-width: 900px) {

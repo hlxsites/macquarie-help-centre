@@ -17,6 +17,14 @@ main .section .columns-wrapper .columns {
   padding-top: 0;
 }
 
+.columns > div > div:last-child {
+  padding-bottom: 0;
+}
+
+.columns > div > div a.button, .columns > div > div p.button-container {
+  margin-bottom: 0;
+}
+
 .columns h3 {
   font-size: var(--heading-font-size-m);
 }
@@ -61,6 +69,12 @@ main .section .columns-wrapper .columns {
 
 .columns > div > div:not(:last-child) {
   border-bottom: 1px solid var(--columns-border);
+}
+
+@media (min-width: 900px) {
+  main .section.columns-container > .default-content-wrapper {
+    width: inherit;
+  }
 }
 
 @media (min-width: 900px) {
