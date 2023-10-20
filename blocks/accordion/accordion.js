@@ -50,10 +50,6 @@ function showView(block, subcategoryUrls, categoryTitle) {
   block.appendChild(accordionSection);
 }
 
-/* export async function renderAccordion() {
-
-} */
-
 export default async function decorate(block) {
   const pageIndex = window.siteindex.data;
   const indexPath = window.location.pathname;
