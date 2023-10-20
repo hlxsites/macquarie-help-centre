@@ -265,12 +265,11 @@ export default {
 
     const cells1 = [
       ['Fragment'],
-      ['https://main--macquarie-help-centre--hlxsites.hlx.live/fragment/experience-fragment']
+      ['https://main--macquarie-help-centre--hlxsites.hlx.live/fragment/experience-fragment'],
     ];
     const table1 = WebImporter.DOMUtils.createTable(cells1, document);
     main.append(table1);
 
-    table1.after(document.createElement('hr'));
 
     const video = document.querySelector('.video-component');
     if (video) {
