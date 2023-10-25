@@ -279,7 +279,7 @@ export default {
 
     const cells = [
       ['Fragment'],
-      ['https://main--macquarie-help-centre--hlxsites.hlx.live/fragment/rating-section']
+      ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/rating-section'],
     ];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     main.append(table);
@@ -288,7 +288,7 @@ export default {
 
     const cells1 = [
       ['Fragment'],
-      ['https://main--macquarie-help-centre--hlxsites.hlx.live/fragment/experience-fragment'],
+      ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/experience-fragment'],
     ];
     const table1 = WebImporter.DOMUtils.createTable(cells1, document);
     main.append(table1);
