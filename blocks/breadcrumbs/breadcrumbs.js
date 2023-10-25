@@ -14,9 +14,10 @@ export async function renderBreadcrumbs(block) {
     return;
   }
   const breadcrumbs = [];
+  const helpPrefix = '/help';
   let path = window.location.pathname;
-  if (!path.startsWith('/personal')) {
-    path = path.substring(path.indexOf('/personal'));
+  if (path.startsWith(helpPrefix)) {
+    path = path.substring(helpPrefix.length);
   }
   const pathSplit = path.split('/');
   const pageIndex = window.siteindex.data;
