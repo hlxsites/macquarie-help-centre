@@ -254,14 +254,21 @@ export default {
     }
     // create the metadata block and append it to the main element
 
-    const container = document.querySelector('.container-article');
+    const container = document.querySelector('.container-article, .rates-fees');
     if (container) {
-      container.after(document.createElement('hr'));
-    }
+      const template = document.querySelector('meta[name="template"]');
 
-    const ratesFees = document.querySelector('.rates-fees');
-    if (ratesFees) {
-      ratesFees.after(document.createElement('hr'));
+      let layoutType = 'article-short';
+      if (template?.content === 'help-centre-long-article-template') {
+        layoutType = 'article-long';
+      }
+
+      container.after(document.createElement('hr'));
+
+      container.after(WebImporter.DOMUtils.createTable([
+        ['section-metadata'],
+        ['style', layoutType],
+      ], document));
     }
 
     const cells = [
