@@ -7,11 +7,11 @@ function buttonClick(event) {
   if (button) {
     const sectionNumber = button.getAttribute('data-section');
     const subcategoryDiv = document.querySelector(`.accordion-section [data-section="${sectionNumber}"]`).parentNode.nextElementSibling;
-    if (subcategoryDiv.classList.contains('expanded')) {
-      subcategoryDiv.classList.remove('expanded');
+    if (subcategoryDiv.hasAttribute('aria-expanded') && subcategoryDiv.getAttribute('aria-expanded') === 'true') {
+      subcategoryDiv.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-expanded', 'false');
     } else {
-      subcategoryDiv.classList.add('expanded');
+      subcategoryDiv.setAttribute('aria-expanded', 'true');
       button.setAttribute('aria-expanded', 'true');
     }
   }
@@ -46,6 +46,7 @@ function showView(block, subcategoryUrls, categoryTitle) {
       `;
     accordionSectionSubCategoryDiv.appendChild(sectionAnchor);
   });
+  accordionSectionSubCategoryDiv.setAttribute('aria-expanded', 'false');
   accordionSection.appendChild(accordionSectionSubCategoryDiv);
   block.appendChild(accordionSection);
 }
@@ -59,7 +60,7 @@ export default async function decorate(block) {
   const regex = new RegExp(`^${indexPath}/([^/]+)?$`);
   const filteredUrls = pageIndex.filter((url) => regex.test(url.path));
 
-  if (cat !== '' && subcat === '') {
+  if (cat !== '') {
     filteredUrls.forEach((item) => {
       const regex1 = new RegExp(`^${item.path}/([^/]+)?$`);
 
