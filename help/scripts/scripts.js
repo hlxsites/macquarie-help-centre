@@ -15,6 +15,8 @@ import {
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
+window.hlx.codeBasePath = '/help';
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
