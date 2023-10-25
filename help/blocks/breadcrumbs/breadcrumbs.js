@@ -17,11 +17,11 @@ export async function renderBreadcrumbs(block) {
   const path = window.location.pathname;
   const pathSplit = path.split('/');
   const pageIndex = window.siteindex.data;
-  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2)
+  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 3)
     .join('/'));
 
   breadcrumbs.push(
-    ...pathSplit.slice(1, -1)
+    ...pathSplit.slice(2, -1)
       .map((part, index) => {
         const url = urlForIndex(index);
         return {
