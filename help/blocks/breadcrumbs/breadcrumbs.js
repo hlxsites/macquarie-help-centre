@@ -1,11 +1,14 @@
 import { createTag } from '../../scripts/lib-franklin.js';
 
+const helpPrefix = '/help';
+
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
 function getName(pageIndex, path) {
-  const pg = pageIndex.find((page) => page.path === path);
+  const fullPath = helpPrefix + path;
+  const pg = pageIndex.find((page) => page.path === fullPath);
   return pg && pg.shorttitle;
 }
 
@@ -14,7 +17,7 @@ export async function renderBreadcrumbs(block) {
     return;
   }
   const breadcrumbs = [];
-  const path = window.location.pathname;
+  const path = window.location.pathname.substring(helpPrefix.length);
   const pathSplit = path.split('/');
   const pageIndex = window.siteindex.data;
   const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2)
