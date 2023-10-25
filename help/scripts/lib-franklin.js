@@ -693,7 +693,7 @@ export function loadFooter(footer) {
 export function setup() {
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
-  window.hlx.codeBasePath = '/help';
+  window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
   window.hlx.patchBlockConfig = [];
 
