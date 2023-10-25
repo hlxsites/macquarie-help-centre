@@ -254,6 +254,16 @@ export default {
     }
     // create the metadata block and append it to the main element
 
+    const container = document.querySelector('.container-article');
+    if (container) {
+      container.after(document.createElement('hr'));
+    }
+
+    const ratesFees = document.querySelector('.rates-fees');
+    if (ratesFees) {
+      ratesFees.after(document.createElement('hr'));
+    }
+
     const cells = [
       ['Fragment'],
       ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/rating-section'],
