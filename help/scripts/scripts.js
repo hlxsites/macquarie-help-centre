@@ -156,7 +156,7 @@ function loadSiteIndex() {
   const limit = 30000;
   const offset = 0;
 
-  fetch(`/query-index.json?limit=${limit}&offset=${offset}`)
+  fetch(`/help/query-index.json?limit=${limit}&offset=${offset}`)
     .then((response) => response.json())
     .then((responseJson) => {
       window.siteindex.data = responseJson?.data;
