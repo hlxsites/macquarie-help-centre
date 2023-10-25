@@ -7,11 +7,11 @@ function buttonClick(event) {
   if (button) {
     const sectionNumber = button.getAttribute('data-section');
     const subcategoryDiv = document.querySelector(`.accordion-section [data-section="${sectionNumber}"]`).parentNode.nextElementSibling;
-    if (subcategoryDiv.hasAttribute('aria-expanded') && subcategoryDiv.getAttribute('aria-expanded') === 'true') {
-      subcategoryDiv.setAttribute('aria-expanded', 'false');
+    if (subcategoryDiv.hasAttribute('aria-hidden') && subcategoryDiv.getAttribute('aria-hidden') === 'false') {
+      subcategoryDiv.setAttribute('aria-hidden', 'true');
       button.setAttribute('aria-expanded', 'false');
     } else {
-      subcategoryDiv.setAttribute('aria-expanded', 'true');
+      subcategoryDiv.setAttribute('aria-hidden', 'false');
       button.setAttribute('aria-expanded', 'true');
     }
   }
@@ -46,7 +46,7 @@ function showView(block, subcategoryUrls, categoryTitle) {
       `;
     accordionSectionSubCategoryDiv.appendChild(sectionAnchor);
   });
-  accordionSectionSubCategoryDiv.setAttribute('aria-expanded', 'false');
+  accordionSectionSubCategoryDiv.setAttribute('aria-hidden', 'true');
   accordionSection.appendChild(accordionSectionSubCategoryDiv);
   block.appendChild(accordionSection);
 }
