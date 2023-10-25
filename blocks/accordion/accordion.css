@@ -25,7 +25,7 @@
     border-bottom: none;
     padding: 16px 36px 16px 0;
     font-size: 1rem;
-    font-family: var(--body-font-family);
+    font-family: var(--button-font-family);
     line-height: 1.25rem;
     text-align: left;
     padding-right: 32px;
@@ -33,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     border: none;
     margin: 0;
     white-space: break-spaces;
@@ -126,13 +126,15 @@
     padding-bottom: 4rem;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1200px) {
     .accordion-section {
         margin-left: 24px;
     }
 
     .accordion-wrapper .accordion-section button {
+        font-family: var(--body-font-family);
         font-size: 1.75rem;
+        font-weight: 500;
         padding: 24px 36px 24px 0;
     }
 
