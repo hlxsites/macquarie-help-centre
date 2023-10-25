@@ -125,21 +125,6 @@ function createEmbedBlock(main, document) {
   });
 }
 
-function createTableBlock(main, document) {
-  main.querySelectorAll('table').forEach((module) => {
-    const data = [['Table']];
-    const pars = [];
-    const tablebody = document.querySelector('tbody');
-    if (tablebody) {
-      pars.push(tablebody);
-    }
-    data.push([[...pars]]);
-
-    const table = WebImporter.DOMUtils.createTable(data, document);
-    module.replaceWith(table);
-  });
-}
-
 function createAccordion(main, document) {
   main.querySelectorAll('.accordion-layout').forEach((module) => {
     const keyElements = module.querySelectorAll('.accordion__button');
@@ -243,6 +228,16 @@ export default {
       '.rates-and-fees__left-panel',
     ]);
 
+    // convert html tables in columns blocks
+    main.querySelectorAll('table').forEach((table) => {
+      // get number of columns
+      const nCols = Math.max(...[...table.querySelectorAll('tr')].map((tr) => tr.querySelectorAll('td, th').length));
+      // select table target where to prepend the new line
+      let target = table.querySelector('tbody') || table;
+      // prepend the new columns block header
+      target.innerHTML = `<tr><th colspan=${nCols}>columns</th></tr>` + target.innerHTML;
+    });
+
     const h1 = document.querySelector('.hero-bfs h1');
     const searchbar = document.querySelector('.hero-bfs .search-anywhere');
     if (searchbar) {
@@ -258,24 +253,6 @@ export default {
       h1.after(document.createElement('hr'));
     }
     // create the metadata block and append it to the main element
-
-    const container = document.querySelector('.container-article');
-    if (container) {
-      const tablee = document.querySelector('table');
-      if (tablee) {
-        createTableBlock(main, document);
-      }
-      container.after(document.createElement('hr'));
-    }
-
-    const ratesFees = document.querySelector('.rates-fees');
-    if (ratesFees) {
-      const tablee = document.querySelector('table');
-      if (tablee) {
-        createTableBlock(main, document);
-      }
-      ratesFees.after(document.createElement('hr'));
-    }
 
     const cells = [
       ['Fragment'],
