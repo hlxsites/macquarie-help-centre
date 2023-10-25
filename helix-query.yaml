@@ -9,7 +9,7 @@ indices:
       - '/fragment/**'
       - '/nav'
       - '/footer'
-    target: /query-index.json
+    target: /help/query-index.json
     properties:
       lastModified:
         select: none
