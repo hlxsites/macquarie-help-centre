@@ -47,6 +47,35 @@ const crawler = new BasicCrawler({
 
         const { document } = (new JSDOM(await resp.text())).window;
 
+
+
+        /**
+         * Collect metadata
+         */
+
+        result.meta = [...document.querySelectorAll('meta')].map(el => {
+          // extract attributes from el into object
+          return Object.keys(el.attributes).reduce((acc, key) => {
+            const attr = el.attributes[key];
+            acc[attr.name] = attr.value;
+            return acc;
+          }, {});
+        });
+
+
+
+        /**
+         * collect full page html
+         */
+
+        result.outerHTML = document.documentElement.outerHTML;
+
+
+
+        /**
+         * collect anchor links
+         */
+
         result.anchorLinks = [...document.querySelectorAll('a[href]')].map(el => {
           const href = el.getAttribute('href');
           if (href.startsWith('#') && !el.closest('js-rf-tab-list') && !el.closest('header') && !el.closest('footer')) {
