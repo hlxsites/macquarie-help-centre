@@ -22,10 +22,11 @@ window.hlx.codeBasePath = '/help';
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
-  const h1 = main.querySelector(':scope > div:first-child > h1');
-  const h5 = main.querySelector(':scope > div:first-child > h5');
-  const picture = main.querySelector(':scope > div:first-child picture');
-  const search = main.querySelector(':scope > div:first-child > .search');
+  const firstSection = main.querySelector(':scope > div:first-child');
+  const h1 = firstSection.querySelector(':scope > h1');
+  const h5 = firstSection.querySelector(':scope > h5');
+  const picture = firstSection.querySelector(':scope picture');
+  const search = firstSection.querySelector(':scope > .search');
   const heroElements = [];
   let heroType = '';
   if (h1) {
@@ -52,6 +53,7 @@ function buildHeroBlock(main) {
     if (heroType) {
       heroBlock.classList.add(heroType);
     }
+    firstSection.parentElement.removeChild(firstSection);
   }
 }
 
