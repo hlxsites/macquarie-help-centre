@@ -1,5 +1,18 @@
 
 /**
+ * const
+ */
+
+const CATEGORY_FRAGMENT_MAP = {
+  'personal': 'https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/experience-fragment',
+  'business': 'https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/business-fragment',
+  'advisers': 'https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/advisers-fragment',
+  'brokers': 'https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/brokers-fragment',
+};
+
+
+
+/**
  * functions
  */
 
@@ -220,6 +233,10 @@ export default {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
+    // extract information from the url
+    const urlObj = new URL(url);
+    const pageCategory = urlObj.pathname.split('/')[2];
+
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
       'header',
@@ -289,12 +306,11 @@ export default {
       main.append(document.createElement('hr'));
     }
 
-    const cells1 = [
-      ['Fragment'],
-      ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/experience-fragment'],
-    ];
-    const table1 = WebImporter.DOMUtils.createTable(cells1, document);
-    main.append(table1);
+    // bottom section - fragment
+    main.append(WebImporter.DOMUtils.createTable([
+      [ 'fragment' ],
+      [ CATEGORY_FRAGMENT_MAP[pageCategory] ],
+    ], document));
 
 
     const video = document.querySelector('.video-component');
