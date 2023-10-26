@@ -111,8 +111,7 @@ function createEmbedBlock(main, document) {
     const videoTime = module.querySelector('.video__details .video__timestamp');
     if (videoTime) {
       const pTime = document.createElement('p');
-      const italic = pTime.appendChild(document.createElement('em'));
-      italic.textContent = videoTime.textContent;
+      pTime.textContent = videoTime.textContent;
       pars.push(pTime);
     }
 
