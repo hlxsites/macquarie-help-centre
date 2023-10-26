@@ -23,11 +23,9 @@ const createMetadata = (main, document) => {
 
   const theme = document.querySelector('[name="template"]');
   if (theme && theme.content === 'help-centre-short-article-template') {
-    const theme1 = 'short-article';
-    meta.theme = theme1;
+    meta.Template = 'short-article';
   } else if (theme && theme.content === 'help-centre-long-article-template') {
-    const theme2 = 'long-article';
-    meta.theme = theme2;
+    meta.Template = 'long-article';
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
