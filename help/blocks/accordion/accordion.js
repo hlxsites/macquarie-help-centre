@@ -58,7 +58,7 @@ function showView(block, accordionBody, accordionHeader, isVariation) {
 }
 
 export default async function decorate(block) {
-  isVariation = document.querySelector('.content-center') !== null ? true : false;
+  isVariation = document.querySelector('.content-center') !== null;
   if (!isVariation) {
     const pageIndex = window.siteindex.data;
     const indexPath = window.location.pathname;
@@ -74,11 +74,11 @@ export default async function decorate(block) {
         const regex1 = new RegExp(`^${item.path}/([^/]+)?$`);
 
         const filteredSubCatUrls = pageIndex
-        .filter((url) => regex1.test(url.path))
-        .map((url) => ({
+          .filter((url) => regex1.test(url.path))
+          .map((url) => ({
             path: url.path,
             shorttitle: url.shorttitle,
-        }));
+          }));
         filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
         showView(block, filteredSubCatUrls, item.shorttitle);
       });
