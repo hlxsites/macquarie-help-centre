@@ -8,7 +8,7 @@ function createAnchorTagLink(tocContentWrapper, hTag) {
   const tagName = hTag.tagName.toLowerCase();
 
   // create link element
-  const aLink = createTag('a', { class: 'content-link', href: `#${contentLinkId}`});
+  const aLink = createTag('a', { class: 'content-link', href: `#${contentLinkId}` });
   aLink.append(contentLink);
   aLink.classList.add(tagName);
   tocContentWrapper.append(aLink);
