@@ -1,3 +1,8 @@
+
+/**
+ * functions
+ */
+
 const createMetadata = (main, document) => {
   const meta = {};
 
@@ -167,6 +172,12 @@ function setPlayIcons(main, document) {
   });
 }
 
+
+
+/**
+ * main
+ */
+
 export default {
   onLoad: async ({ document, url, params }) => {
     try {
@@ -266,14 +277,6 @@ export default {
         ['style', layoutType],
       ], document));
     }
-
-    // const cells = [
-    //   ['Fragment'],
-    //   ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/rating-section'],
-    // ];
-    // const table = WebImporter.DOMUtils.createTable(cells, document);
-    // main.append(table);
-    // table.after(document.createElement('hr'));
 
     // feedback section
     const ratingContent = document.querySelector('.three-column-block .list');
