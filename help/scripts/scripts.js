@@ -11,11 +11,25 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  readBlockConfig,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
 window.hlx.codeBasePath = '/help';
+
+/**
+ * Extracts section metadata (for all sections) from a container element.
+ * @param {Element} main The container element
+ * @returns {Array} An array of section metadata objects
+ */
+function getSectionMetadata(main) {
+  const allSectionMeta = main.querySelectorAll('div.section-metadata');
+  return [...allSectionMeta].map((sectionMeta) => {
+    const meta = readBlockConfig(sectionMeta);
+    return meta;
+  });
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -58,6 +72,21 @@ function buildHeroBlock(main) {
 }
 
 /**
+ *  Auto block Table of Contents for long-article sections
+ */
+function buildTocBlock(main) {
+  // check that the main has a 'long-article' section
+  const sectionMeta = getSectionMetadata(main);
+  if (sectionMeta.filter((meta) => meta.style === 'long-article').length > 0) {
+    const section = document.createElement('div');
+    section.append(buildBlock('toc', {
+      elems: [],
+    }));
+    main.prepend(section);
+  }
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -76,6 +105,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildTocBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
