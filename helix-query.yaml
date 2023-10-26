@@ -2,13 +2,13 @@ version: 1
 indices:
   default:
     include:
-      - /**
+      - /help/**
     exclude:
-      - '/drafts/**'
-      - '/tools/**'
-      - '/fragment/**'
-      - '/nav'
-      - '/footer'
+      - '/help/drafts/**'
+      - '/help/tools/**'
+      - '/help/fragment/**'
+      - '/help/nav'
+      - '/help/footer'
     target: /help/query-index.json
     properties:
       lastModified:
