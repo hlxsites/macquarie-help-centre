@@ -122,6 +122,11 @@
     color: var(--search-text-color);
   }
 
+  .content-center .accordion-subcategory-div .content a {
+    text-decoration: underline;
+    color: var(--link-color);
+  }
+
   .accordion-subcategory-div[aria-hidden="false"] .content a:hover {
     color: var(--text-color);
   }
@@ -138,11 +143,6 @@
   .accordion-subcategory-div[aria-hidden="false"] .content:last-child {
     border-bottom: none;
     padding-bottom: 4rem;
-  }
-
-  .content-center .accordion-subcategory-div .content a {
-    text-decoration: underline;
-    color: var(--link-color);
   }
 
   .content-center .accordion-subcategory-div .content a:hover {

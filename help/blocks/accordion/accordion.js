@@ -1,6 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
 let sectionData = 1;
+/* eslint-disable no-shadow */
 let isVariation = false;
 
 function buttonClick(event) {
