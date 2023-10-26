@@ -43,6 +43,7 @@
   /* video */
   --video-button-duration-color: #ccc;
   --video-button-cta-background-color: #fff;
+  --video-button-cta-hover-color: #0c6cce;
   --video-button-cta-color: #000;
   --video-button-background-color: rgb(0 0 0 / 75%);
   --video-button-title-color: #fff;
