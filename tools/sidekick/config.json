@@ -5,7 +5,7 @@
         "id": "library",
         "title": "Library",
         "environments": [ "edit" ],
-        "url": "/help/tools/sidekick/library.html",
+        "url": "/tools/sidekick/library.html",
         "includePaths": [ "**.docx**" ]
       }
     ]
