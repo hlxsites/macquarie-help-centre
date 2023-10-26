@@ -218,7 +218,6 @@ export default {
       '.alert-parsys',
       '.animated',
       '.banner-hero .hero-bfs__breadcrumb',
-      '.three-column-block',
       '.animated .back-to-top__button',
       'script',
       '.search__bar',
@@ -268,14 +267,24 @@ export default {
       ], document));
     }
 
-    const cells = [
-      ['Fragment'],
-      ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/rating-section'],
-    ];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    main.append(table);
+    // const cells = [
+    //   ['Fragment'],
+    //   ['https://main--macquarie-help-centre--hlxsites.hlx.live/help/fragment/rating-section'],
+    // ];
+    // const table = WebImporter.DOMUtils.createTable(cells, document);
+    // main.append(table);
+    // table.after(document.createElement('hr'));
 
-    table.after(document.createElement('hr'));
+    // feedback section
+    const ratingContent = document.querySelector('.three-column-block .list');
+    if (ratingContent) {
+      main.append(ratingContent.cloneNode(true));
+      main.append(WebImporter.DOMUtils.createTable([
+        [ 'section-metadata' ],
+        [ 'style', 'rating' ],
+      ], document));
+      main.append(document.createElement('hr'));
+    }
 
     const cells1 = [
       ['Fragment'],
@@ -308,6 +317,7 @@ export default {
     WebImporter.DOMUtils.remove(main, [
       'iframe',
       'noscript',
+      '.three-column-block',
     ]);
 
     return main;
