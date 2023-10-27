@@ -109,6 +109,7 @@ function isPartOfContinuousLine(linkElement) {
 function decorateExternalLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     const href = a.getAttribute('href');
+    const title = a.getAttribute('title');
     const isPdfLink = href.includes('pdf');
     const phone = href.includes('tel');
     const mail = href.includes('mailto');
@@ -116,7 +117,7 @@ function decorateExternalLinks(main) {
     const gplay = href.includes('google');
 
     if (!isPdfLink && !isLinkInTableCell(a) && !href.startsWith('/')
-      && !href.startsWith('#') && !phone && !mail && !itunes && !gplay) {
+      && !href.startsWith('#') && !phone && !mail && !itunes && !gplay && title === 'Quick exit') {
       // Set the 'target' attribute to '_blank'
       a.setAttribute('target', '_blank');
 
