@@ -82,6 +82,77 @@ function buildAutoBlocks(main) {
   }
 }
 
+function isLinkInTableCell(link) {
+  // Traverse up the DOM tree to check if the link is within a table cell
+  let parent = link.parentElement;
+  while (parent) {
+    if (parent.classList.contains('columns')) {
+      link.classList.add('external-link');
+      return true; // Link is in a table cell or list item
+    }
+    parent = parent.parentElement;
+  }
+  return false; // Link is not in a table cell
+}
+
+function isPartOfContinuousLine(linkElement) {
+  // Check the previous and next siblings of the link element
+  const { prevSibling } = linkElement;
+  const { nextSibling } = linkElement;
+
+  // Check if there is non-whitespace text before or after the link text
+  const hasTextBefore = prevSibling && prevSibling.nodeType === Node.TEXT_NODE && prevSibling.textContent.trim() !== '';
+  const hasTextAfter = nextSibling && nextSibling.nodeType === Node.TEXT_NODE && nextSibling.textContent.trim().replace(/\.$/, '') !== '';
+
+  // If there is text before or after, it's part of a continuous line
+  return hasTextBefore && hasTextAfter;
+}
+
+function decorateExternalLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const href = a.getAttribute('href');
+    const isPdfLink = href.includes('pdf');
+    const phone = href.includes('tel');
+    const mail = href.includes('mailto');
+
+    if (!isPdfLink && !isLinkInTableCell(a) && !href.startsWith('/')
+      && !href.startsWith('#') && !phone && !mail) {
+      // Set the 'target' attribute to '_blank'
+      a.setAttribute('target', '_blank');
+
+      // Wrap the link text and the icon in a <span> element
+      const linkText = a.innerHTML;
+      a.innerHTML = ''; // Clear the link text
+      const textIconContainer = document.createElement('span');
+      textIconContainer.classList.add('external-link-icon');
+
+      if (isPartOfContinuousLine(a)) {
+        textIconContainer.classList.add('no-icon');
+      }
+
+      textIconContainer.appendChild(document.createTextNode(linkText));
+      a.appendChild(textIconContainer);
+    }
+  });
+}
+
+function decoratePdfLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const href = a.getAttribute('href');
+    const isPdfLink = href.includes('pdf');
+    if (isPdfLink) {
+      const textIconContainer = document.createElement('span');
+      const linkText = a.textContent;
+      textIconContainer.textContent = linkText;
+      a.textContent = '';
+      if (!isPartOfContinuousLine(a)) {
+        textIconContainer.classList.add('pdf-icon');
+      }
+      a.appendChild(textIconContainer);
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -94,6 +165,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateExternalLinks(main);
+  decoratePdfLinks(main);
 }
 
 /**

@@ -13,7 +13,7 @@
 :root {
   /* colors */
   --link-color: #000;
-  --link-hover-color: #000;
+  --link-hover-color: #0f76de;
   --body-background-color: #f7f7f7;
   --background-color: #fff;
   --text-color: #000;
@@ -193,11 +193,10 @@ main pre {
 
 a:any-link {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
-  text-decoration: underline;
   color: var(--link-hover-color);
 }
 
@@ -355,3 +354,36 @@ main .section:empty {
     padding: 48px;
   }
 }
+
+.external-link-icon::after {
+  content: url("../icons/icon-external-link.svg");
+  margin-left: 5px;
+  transition: 0.3s;
+  position: relative;
+  top: 2px;
+}
+
+.external-link-icon.no-icon::after {
+  content: none; /* Remove the icon */
+}
+
+.external-link-icon.no-icon:hover::after {
+  content: none; /* Remove the icon */
+}
+
+.external-link-icon:hover::after {
+  content: url("../icons/icon-external-link-blue.svg");
+}
+
+.pdf-icon::after {
+  content: url("../icons/download-icon.svg");
+  margin-left: 5px;
+  transition: 0.3s;
+  position: relative;
+  top: 2px;
+}
+
+.pdf-icon:hover::after {
+  content: url("../icons/download-icon-blue.svg");
+}
+
