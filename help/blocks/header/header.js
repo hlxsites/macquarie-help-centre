@@ -123,6 +123,15 @@ function updateHelpCentreLink() {
   }
 }
 
+function setAriaLabelToBrand(section, labels) {
+  let i = 0;
+  Array.from(section.children).forEach((brand) => {
+    const anchorEle = brand.querySelector('p a');
+    anchorEle.setAttribute('aria-label', labels[i]);
+    i += 1;
+  });
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -144,6 +153,11 @@ export default async function decorate(block) {
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
+      // accessibility fix
+      if (c === 'brand') {
+        const brandLabels = ['Macquarie Bank', 'Help Centre'];
+        setAriaLabelToBrand(section, brandLabels);
+      }
       if (section) section.classList.add(`nav-${c}`);
     });
 
