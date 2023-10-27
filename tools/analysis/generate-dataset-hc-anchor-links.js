@@ -71,7 +71,7 @@ const crawler = new BasicCrawler({
          * collect full page html
          */
 
-        result.outerHTML = document.documentElement.outerHTML;
+        result.outerHTML = document.documentElement.outerHTML.replaceAll('\n', '').replaceAll(/\s+/gm, ' ').trim();
 
 
 
