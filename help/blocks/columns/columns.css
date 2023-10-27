@@ -45,7 +45,7 @@ main .section .columns-wrapper .columns {
 }
 
 .columns.category h3 a {
-  color: #0c6cce;
+  color: var(--button-color);
   text-decoration: none;
   font-weight: 500;
   letter-spacing: normal;
