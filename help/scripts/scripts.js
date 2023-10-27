@@ -158,7 +158,7 @@ function decorateSvgIconImages(main) {
   const anchorElements = main.querySelectorAll('a');
 
   anchorElements.forEach((anchor) => {
-    if (anchor.getAttribute('href').includes('google') || anchor.getAttribute('href').includes('itunes')) {
+    if (anchor.getAttribute('href').includes('play.google.com') || anchor.getAttribute('href').includes('itunes')) {
       anchor.setAttribute('target', '_blank');
       const parentParagraph = anchor.parentElement;
       if (parentParagraph && parentParagraph.tagName === 'P') {
