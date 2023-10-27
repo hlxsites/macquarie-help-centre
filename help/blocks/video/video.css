@@ -2,6 +2,22 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 600px) {
+  .video {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .video {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
 }
 
 .video .button-container {
@@ -95,7 +111,14 @@
   }
 }
 
+.video .video-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  transition: all 0.5s ease-in-out;
+}
+
 .video img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
