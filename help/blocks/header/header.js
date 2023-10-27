@@ -114,12 +114,12 @@ function addSectionHeaderToSection() {
 function updateHelpCentreLink() {
   const currentURL = new URL(window.location.href).pathname;
   const helpCentreURL = document.querySelector('.nav-brand p:nth-child(2) a:first-child');
-  if (currentURL.startsWith('/help/business') || currentURL.startsWith('/business')) {
-    helpCentreURL.href = '/business';
-  } else if (currentURL.startsWith('/help/advisers') || currentURL.startsWith('/advisers')) {
-    helpCentreURL.href = '/advisers';
-  } else if (currentURL.startsWith('/help/brokers') || currentURL.startsWith('/brokers')) {
-    helpCentreURL.href = '/brokers';
+  if (currentURL.startsWith('/help/business')) {
+    helpCentreURL.href = '/help/business';
+  } else if (currentURL.startsWith('/help/advisers')) {
+    helpCentreURL.href = '/help/advisers';
+  } else if (currentURL.startsWith('/help/brokers')) {
+    helpCentreURL.href = '/help/brokers';
   }
 }
 
