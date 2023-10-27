@@ -112,9 +112,11 @@ function decorateExternalLinks(main) {
     const isPdfLink = href.includes('pdf');
     const phone = href.includes('tel');
     const mail = href.includes('mailto');
+    const itunes = href.includes('itunes');
+    const gplay = href.includes('google');
 
     if (!isPdfLink && !isLinkInTableCell(a) && !href.startsWith('/')
-      && !href.startsWith('#') && !phone && !mail) {
+      && !href.startsWith('#') && !phone && !mail && !itunes && !gplay) {
       // Set the 'target' attribute to '_blank'
       a.setAttribute('target', '_blank');
 
@@ -151,6 +153,21 @@ function decoratePdfLinks(main) {
   });
 }
 
+function decorateSvgIconImages(main) {
+  const anchorElements = main.querySelectorAll('a');
+
+  anchorElements.forEach((anchor) => {
+    if (anchor.getAttribute('href').includes('google') || anchor.getAttribute('href').includes('itunes')) {
+      anchor.setAttribute('target', '_blank');
+      const parentParagraph = anchor.parentElement;
+      if (parentParagraph && parentParagraph.tagName === 'P') {
+        parentParagraph.classList.add('svg');
+        anchor.classList.add('icon-link');
+      }
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -165,6 +182,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateExternalLinks(main);
   decoratePdfLinks(main);
+  decorateSvgIconImages(main);
 }
 
 /**

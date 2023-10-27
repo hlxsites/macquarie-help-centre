@@ -387,3 +387,34 @@ main .section:empty {
   content: url("../icons/download-icon-blue.svg");
 }
 
+.icon.icon-google-play-icon svg {
+  width: 120px;
+  height: 50px;
+}
+
+.icon.icon-app-store-logo svg {
+  width: 120px;
+  height: 40px;
+}
+
+.icon-link {
+  position: relative;
+}
+
+.icon-link::after {
+  content: url('../icons/icon-external-link.svg');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 53%;
+  left: 125px;
+  transform: translateY(-50%);
+}
+
+.icon-link:hover::after {
+  content: url('../icons/icon-external-link-blue.svg');
+}
+
+.svg a {
+  display: block;
+}
