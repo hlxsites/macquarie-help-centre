@@ -113,3 +113,19 @@
     padding: 32px;
   }
 }
+
+@media (min-width: 600px) {
+  .cards.even {
+    --cards-heading-font-size: 22px;
+  }
+
+  .cards.even > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards.even {
+    --cards-heading-font-size: 28px;
+  }
+}
