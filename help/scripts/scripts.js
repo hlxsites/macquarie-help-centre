@@ -110,9 +110,11 @@ function decorateExternalLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     const href = a.getAttribute('href');
     const isPdfLink = href.includes('pdf');
+    const phone = href.includes('tel');
+    const mail = href.includes('mailto');
 
     if (!isPdfLink && !isLinkInTableCell(a) && !href.startsWith('/')
-      && !href.startsWith('#')) {
+      && !href.startsWith('#') && !phone && !mail) {
       // Set the 'target' attribute to '_blank'
       a.setAttribute('target', '_blank');
 

@@ -359,6 +359,8 @@ main .section:empty {
   content: url("../icons/icon-external-link.svg");
   margin-left: 5px;
   transition: 0.3s;
+  position: relative;
+  top: 2px;
 }
 
 .external-link-icon.no-icon::after {
@@ -377,6 +379,8 @@ main .section:empty {
   content: url("../icons/download-icon.svg");
   margin-left: 5px;
   transition: 0.3s;
+  position: relative;
+  top: 2px;
 }
 
 .pdf-icon:hover::after {
