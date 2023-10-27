@@ -1,0 +1,124 @@
+.video {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 600px) {
+  .video {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .video {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+.video .button-container {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.video .open-video {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: var(--video-button-background-color);
+}
+
+.video .video-button-content {
+  display: none;
+  flex: 1;
+  flex-basis: auto;
+  padding-right: 12px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: normal;
+  line-height: 1.75rem;
+}
+
+.video .video-button-content .video-button-title {
+  color: var(--video-button-title-color);
+  font-size: var(--body-font-size-s);
+  margin-bottom: 6px;
+}
+
+.video .video-button-content .video-button-duration {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  color: var(--video-button-duration-color);
+  line-height: 1.75rem;
+}
+
+.video .video-button-cta {
+  background-color: var(--video-button-cta-background-color);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.video .video-button-cta .video-button-play {
+  height: 10px;
+  width: 10px;
+  box-sizing: border-box;
+  border-top: 5px solid var(--video-button-cta-background-color);
+  border-bottom: 5px solid var(--video-button-cta-background-color);
+  border-left: 10px solid var(--video-button-cta-color);
+}
+
+.video:hover .video-button-cta {
+  background-color: var(--video-button-cta-hover-color);
+}
+
+.video:hover .video-button-cta .video-button-play {
+  border-top: 5px solid var(--video-button-cta-hover-color);
+  border-bottom: 5px solid var(--video-button-cta-hover-color);
+  border-left: 10px solid var(--video-button-cta-background-color);
+}
+
+@media (min-width: 600px) {
+  .video .button-container {
+    bottom: 32px;
+  }
+
+  .video .video-button-content {
+    display: flex;
+  }
+
+  .video .open-video {
+    padding: 12px 12px 12px 15px;
+  }
+}
+
+.video .video-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  transition: all 0.5s ease-in-out;
+}
+
+.video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -40,6 +40,14 @@
   --footer-text-color: #fff;
   --footer-background-color: #000;
 
+  /* video */
+  --video-button-duration-color: #ccc;
+  --video-button-cta-background-color: #fff;
+  --video-button-cta-hover-color: #0c6cce;
+  --video-button-cta-color: #000;
+  --video-button-background-color: rgb(0 0 0 / 75%);
+  --video-button-title-color: #fff;
+
   /* fonts */
   --body-font-family: "MCQGlobal-Regular-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
@@ -310,7 +318,8 @@ main .section:empty {
     padding: 32px 24px;
   }
 
-  main .section > .default-content-wrapper {
+  main .section > .default-content-wrapper,
+  main .section > .video-wrapper {
     margin: auto;
     width: calc(100% * 2/3);
     line-height: 1.75rem;
