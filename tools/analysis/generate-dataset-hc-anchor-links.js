@@ -24,6 +24,9 @@ const crawler = new BasicCrawler({
     maxRequestRetries: 1,
 
     async requestHandler({ request }) {
+      // force await 5s.
+      await new Promise(resolve => setTimeout(resolve, 5000));
+
       const url = request.url;
       let result = {
         url,
