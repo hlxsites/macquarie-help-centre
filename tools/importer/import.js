@@ -185,6 +185,26 @@ function setPlayIcons(main, document) {
   });
 }
 
+// javascript function to fix heading levels in a page, to not skip levels
+function fixHeadings(rootEl) {
+  const headings = [...rootEl.querySelectorAll('h2, h3, h4, h5, h6')];
+  headings.forEach((heading) => {
+    console.log(heading.outerHTML);
+  });
+  const maxLevel = headings.reduceRight((max, heading) => {
+    const level = parseInt(heading.tagName.charAt(1), 10);
+    return (level > 1 &&  level < max) ? level : max;
+  }, 6);
+  console.log(`maxLevel: ${maxLevel}`);
+  const levelGap = maxLevel - 2;
+  if (levelGap > 0) {
+    headings.forEach((heading) => {
+      const level = parseInt(heading.tagName.charAt(1), 10);
+      heading.outerHTML = `<h${level - levelGap}>${heading.innerHTML}</h${level - levelGap}>`;
+    });
+  }
+}
+
 
 
 /**
@@ -251,6 +271,8 @@ export default {
       '.search__bar',
       '.rates-and-fees__left-panel',
     ]);
+
+    fixHeadings(main);
 
     // convert html tables in columns blocks
     main.querySelectorAll('table').forEach((table) => {
