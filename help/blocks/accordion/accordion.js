@@ -1,6 +1,8 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
 let sectionData = 1;
+/* eslint-disable no-shadow */
+let isVariation = false;
 
 function buttonClick(event) {
   const button = event.target.closest('button');
@@ -17,7 +19,7 @@ function buttonClick(event) {
   }
 }
 
-function showView(block, subcategoryUrls, categoryTitle) {
+function showView(block, accordionBody, accordionHeader, isVariation) {
   const accordionSection = document.createElement('div');
   accordionSection.classList.add('accordion-section');
   const accordionSectionHeader = document.createElement('div');
@@ -25,7 +27,7 @@ function showView(block, subcategoryUrls, categoryTitle) {
   const button = document.createElement('button');
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('data-section', sectionData);
-  button.textContent = categoryTitle;
+  button.textContent = accordionHeader;
   button.addEventListener('click', (event) => {
     buttonClick(event);
   });
@@ -36,50 +38,64 @@ function showView(block, subcategoryUrls, categoryTitle) {
 
   const accordionSectionSubCategoryDiv = document.createElement('div');
   accordionSectionSubCategoryDiv.classList.add('accordion-subcategory-div');
-  subcategoryUrls.forEach((item) => {
-    const sectionAnchor = document.createElement('div');
-    sectionAnchor.classList.add('content');
-    sectionAnchor.innerHTML = `
+  if (!isVariation) {
+    accordionBody.forEach((item) => {
+      const sectionAnchor = document.createElement('div');
+      sectionAnchor.classList.add('content');
+      sectionAnchor.innerHTML = `
         <a href='${item.path}'>
             <span>${item.shorttitle}</span>
         </a>
-      `;
-    accordionSectionSubCategoryDiv.appendChild(sectionAnchor);
-  });
+        `;
+      accordionSectionSubCategoryDiv.appendChild(sectionAnchor);
+    });
+  } else {
+    accordionBody.classList.add('content');
+    accordionSectionSubCategoryDiv.appendChild(accordionBody);
+  }
   accordionSectionSubCategoryDiv.setAttribute('aria-hidden', 'true');
   accordionSection.appendChild(accordionSectionSubCategoryDiv);
   block.appendChild(accordionSection);
 }
 
 export default async function decorate(block) {
-  const pageIndex = window.siteindex.data;
-  const indexPath = window.location.pathname;
-  const cat = getMetadata('category');
-  const subcat = getMetadata('subcategory');
+  isVariation = document.querySelector('.content-center') !== null;
+  if (!isVariation) {
+    const pageIndex = window.siteindex.data;
+    const indexPath = window.location.pathname;
+    const cat = getMetadata('category');
+    const subcat = getMetadata('subcategory');
 
-  const regex = new RegExp(`^${indexPath}/([^/]+)?$`);
-  const filteredUrls = pageIndex.filter((url) => regex.test(url.path));
-  filteredUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
+    const regex = new RegExp(`^${indexPath}/([^/]+)?$`);
+    const filteredUrls = pageIndex.filter((url) => regex.test(url.path));
+    filteredUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
 
-  if (cat !== '') {
-    filteredUrls.forEach((item) => {
-      const regex1 = new RegExp(`^${item.path}/([^/]+)?$`);
+    if (cat !== '') {
+      filteredUrls.forEach((item) => {
+        const regex1 = new RegExp(`^${item.path}/([^/]+)?$`);
 
-      const filteredSubCatUrls = pageIndex
-        .filter((url) => regex1.test(url.path))
-        .map((url) => ({
-          path: url.path,
-          shorttitle: url.shorttitle,
-        }));
+        const filteredSubCatUrls = pageIndex
+          .filter((url) => regex1.test(url.path))
+          .map((url) => ({
+            path: url.path,
+            shorttitle: url.shorttitle,
+          }));
+        filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
+        showView(block, filteredSubCatUrls, item.shorttitle);
+      });
+    } else if (subcat !== '') {
+      const filteredSubCatUrls = filteredUrls.map((url) => ({
+        path: url.path,
+        shorttitle: url.shorttitle,
+      }));
       filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
-      showView(block, filteredSubCatUrls, item.shorttitle);
+      showView(block, filteredSubCatUrls, getMetadata('shorttitle'));
+    }
+  } else {
+    const accordions = [...block.children];
+    block.innerHTML = '';
+    accordions.forEach((item) => {
+      showView(block, item.children[1], item.children[0].innerHTML, isVariation);
     });
-  } else if (subcat !== '') {
-    const filteredSubCatUrls = filteredUrls.map((url) => ({
-      path: url.path,
-      shorttitle: url.shorttitle,
-    }));
-    filteredSubCatUrls.sort((a, b) => a.shorttitle.localeCompare(b.shorttitle));
-    showView(block, filteredSubCatUrls, getMetadata('shorttitle'));
   }
 }
