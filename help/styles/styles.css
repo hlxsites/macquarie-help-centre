@@ -324,6 +324,10 @@ main .section:empty {
     width: calc(100% * 2/3);
     line-height: 1.75rem;
   }
+
+  main .section > .default-content-wrapper:has(h2#popular-articles) {
+    width: 100%
+  }
 }
 
 @media (min-width: 900px) {
