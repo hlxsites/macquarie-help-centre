@@ -387,14 +387,11 @@ main .section:empty {
   content: url("../icons/download-icon-blue.svg");
 }
 
-.icon.icon-google-play-icon svg {
-  width: 120px;
-  height: 50px;
-}
-
+.icon.icon-google-play-icon svg,
 .icon.icon-app-store-logo svg {
   width: 120px;
   height: 40px;
+  pointer-events: auto;
 }
 
 .icon-link {
@@ -417,4 +414,5 @@ main .section:empty {
 
 .svg a {
   display: block;
+  pointer-events: none;
 }
