@@ -6,7 +6,21 @@
   <script type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
+    if (window.isErrorPage && window.errorCode === '404') {
+      const originalURL = decodeURIComponent(window.location.href);
+
+      if(!originalURL.includes('localhost')) {
+        const destPageURL = 'https://www.macquarie.com.au';
+
+        const extractPath = originalURL.match(/\/\/[^/]+(\/[^?#]*)/);
+        const path = (extractPath ? extractPath[1] : '') + '.html';
+
+        const redirectToURL = `${destPageURL}${path}`;
+        window.location.replace(redirectToURL);
+      }
+    }
   </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">
   <script src="/help/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
