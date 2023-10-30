@@ -41,6 +41,7 @@ footer li:last-child {
 
 .footer a {
   color: var(--footer-text-color);
+  text-decoration: none;
 }
 
 @media (min-width: 900px) {
