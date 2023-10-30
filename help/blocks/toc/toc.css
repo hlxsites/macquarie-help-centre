@@ -32,6 +32,7 @@ html {
     align-items: stretch;
     box-sizing: border-box;
     padding: 16px 0 16px 24px;
+    text-decoration: none;
   }
 
   .toc-content-wrapper a:hover {
