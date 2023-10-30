@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.section.long-article .article-main-wrapper {
+.section.article-long .article-main-wrapper {
   display: flex;
 }
 

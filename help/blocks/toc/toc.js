@@ -33,7 +33,7 @@ function createAnchorTagLink(tocContentWrapper, hTag) {
 }
 
 export default function decorate(block) {
-  const articleContent = document.querySelector('.long-article');
+  const articleContent = document.querySelector('.article-long');
   if (!articleContent) {
     return; // no ToC if it's not a long article
   }
@@ -55,7 +55,7 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(tocContentWrapper);
 
-  const headerTags = articleContentWrapper.querySelectorAll('h3, h4');
+  const headerTags = articleContentWrapper.querySelectorAll('h2, h3');
   headerTags.forEach((headerTag) => {
     createAnchorTagLink(tocContentWrapper, headerTag);
   });

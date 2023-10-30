@@ -72,12 +72,12 @@ function buildHeroBlock(main) {
 }
 
 /**
- *  Auto block Table of Contents for long-article sections
+ *  Auto block Table of Contents for article-long sections
  */
 function buildTocBlock(main) {
-  // check that the main has a 'long-article' section
+  // check that the main has an 'article-long' section
   const sectionMeta = getSectionMetadata(main);
-  if (sectionMeta.filter((meta) => meta.style === 'long-article').length > 0) {
+  if (sectionMeta.filter((meta) => meta.style === 'article-long').length > 0) {
     const section = document.createElement('div');
     section.append(buildBlock('toc', {
       elems: [],
