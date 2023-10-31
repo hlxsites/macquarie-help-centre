@@ -38,4 +38,6 @@ indices:
       keywords:
         select: head > meta[name="keywords"]
         values: attribute(el, "content")
-      
+      section:
+        select: head > meta[name="section"]
+        value: attribute(el, "content")
