@@ -67,7 +67,6 @@ html {
     padding-left: 20px;
   }
 
-
   .toc-content-wrapper li.second-level {
     padding-left: 16px;
   }
@@ -99,6 +98,6 @@ html {
   }
 
   .scroll-margin {
-    scroll-margin-top: 10px;
+    scroll-margin-top: 20px;
   }
 }
