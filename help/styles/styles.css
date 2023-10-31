@@ -20,6 +20,9 @@
   --button-color: #0c6cce;
   --button-hover-color: #0458ad;
   --columns-border: #f7f7f7;
+  --toc-link-color: #0c6cce;
+  --toc-secondary-link-color: #7f7f7f;;
+  --toc-link-background-color: #f5f5f5;
 
   /* search */
   --search-text-color: #333;
