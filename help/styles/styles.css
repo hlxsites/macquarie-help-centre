@@ -379,14 +379,6 @@ main .section:empty {
   top: 2px;
 }
 
-.external-link-icon.no-icon::after {
-  content: none; /* Remove the icon */
-}
-
-.external-link-icon.no-icon:hover::after {
-  content: none; /* Remove the icon */
-}
-
 .external-link-icon:hover::after {
   content: url("../icons/icon-external-link-blue.svg");
 }
@@ -431,4 +423,83 @@ main .section:empty {
 .svg a {
   display: block;
   pointer-events: none;
+}
+
+main .section.rating {
+  display: block;
+}
+
+main .section.rating .default-content-wrapper {
+  margin: unset;
+  width: unset;
+}
+
+main .section.rating .default-content-wrapper h3 {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-family: var(--button-font-family);
+}
+
+main .section.rating .default-content-wrapper ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1rem;
+}
+
+main .section.rating .default-content-wrapper ul li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+main .section.rating .default-content-wrapper p {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+main .section.rating .default-content-wrapper ul li a {
+  text-decoration: none;
+  color: var(--button-color);
+}
+
+main .section.rating .default-content-wrapper ul li a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--link-hover-color);
+}
+
+main .section.rating .default-content-wrapper a.button {
+  all: unset;
+  font-family: var(--button-font-family);
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+main .section.rating .default-content-wrapper a.button::after {
+  content: url('../icons/chevron-black.svg');
+  margin-left: 5px;
+  position: absolute;
+  top: 1px;
+}
+
+main .section.rating .default-content-wrapper a.button:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  main .section.rating .default-content-wrapper {
+    margin: unset;
+    margin-left: 30%;
+    width: unset;
+  }
+
+  main .section.rating .default-content-wrapper a.button::after {
+    top: -1px;
+  }
+}
+
+@media (min-width: 900px) {
+  main .section.rating .default-content-wrapper {
+    margin-left: 60%;
+  }
 }
