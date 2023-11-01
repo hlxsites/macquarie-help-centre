@@ -8,6 +8,17 @@
   padding: 2px;
   position: relative;
 }
+.results-list-title {
+font-family: "MCQGlobal-Bold-Normal",Helvetica,Arial,sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    display: inline;
+}
+
+.results_list_item {
+  border-bottom: 1px solid #f7f7f7;
+  padding: 32px 0;
+}
 
 .search-input {
   font-family: inherit;
@@ -72,6 +83,10 @@
   white-space: nowrap;
   clip-path: inset(50%);
   border: 0;
+}
+
+.search {
+  position: relative;
 }
 
 .search-button {
