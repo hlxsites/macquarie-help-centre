@@ -57,7 +57,7 @@ function makeLinks(main) {
     try {
       const ori = a.href;
       let u;
-      if (a.href.includes('youtube') || a.href.includes('google') || a.href.includes('apple')) {
+      if (a.href.startsWith('http://') || a.href.startsWith('https://')) {
         return;
       }
 
@@ -69,7 +69,7 @@ function makeLinks(main) {
         u = new URL(a.href, 'https://www.macquarie.com.au/');
       } else {
         u = new URL(a.href);
-        u.hostname = 'main--macquarie-help-centre--hlxsites.hlx.page';
+        //u.hostname = 'main--macquarie-help-centre--hlxsites.hlx.page';
       }
 
       // Remove .html extension
