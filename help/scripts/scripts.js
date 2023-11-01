@@ -113,16 +113,18 @@ function buildAutoBlocks(main) {
 }
 
 function isLinkInTableCell(link) {
-  // Traverse up the DOM tree to check if the link is within a table cell
   let parent = link.parentElement;
   while (parent) {
     if (parent.classList.contains('columns')) {
-      link.classList.add('external-link');
-      return true; // Link is in a table cell or list item
+      const span = link.querySelector('span.external-link-icon');
+      if (span) {
+        span.classList.remove('external-link-icon');
+      }
+      return true; // Link is in column
     }
     parent = parent.parentElement;
   }
-  return false; // Link is not in a table cell
+  return false; // Link is not in column
 }
 
 function isPartOfContinuousLine(linkElement) {
@@ -143,28 +145,22 @@ function decorateExternalLinks(main) {
     const href = a.getAttribute('href');
     const title = a.getAttribute('title');
     const isPdfLink = href.includes('pdf');
-    const phone = href.includes('tel');
-    const mail = href.includes('mailto');
     const itunes = href.includes('itunes');
     const gplay = href.includes('google');
 
-    if (!isPdfLink && !isLinkInTableCell(a) && !href.startsWith('/')
-      && !href.startsWith('#') && !phone && !mail && !itunes && !gplay && title === 'Quick exit') {
-      // Set the 'target' attribute to '_blank'
-      a.setAttribute('target', '_blank');
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      if (!itunes && !gplay && !(title === 'Quick exit') && !isPdfLink) {
+        a.setAttribute('target', '_blank');
+        if ((!itunes && !gplay) && !isLinkInTableCell(a)) {
+          const linkText = a.innerHTML;
+          a.innerHTML = '';
+          const textIconContainer = document.createElement('span');
+          textIconContainer.classList.add('external-link-icon');
 
-      // Wrap the link text and the icon in a <span> element
-      const linkText = a.innerHTML;
-      a.innerHTML = ''; // Clear the link text
-      const textIconContainer = document.createElement('span');
-      textIconContainer.classList.add('external-link-icon');
-
-      if (isPartOfContinuousLine(a)) {
-        textIconContainer.classList.add('no-icon');
+          textIconContainer.appendChild(document.createTextNode(linkText));
+          a.appendChild(textIconContainer);
+        }
       }
-
-      textIconContainer.appendChild(document.createTextNode(linkText));
-      a.appendChild(textIconContainer);
     }
   });
 }
