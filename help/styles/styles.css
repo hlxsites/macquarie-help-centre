@@ -394,7 +394,6 @@ main .section:empty {
   }
 
   .article-long .default-content-wrapper h2 {
-    padding-top: 16px;
     margin-bottom: 40px;
   }
 }
@@ -435,7 +434,6 @@ main .section:empty {
   }
 
   .article-long .default-content-wrapper h2 {
-    font-size: var(--heading-font-size-l);
     padding: 16px 36px 16px 0;
   }
 
