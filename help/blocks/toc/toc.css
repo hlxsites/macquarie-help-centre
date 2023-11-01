@@ -17,7 +17,7 @@ html {
     flex: 1;
     position: sticky;
     top: 48px;
-    padding-right: 40px;
+    padding-right: 16px;
     line-height: 1.75rem;
   }
 
@@ -88,10 +88,20 @@ html {
   .article-content-wrapper {
     flex: 2;
     border-left: 1px solid #ccc;
-    padding-left: 40px;
+    padding-left: 16px;
   }
 
   .scroll-margin {
     scroll-margin-top: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .toc.block {
+    padding-right: 24px;
+  }
+
+  .article-content-wrapper {
+    padding-left: 24px;
   }
 }
