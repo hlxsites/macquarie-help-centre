@@ -512,3 +512,18 @@ main .section:empty {
   display: block;
   pointer-events: none;
 }
+
+.button-container a[title="Quick exit"] {
+  display: block;
+  width: 100%;
+  background-color: var(--button-color);
+  border-color: var(--button-color);
+  border: 1px solid var(--button-color);
+  border-radius: 0.25rem;
+  min-height: 48px;
+  padding: 10px;
+}
+
+.button-container a[title="Quick exit"]:hover {
+  background-color: var(--button-hover-color);
+}
