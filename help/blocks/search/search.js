@@ -91,6 +91,20 @@ async function searchPages(searchTerm, page, section) {
         </div>
       </div>
     `;
+  const errorResultHtml = `
+  <div class="error-messages">
+    <div class="error-message-title p3 error-message-noresults show-error">
+      <img class="error-message-search-icon" src="/help/icons/icon_search_no_results_80.svg">
+      <h1>No results</h1>
+      <p>No results containing your search terms were found.</p>
+      <p>Make sure all words are spelled correctly, try different or more general keywords.</p>  
+    </div>
+  </div>`;
+
+  if (result && result.length === 0) {
+    div.innerHTML = errorResultHtml;
+    return div;
+  }
   div.innerHTML = resultsHtml;
   const totalResults = result.length;
   const totalPages = Math.ceil(totalResults / resultsPerPage);

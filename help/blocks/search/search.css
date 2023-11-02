@@ -10,6 +10,11 @@
   position: relative;
 }
 
+.search .error-messages {
+  margin: 0.25rem 0.5rem;
+  padding-bottom: 2rem;
+}
+
 .search .results-list-title {
   font-family: var(--body-font-family-bold-normal);
   font-size: 1.25rem;
@@ -54,10 +59,10 @@
   font-size: 1.125rem;
   line-height: 1.5rem;
   width: 100%;
-  max-height: 75px;
+  max-height: 4.688rem;
   border: 0;
   color: var(--search-text-color);
-  padding: 16px 48px 24px 16px;
+  padding: 1rem 3rem 1.5rem 1rem;
   box-sizing: border-box;
   max-width: unset;
   border-radius: unset;
@@ -139,6 +144,10 @@
     margin: 0 1.5rem 1rem;
   }
 
+  .search .error-messages {
+    margin: 0.25rem 1rem;
+  }
+
 }
 
 @media (min-width: 900px) {
@@ -159,6 +168,10 @@
     margin: 0 2.5rem 1rem;
     max-width: 35.125rem;
   }
+
+  .search .error-messages {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -175,6 +188,9 @@
     max-width: 43.5rem;
   }
 
+  .search .error-messages {
+    margin: 0.5rem;
+  }
 }
 
 .search-input:focus {
@@ -206,22 +222,22 @@
   border: 0;
   padding: 0;
   margin: 0;
-  width: 16px;
-  height: 16px;
-  top: 22px;
-  right: 20px;
+  width: 1rem;
+  height: 1rem;
+  top: 1.375rem;
+  right: 1.25rem;
 }
 
 @media (min-width: 900px) {
   .search-button {
-    top: 32px;
-    right: 30px;
+    top: 2rem;
+    right: 1.875rem;
   }
 }
 
 @media (min-width: 1200px) {
   .search-button {
-    right: 42px;
+    right: 2.625rem;
   }
 }
 
@@ -230,22 +246,22 @@
 }
 
 .search .icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .search-info {
   position: absolute;
   width: calc(100% - 36px);
-  bottom: 16px;
+  bottom: 1rem;
   border-top: 1px solid var(--search-line-info);
   box-sizing: border-box;
-  margin: 0 16px;
+  margin: 0 1rem;
 }
 
 @media (min-width: 900px) {
   .search-info {
-    margin: 0 24px;
+    margin: 0 1.5rem;
     width: calc(100% - 52px);
   }
 }
