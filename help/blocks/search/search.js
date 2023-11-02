@@ -64,10 +64,10 @@ export function getSearchParams(searchParams) {
 }
 
 function renderSearchResult(item) {
-  return `<div class="results_list_item">
-            <a class ="results_list_link" href="${window.location.protocol}//${window.location.host}${item.path}" target="_blank"><h3 class="results_list_title">${item.title}</h3></a>
-            <p class="results_list_url">${window.location.protocol}//${window.location.host}${item.path}</p>
-            <div class="results_list_description">${item.description}</div>
+  return `<div class="results-list-item">
+            <a class ="results-list_link" href="${window.location.protocol}//${window.location.host}${item.path}" target="_blank"><h3 class="results-list-title">${item.title}</h3></a>
+            <p class="results-list-url">${window.location.protocol}//${window.location.host}${item.path}</p>
+            <div class="results-list_description">${item.description}</div>
           </div>`;
 }
 
@@ -86,7 +86,7 @@ async function searchPages(searchTerm, page, section) {
 
   const resultsHtml = `
       <div class="results">
-        <div class="results_list">
+        <div class="results-list">
           ${currPageItems.map(((item) => renderSearchResult(item))).join('')}
         </div>
       </div>
@@ -159,7 +159,8 @@ function buildSubmitURL(currLocation = window.location.href) {
   const categoryOptions = ['personal', 'business', 'advisers', 'brokers'];
   const url = new URL(currLocation.href);
   const contextPath = url.pathname;
-  for (const option of categoryOptions) {
+  for (let i = 0; i < categoryOptions.length; i + 1) {
+    const option = categoryOptions[i];
     if (contextPath.startsWith(`${window.hlx.codeBasePath}/${option}`)) {
       return `${window.location.protocol}//${window.location.host}${window.hlx.codeBasePath}/${option}/search-results`;
     }
