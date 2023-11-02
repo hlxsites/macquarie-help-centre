@@ -37,7 +37,7 @@ function getSearchWidget(placeholders, initialVal, searchbox, formAction) {
   return htmlToElement(widget);
 }
 const filterData = (indexItem, section, searchTerm) => {
-  const searchLower = searchTerm.toLowerCase();
+  const searchLower = searchTerm.toLowerCase().trim();
   return (
     indexItem.title.toLowerCase().includes(searchLower)
     || indexItem.description.toLowerCase().includes(searchLower)
@@ -65,13 +65,13 @@ export function getSearchParams(searchParams) {
 
 function renderSearchResult(item) {
   return `<div class="results_list_item">
-            <a class ="results_list_link" href="https://www.macquarie.com.au${item.path}" target="_blank"><h3 class="results_list_title">${item.title}</h3></a>
-            <p class="results_list_url">https://www.macquarie.com.au${item.path}</p>
+            <a class ="results_list_link" href="${window.location.protocol}//${window.location.host}${item.path}" target="_blank"><h3 class="results_list_title">${item.title}</h3></a>
+            <p class="results_list_url">${window.location.protocol}//${window.location.host}${item.path}</p>
             <div class="results_list_description">${item.description}</div>
           </div>`;
 }
 
-async function searchPages(placeholders, searchTerm, page, section) {
+async function searchPages(searchTerm, page, section) {
   let json;
   if (window.siteindex && window.siteindex.data) {
     json = window.siteindex.data;
@@ -94,16 +94,9 @@ async function searchPages(placeholders, searchTerm, page, section) {
   div.innerHTML = resultsHtml;
   const totalResults = result.length;
   const totalPages = Math.ceil(totalResults / resultsPerPage);
- // if(totalPages > 1) {
-   // const paginationDiv = document.createElement('div');
-   // paginationDiv.className = 'pagination';
-   // const resultsDiv = div.querySelector('.results'); 
-   // resultsDiv.appendChild(paginationDiv);
-   // createPagination(div,page,totalPages);
-    addPagingWidget(div, page, totalPages);
-  //  console.log(resultsDiv);
-    const paginationBlock = div.querySelector('ul');
-    const paginationLimit = 5;
+  addPagingWidget(div, page, totalPages);
+  const paginationBlock = div.querySelector('ul');
+  const paginationLimit = 5;
   if (totalPages > paginationLimit) {
     let elementForward = 0;
     const threeDotsAfter = document.createElement('li');
@@ -126,7 +119,7 @@ async function searchPages(placeholders, searchTerm, page, section) {
       const currentElement = paginationBlock.querySelector('.active');
       // eslint-disable-next-line max-len
       elementForward = (page === 0) ? currentElement.nextElementSibling.nextElementSibling.nextElementSibling : currentElement.nextElementSibling.nextElementSibling;
-      while (elementForward) {
+      while (elementForward.innerText !== '...' && elementForward) {
         elementForward.classList.add('notvisible');
         elementForward = elementForward.nextElementSibling;
         if (elementForward.innerText === '...') break;
@@ -152,16 +145,26 @@ async function searchPages(placeholders, searchTerm, page, section) {
       lastElement.previousElementSibling.classList.add('notvisible');
       // eslint-disable-next-line max-len
       let elementBefore = currentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-      while (elementBefore) {
+      while (elementBefore.innerText !== '...' && elementBefore) {
         elementBefore.classList.add('notvisible');
         elementBefore = elementBefore.previousElementSibling;
         if (elementBefore.innerText === '...') break;
       }
     }
- // }
   }
- // addPagingWidget(div.querySelector('.results'), page, totalPages);
   return div;
+}
+
+function buildSubmitURL(currLocation = window.location.href) {
+  const categoryOptions = ['personal', 'business', 'advisers', 'brokers'];
+  const url = new URL(currLocation.href);
+  const contextPath = url.pathname;
+  for (const option of categoryOptions) {
+    if (contextPath.startsWith(`${window.hlx.codeBasePath}/${option}`)) {
+      return `${window.location.protocol}//${window.location.host}${window.hlx.codeBasePath}/${option}/search-results`;
+    }
+  }
+  return '';
 }
 
 /**
@@ -182,7 +185,7 @@ export default async function decorate(
 
   let formAction;
   if (!curLocation.href.endsWith('search-results')) {
-    formAction = curLocation.href + '/search-results';
+    formAction = buildSubmitURL(curLocation);
   } else {
     formAction = curLocation.href;
   }
@@ -190,11 +193,13 @@ export default async function decorate(
   block.append(getSearchWidget(placeholders, searchTerm, true, formAction));
 
   const url = new URL(curLocation.href);
+  /* eslint-disable no-restricted-globals */
+  history.pushState(null, null, url.toString());
   // Get the context path
   const contextPath = url.pathname;
   const section = contextPath.split('/').slice(2, 3)[0] || '';
   if (searchTerm) {
-    const results = await searchPages(placeholders, searchTerm, currPageItems, section);
+    const results = await searchPages(searchTerm, currPageItems, section);
     block.append(results);
   }
   decorateIcons(block);
