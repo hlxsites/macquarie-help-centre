@@ -267,6 +267,7 @@ export default {
       'script',
       '.search__bar',
       '.rates-and-fees__left-panel',
+      '.modal',
     ]);
 
     fixHeadings(main);
