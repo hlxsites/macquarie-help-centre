@@ -12,12 +12,38 @@ function buttonClick(event) {
     if (subcategoryDiv.hasAttribute('aria-hidden') && subcategoryDiv.getAttribute('aria-hidden') === 'false') {
       subcategoryDiv.setAttribute('aria-hidden', 'true');
       button.setAttribute('aria-expanded', 'false');
+      updateHeightValues(subcategoryDiv, false);
     } else {
       subcategoryDiv.setAttribute('aria-hidden', 'false');
       button.setAttribute('aria-expanded', 'true');
+      updateHeightValues(subcategoryDiv, true);
     }
   }
 }
+
+function updateInitialHeightValues(block) {
+    setTimeout(() => {
+      const accordions = block.querySelectorAll('.accordion-section');
+      [...accordions].forEach((accordion) => {
+        const subcategoryDiv = accordion.querySelector('.accordion-subcategory-div');
+        subcategoryDiv.style.maxHeight = 0;
+        subcategoryDiv.style.minHeight = 0;
+      });
+    }, 100);
+}
+
+function updateHeightValues(subcategoryDiv, isOpen) {
+    if (isOpen) {
+      const height = subcategoryDiv.scrollHeight;
+      const heightValue = height ? `${height}px` : 'auto';
+      subcategoryDiv.style.maxHeight = `calc(${heightValue} * 2)`;
+      subcategoryDiv.style.minHeight = heightValue;
+      subcategoryDiv.style.height = 'auto';
+    } else {
+      subcategoryDiv.style.maxHeight = 0;
+      subcategoryDiv.style.minHeight = 0;
+    }
+  }
 
 function showView(block, accordionBody, accordionHeader, isVariation) {
   const accordionSection = document.createElement('div');
@@ -98,4 +124,7 @@ export default async function decorate(block) {
       showView(block, item.children[1], item.children[0].innerHTML, isVariation);
     });
   }
+
+  // initial inline height values for accordion sections
+  updateInitialHeightValues(block);
 }
