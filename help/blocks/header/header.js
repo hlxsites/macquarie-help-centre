@@ -171,7 +171,7 @@ export default async function decorate(block) {
 
         const sectionURL = new URL(sectionLink.href);
 
-        if (sectionURL.href === currentPageURL.href) {
+        if (currentPageURL.href.startsWith(sectionURL.href)) {
           navSection.classList.add('active');
         }
 

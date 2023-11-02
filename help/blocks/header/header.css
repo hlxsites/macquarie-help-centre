@@ -22,7 +22,7 @@ header nav {
   margin: auto;
   max-width: 1280px;
   height: var(--nav-height);
-  font-family: var(--nav-font-family);
+  font-family: var(--body-font-family-regular-heavy);
   padding-right: 0;
   padding-left: 1rem;
 }
@@ -44,12 +44,13 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 370px, rgba(255,255,255,70%) 370px);
+    background: linear-gradient(to bottom, var(--text-color) 360px, rgba(255,255,255,70%) 360px);
   }
 }
 
 @media (min-width: 900px) {
   header nav {
+    font-family: var(--nav-font-family);
     margin-left: auto;
   }
 
@@ -59,6 +60,10 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     background: var(--text-color);
+  }
+
+  header nav .nav-sections ul > li {
+    font-weight: 700;
   }
 
   header nav[aria-expanded="true"] {
@@ -272,6 +277,10 @@ header nav[aria-expanded="true"] .nav-sections {
   align-self: start;
 }
 
+header nav .nav-sections .mobile-section-heading {
+  font-size: .875rem;
+}
+
 header nav .nav-sections ul  {
   list-style: none;
   padding-left: 0;
@@ -280,7 +289,6 @@ header nav .nav-sections ul  {
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 700;
   margin-bottom: 20px;
 }
 
