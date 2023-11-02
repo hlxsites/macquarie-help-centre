@@ -4,6 +4,19 @@ let sectionData = 1;
 /* eslint-disable no-shadow */
 let isVariation = false;
 
+function updateHeightValues(subcategoryDiv, isOpen) {
+  if (isOpen) {
+    const height = subcategoryDiv.scrollHeight;
+    const heightValue = height ? `${height}px` : 'auto';
+    subcategoryDiv.style.maxHeight = `calc(${heightValue} * 2)`;
+    subcategoryDiv.style.minHeight = heightValue;
+    subcategoryDiv.style.height = 'auto';
+  } else {
+    subcategoryDiv.style.maxHeight = 0;
+    subcategoryDiv.style.minHeight = 0;
+  }
+}
+
 function buttonClick(event) {
   const button = event.target.closest('button');
   if (button) {
@@ -22,28 +35,15 @@ function buttonClick(event) {
 }
 
 function updateInitialHeightValues(block) {
-    setTimeout(() => {
-      const accordions = block.querySelectorAll('.accordion-section');
-      [...accordions].forEach((accordion) => {
-        const subcategoryDiv = accordion.querySelector('.accordion-subcategory-div');
-        subcategoryDiv.style.maxHeight = 0;
-        subcategoryDiv.style.minHeight = 0;
-      });
-    }, 100);
-}
-
-function updateHeightValues(subcategoryDiv, isOpen) {
-    if (isOpen) {
-      const height = subcategoryDiv.scrollHeight;
-      const heightValue = height ? `${height}px` : 'auto';
-      subcategoryDiv.style.maxHeight = `calc(${heightValue} * 2)`;
-      subcategoryDiv.style.minHeight = heightValue;
-      subcategoryDiv.style.height = 'auto';
-    } else {
+  setTimeout(() => {
+    const accordions = block.querySelectorAll('.accordion-section');
+    [...accordions].forEach((accordion) => {
+      const subcategoryDiv = accordion.querySelector('.accordion-subcategory-div');
       subcategoryDiv.style.maxHeight = 0;
       subcategoryDiv.style.minHeight = 0;
-    }
-  }
+    });
+  }, 100);
+}
 
 function showView(block, accordionBody, accordionHeader, isVariation) {
   const accordionSection = document.createElement('div');
