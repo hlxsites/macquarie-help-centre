@@ -383,8 +383,7 @@ main .section:empty {
     padding: 32px 24px;
   }
 
-  main .section > .default-content-wrapper,
-  main .section > .video-wrapper {
+  main .section.article-short > div {
     margin: auto;
     width: calc(100% * 2/3);
     line-height: 1.75rem;
