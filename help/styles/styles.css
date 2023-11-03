@@ -603,8 +603,8 @@ main .section.rating .default-content-wrapper a.button:hover {
 }
 
 /* article pages links */
-main .section.article-long .default-content-wrapper a.button:any-link,
-main .section.article-short .default-content-wrapper a.button:any-link {
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]),
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]) {
   all: unset;
   font-size: 1rem;
   position: relative;
@@ -613,7 +613,7 @@ main .section.article-short .default-content-wrapper a.button:any-link {
   color: var(--link-color);
 }
 
-main .section.article-long .default-content-wrapper a.button:any-link:hover,
-main .section.article-short .default-content-wrapper a.button:any-link:hover {
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]):hover,
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]):hover {
   color: var(--link-hover-color);
 }
