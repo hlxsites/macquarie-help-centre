@@ -21,7 +21,6 @@
   flex-wrap: nowrap;
   align-items: center;
   border-radius: 8px;
-  padding: 16px;
   background-color: var(--background-color);
   box-shadow: 0 0 4px rgba(0 0 0 / 8%),0 6px 4px -4px rgba(0 0 0 / 8%);
   transition: all ease-in 0.2s;
@@ -32,8 +31,9 @@
   flex-wrap: nowrap;
   align-items: center;
   text-decoration: none;
+  width: 100%;
   border: 0;
-  padding: 0;
+  padding: 16px;
   color: var(--link-color);
   background-color: transparent;
   font-weight: unset;
@@ -81,13 +81,13 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .cards > ul > li {
+  .cards > ul > li > a {
     padding: 16px 8px;
   }
 }
 
 @media (min-width: 900px) {
-  .cards > ul > li {
+  .cards > ul > li > a {
     padding: 24px;
   }
 
@@ -109,7 +109,7 @@
     --cards-heading-font-size: 28px;
   }
 
-  .cards > ul > li {
+  .cards > ul > li > a {
     padding: 32px;
   }
 }
