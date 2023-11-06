@@ -5,7 +5,7 @@
   margin-bottom: 64px;
 }
 
-.columns:last-child {
+.columns-wrapper:last-child .columns:last-child {
   margin-bottom: 0;
 }
 
