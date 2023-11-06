@@ -72,12 +72,7 @@ function renderSearchResult(item) {
 }
 
 async function searchPages(searchTerm, page, section) {
-  let json;
-  if (window.siteindex && window.siteindex.data) {
-    json = window.siteindex.data;
-  } else {
-    console.error('window.siteindex or window.siteindex.data is not defined.');
-  }
+  const json = window.siteindex.data;
   const resultsPerPage = 10;
   const startResult = page * resultsPerPage;
   const result = json.filter((item) => filterData(item, section, searchTerm));
@@ -100,7 +95,6 @@ async function searchPages(searchTerm, page, section) {
       <p>Make sure all words are spelled correctly, try different or more general keywords.</p>  
     </div>
   </div>`;
-
   if (result && result.length === 0) {
     div.innerHTML = errorResultHtml;
     return div;
@@ -214,8 +208,18 @@ export default async function decorate(
   const contextPath = url.pathname;
   const section = contextPath.split('/').slice(2, 3)[0] || '';
   if (searchTerm) {
-    const results = await searchPages(searchTerm, currPageItems, section);
-    block.append(results);
+    if (window?.siteindex?.loaded) {
+      const results = await searchPages(searchTerm, currPageItems, section);
+      const resultsDiv = block.querySelector('.results');
+      if (resultsDiv) {
+        resultsDiv.parentNode.removeChild(resultsDiv);
+      }
+      block.append(results);
+    } else {
+      const div = document.createElement('div', { class: 'results' });
+      block.append(div);
+      document.addEventListener('dataset-ready', () => searchPages(searchTerm, currPageItems, section));
+    }
   }
   decorateIcons(block);
 }
