@@ -35,6 +35,7 @@
   --search-line-info: #ccc;
   --search-line-error: #e82400;
   --search-focus-color: #0c6cce;
+  --search-visited-color:#064384;
 
   /* breadcrumbs */
   --breadcrumbs-text-color: #333;
