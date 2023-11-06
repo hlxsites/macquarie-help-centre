@@ -99,6 +99,16 @@
 }
 
 /* Button style */
+.columns a.button:any-link, .colums button {
+  all: unset;
+  cursor: pointer;
+  text-decoration: underline;
+  width: fit-content;
+}
+
+.columns a.button:any-link:hover {
+  color: var(--button-color);
+}
 
 .columns.fragment .button-container .button {
   width: 100%;
@@ -143,7 +153,7 @@
   .columns.fragment {
     font-size: var(--body-font-size-s);
   }
-  
+
   .columns.category > div,
   .columns.fragment > div {
     flex-direction: unset;
