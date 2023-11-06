@@ -71,7 +71,7 @@ function renderSearchResult(item) {
           </div>`;
 }
 
-async function searchPages(searchTerm, page, section) {
+async function searchPages(searchTerm, page, section, block) {
   const json = window.siteindex.data;
   const resultsPerPage = 10;
   const startResult = page * resultsPerPage;
@@ -97,77 +97,81 @@ async function searchPages(searchTerm, page, section) {
   </div>`;
   if (result && result.length === 0) {
     div.innerHTML = errorResultHtml;
-    return div;
-  }
-  div.innerHTML = resultsHtml;
-  const totalResults = result.length;
-  const totalPages = Math.ceil(totalResults / resultsPerPage);
-  addPagingWidget(div, page, totalPages);
-  const paginationBlock = div.querySelector('ul');
-  const paginationLimit = 5;
-  if (totalPages > paginationLimit) {
-    let elementForward = 0;
-    const threeDotsAfter = document.createElement('li');
-    const ata = document.createElement('a');
-    ata.innerText = '...';
-    threeDotsAfter.appendChild(ata);
+  } else {
+    div.innerHTML = resultsHtml;
+    const totalResults = result.length;
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    addPagingWidget(div, page, totalPages);
+    const paginationBlock = div.querySelector('ul');
+    const paginationLimit = 5;
+    if (totalPages > paginationLimit) {
+      let elementForward = 0;
+      const threeDotsAfter = document.createElement('li');
+      const ata = document.createElement('a');
+      ata.innerText = '...';
+      threeDotsAfter.appendChild(ata);
 
-    const threeDotsBefore = document.createElement('li');
-    const atb = document.createElement('a');
-    atb.innerText = '...';
-    threeDotsBefore.appendChild(atb);
+      const threeDotsBefore = document.createElement('li');
+      const atb = document.createElement('a');
+      atb.innerText = '...';
+      threeDotsBefore.appendChild(atb);
 
-    const firstElement = paginationBlock.querySelector('.prev.page').nextElementSibling;
-    const lastElement = paginationBlock.querySelector('.next.page').previousElementSibling;
-    firstElement.after(threeDotsBefore);
-    lastElement.before(threeDotsAfter);
+      const firstElement = paginationBlock.querySelector('.prev.page').nextElementSibling;
+      const lastElement = paginationBlock.querySelector('.next.page').previousElementSibling;
+      firstElement.after(threeDotsBefore);
+      lastElement.before(threeDotsAfter);
 
-    if (page < (paginationLimit - 1)) {
-      firstElement.nextElementSibling.classList.add('notvisible');
-      const currentElement = paginationBlock.querySelector('.active');
-      // eslint-disable-next-line max-len
-      elementForward = (page === 0) ? currentElement.nextElementSibling.nextElementSibling.nextElementSibling : currentElement.nextElementSibling.nextElementSibling;
-      while (elementForward.innerText !== '...' && elementForward) {
-        elementForward.classList.add('notvisible');
-        elementForward = elementForward.nextElementSibling;
-        if (elementForward.innerText === '...') break;
+      if (page < (paginationLimit - 1)) {
+        firstElement.nextElementSibling.classList.add('notvisible');
+        const currentElement = paginationBlock.querySelector('.active');
+        // eslint-disable-next-line max-len
+        elementForward = (page === 0) ? currentElement.nextElementSibling.nextElementSibling.nextElementSibling : currentElement.nextElementSibling.nextElementSibling;
+        while (elementForward.innerText !== '...' && elementForward) {
+          elementForward.classList.add('notvisible');
+          elementForward = elementForward.nextElementSibling;
+          if (elementForward.innerText === '...') break;
+        }
+      }
+      if (page > (paginationLimit - 2) && (page < (totalPages - 3))) {
+        const currentElement = paginationBlock.querySelector('.active');
+        elementForward = currentElement.nextElementSibling.nextElementSibling;
+        while (elementForward) {
+          elementForward.classList.add('notvisible');
+          elementForward = elementForward.nextElementSibling;
+          if (elementForward.innerText === '...') break;
+        }
+        // eslint-disable-next-line max-len
+        let elementBefore = currentElement.previousElementSibling.previousElementSibling.previousElementSibling;
+        while (elementBefore) {
+          elementBefore.classList.add('notvisible');
+          elementBefore = elementBefore.previousElementSibling;
+          if (elementBefore.innerText === '...') break;
+        }
+      } else if (page > (totalPages - 4)) {
+        const currentElement = paginationBlock.querySelector('.active');
+        lastElement.previousElementSibling.classList.add('notvisible');
+        // eslint-disable-next-line max-len
+        let elementBefore = currentElement.previousElementSibling.previousElementSibling.previousElementSibling;
+        while (elementBefore.innerText !== '...' && elementBefore) {
+          elementBefore.classList.add('notvisible');
+          elementBefore = elementBefore.previousElementSibling;
+          if (elementBefore.innerText === '...') break;
+        }
       }
     }
-    if (page > (paginationLimit - 2) && (page < (totalPages - 3))) {
-      const currentElement = paginationBlock.querySelector('.active');
-      elementForward = currentElement.nextElementSibling.nextElementSibling;
-      while (elementForward) {
-        elementForward.classList.add('notvisible');
-        elementForward = elementForward.nextElementSibling;
-        if (elementForward.innerText === '...') break;
-      }
-      // eslint-disable-next-line max-len
-      let elementBefore = currentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-      while (elementBefore) {
-        elementBefore.classList.add('notvisible');
-        elementBefore = elementBefore.previousElementSibling;
-        if (elementBefore.innerText === '...') break;
-      }
-    } else if (page > (totalPages - 4)) {
-      const currentElement = paginationBlock.querySelector('.active');
-      lastElement.previousElementSibling.classList.add('notvisible');
-      // eslint-disable-next-line max-len
-      let elementBefore = currentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-      while (elementBefore.innerText !== '...' && elementBefore) {
-        elementBefore.classList.add('notvisible');
-        elementBefore = elementBefore.previousElementSibling;
-        if (elementBefore.innerText === '...') break;
-      }
-    }
   }
-  return div;
+  const resultsDiv = block.querySelector('.results');
+  if (resultsDiv) {
+    resultsDiv.parentNode.removeChild(resultsDiv);
+  }
+  block.append(div);
 }
 
 function buildSubmitURL(currLocation = window.location.href) {
   const categoryOptions = ['personal', 'business', 'advisers', 'brokers'];
   const url = new URL(currLocation.href);
   const contextPath = url.pathname;
-  for (let i = 0; i < categoryOptions.length; i + 1) {
+  for (let i = 0; i < categoryOptions.length; i += 1) {
     const option = categoryOptions[i];
     if (contextPath.startsWith(`${window.hlx.codeBasePath}/${option}`)) {
       return `${window.location.protocol}//${window.location.host}${window.hlx.codeBasePath}/${option}/search-results`;
@@ -209,17 +213,12 @@ export default async function decorate(
   const section = contextPath.split('/').slice(2, 3)[0] || '';
   if (searchTerm) {
     if (window?.siteindex?.loaded) {
-      const results = await searchPages(searchTerm, currPageItems, section);
-      const resultsDiv = block.querySelector('.results');
-      if (resultsDiv) {
-        resultsDiv.parentNode.removeChild(resultsDiv);
-      }
-      block.append(results);
+      await searchPages(searchTerm, currPageItems, section, block);
     } else {
       const div = document.createElement('div');
       div.classList.add('results');
       block.append(div);
-      document.addEventListener('dataset-ready', () => searchPages(searchTerm, currPageItems, section));
+      document.addEventListener('dataset-ready', () => searchPages(searchTerm, currPageItems, section, block));
     }
   }
   decorateIcons(block);
