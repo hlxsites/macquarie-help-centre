@@ -7,7 +7,18 @@ header .nav-wrapper {
   color: var(--background-color);
 }
 
+header .nav-wrapper:has(#nav[aria-expanded="false"]) {
+  min-height: 0;
+  max-height: 100vh;
+  transition: min-height 0.4s ease 0s;
+  /* stylelint-disable-next-line color-function-notation */
+  background: linear-gradient(to bottom, var(--text-color) 100%, rgba(255,255,255,70%) 100%);
+}
+
 header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+  min-height: 100vh;
+  max-height: 0;
+  transition: min-height 0.4s ease 0s;
   /* stylelint-disable-next-line color-function-notation */
   background: linear-gradient(to bottom, var(--text-color) 85%, rgba(255,255,255,70%) 85%);
 }
@@ -44,7 +55,7 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 360px, rgba(255,255,255,70%) 360px);
+    background: linear-gradient(to bottom, var(--text-color) 40%, rgba(255,255,255,70%) 40%);
   }
 }
 
@@ -60,6 +71,8 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper:has(#nav[aria-expanded="true"]) {
     background: var(--text-color);
+    min-height: unset;
+    max-height: unset;
   }
 
   header nav .nav-sections ul > li {
