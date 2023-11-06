@@ -25,8 +25,10 @@ main .section .columns-wrapper .columns {
   margin-bottom: 0;
 }
 
-.columns h3 {
-  font-size: var(--heading-font-size-m);
+.columns.fragment h2 {
+  font-size: 1.375rem;
+  line-height: 1.875rem;
+  letter-spacing: -1px;
 }
 
 .columns p {
@@ -58,7 +60,7 @@ main .section .columns-wrapper .columns {
 
 /* Button style */
 
-.columns .button-container .button {
+.columns.fragment .button-container .button {
   width: 100%;
   color: var(--button-color);
   background-color: transparent;
@@ -83,11 +85,11 @@ main .section .columns-wrapper .columns {
 }
 
 
-.columns .button-container .button a {
+.columns.fragment .button-container .button a {
   text-align: center;
 }
 
-.columns .button-container .button:hover {
+.columns.fragment .button-container .button:hover {
   background-color: var(--button-color);
   color: var(--background-color);
 }
@@ -127,14 +129,15 @@ main .section .columns-wrapper .columns {
     border-bottom: none;
   }
 
-  .columns h3 {
+  .columns.fragment h2 {
     font-size: 2rem;
     margin-bottom: 0;
+    line-height: var(--heading-line-height-l);
+    letter-spacing: -1px;
   }
 
-  .columns .button-container {
+  .columns.fragment .button-container {
     margin-top: auto;
   }
-
 }
 

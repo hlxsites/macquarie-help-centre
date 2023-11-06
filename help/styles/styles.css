@@ -21,6 +21,15 @@
   --button-hover-color: #0458ad;
   --columns-border: #f7f7f7;
 
+  /* article content */
+  --article-color: #333;
+  --article-heading-color: #000;
+
+  /* table of contents */
+  --toc-link-color: #0c6cce;
+  --toc-secondary-link-color: #595959;;
+  --toc-link-background-color: #f5f5f5;
+
   /* search */
   --search-text-color: #333;
   --search-line-info: #ccc;
@@ -308,6 +317,61 @@ main .section:empty {
   display: none;
 }
 
+/* article content */
+.article-short .default-content-wrapper, .article-long .default-content-wrapper {
+  line-height: 1.75rem;
+  color: var(--article-color);
+}
+
+.article-short .default-content-wrapper p, .article-long .default-content-wrapper p {
+  margin: 0 0 16px;
+}
+
+.article-short .default-content-wrapper p:last-child, .article-long .default-content-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+.article-short .default-content-wrapper ul, .article-long .default-content-wrapper ul, 
+.article-short .default-content-wrapper ol, .article-long .default-content-wrapper ol {
+  margin-bottom: 32px;
+}
+
+.article-short .default-content-wrapper li, .article-long .default-content-wrapper li {
+  margin-bottom: 8px;
+}
+
+.article-short .default-content-wrapper li:last-child, .article-long .default-content-wrapper li:last-child {
+  margin-bottom: 0;
+}
+
+.article-short .default-content-wrapper h2, .article-long .default-content-wrapper h2 {
+  margin-bottom: 16px;
+  font-size: var(--heading-font-size-l);
+  font-family: var(--body-font-family);
+  color: var(--article-heading-color);
+  line-height: 2rem;
+  letter-spacing: -1px;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  font-weight: normal;
+}
+
+.article-short .default-content-wrapper h3, .article-long .default-content-wrapper h3 {
+  margin-bottom: 16px;
+  font-size: var(--heading-font-size-m);
+  font-family: var(--body-font-family);
+  color: var(--article-heading-color);
+  line-height: 1.5rem;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  font-weight: normal;
+}
+
+.article-long .default-content-wrapper h2 {
+  padding-top: 16px;
+}
+
 @media (min-width: 600px) {
   :root {
     --nav-height: 88px;
@@ -327,6 +391,10 @@ main .section:empty {
 
   main .section > .default-content-wrapper:has(h2#popular-articles) {
     width: 100%
+  }
+
+  .article-long .default-content-wrapper h2 {
+    margin-bottom: 40px;
   }
 }
 
@@ -358,6 +426,21 @@ main .section:empty {
     margin: 32px 24px;
     padding: 40px;
   }
+
+  .article-short .default-content-wrapper h2 {
+    margin-bottom: 32px;
+    font-size: var(--heading-font-size-m);
+    line-height: 3rem;
+  }
+
+  .article-long .default-content-wrapper h2 {
+    padding: 16px 36px 16px 0;
+  }
+
+  .article-long .default-content-wrapper h3 {
+    margin-bottom: 32px;
+    line-height: 1.875rem;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -368,20 +451,13 @@ main .section:empty {
   }
 }
 
+/* external links decoration */
 .external-link-icon::after {
   content: url("../icons/icon-external-link.svg");
   margin-left: 5px;
   transition: 0.3s;
   position: relative;
   top: 2px;
-}
-
-.external-link-icon.no-icon::after {
-  content: none; /* Remove the icon */
-}
-
-.external-link-icon.no-icon:hover::after {
-  content: none; /* Remove the icon */
 }
 
 .external-link-icon:hover::after {
@@ -428,4 +504,116 @@ main .section:empty {
 .svg a {
   display: block;
   pointer-events: none;
+}
+
+/* rating section */
+main .section.rating {
+  display: block;
+}
+
+main .section.rating .default-content-wrapper {
+  margin: unset;
+  width: unset;
+}
+
+main .section.rating .default-content-wrapper h3 {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-family: var(--button-font-family);
+}
+
+main .section.rating .default-content-wrapper ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1rem;
+}
+
+main .section.rating .default-content-wrapper ul li {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+main .section.rating .default-content-wrapper p {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+main .section.rating .default-content-wrapper ul li a {
+  text-decoration: none;
+  color: var(--button-color);
+}
+
+main .section.rating .default-content-wrapper ul li a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--link-hover-color);
+}
+
+main .section.rating .default-content-wrapper a.button {
+  all: unset;
+  font-family: var(--button-font-family);
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+main .section.rating .default-content-wrapper a.button::after {
+  content: url('../icons/chevron-black.svg');
+  margin-left: 5px;
+  position: absolute;
+  top: 1px;
+}
+
+main .section.rating .default-content-wrapper a.button:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  main .section.rating .default-content-wrapper {
+    margin: unset;
+    margin-left: 50%;
+    width: unset;
+  }
+
+  main .section.rating .default-content-wrapper a.button::after {
+    top: -1px;
+  }
+}
+
+@media (min-width: 900px) {
+  main .section.rating .default-content-wrapper {
+    margin-left: 60%;
+  }
+}
+
+/* Quick exit button styling */
+.button-container a[title="Quick exit"] {
+  display: block;
+  width: 100%;
+  background-color: var(--button-color);
+  border-color: var(--button-color);
+  border: 1px solid var(--button-color);
+  border-radius: 0.25rem;
+  min-height: 48px;
+  padding: 10px;
+}
+
+.button-container a[title="Quick exit"]:hover {
+  background-color: var(--button-hover-color);
+}
+
+/* article pages links */
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]),
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]) {
+  all: unset;
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--link-color);
+}
+
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]):hover,
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]):hover {
+  color: var(--link-hover-color);
 }

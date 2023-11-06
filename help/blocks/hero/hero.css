@@ -18,6 +18,7 @@ main .section.hero-container:has(.hero-img-right) {
 
 main .hero-container .hero-wrapper {
   max-width: 2080px;
+  margin: auto;
 }
 
 main .hero {
