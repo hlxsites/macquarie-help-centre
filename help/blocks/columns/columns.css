@@ -15,7 +15,7 @@
   display: flex;
   gap: 12px;
   padding: 24px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--columns-article-border);
 }
 
 /* article table - cell / column */
@@ -27,7 +27,7 @@
 
 /* article table - first row */
 .columns > div:first-child {
-  font-family: var(--th-font-family);
+  font-family: var(--columns-first-row-font-family);
   font-weight: bold;
 }
 
