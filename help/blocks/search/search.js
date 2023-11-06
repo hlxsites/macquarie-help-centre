@@ -216,7 +216,8 @@ export default async function decorate(
       }
       block.append(results);
     } else {
-      const div = document.createElement('div', { class: 'results' });
+      const div = document.createElement('div');
+      div.classList.add('results');
       block.append(div);
       document.addEventListener('dataset-ready', () => searchPages(searchTerm, currPageItems, section));
     }
