@@ -27,7 +27,7 @@
 
   /* table of contents */
   --toc-link-color: #0c6cce;
-  --toc-secondary-link-color: #7f7f7f;;
+  --toc-secondary-link-color: #595959;;
   --toc-link-background-color: #f5f5f5;
 
   /* search */
@@ -451,6 +451,7 @@ main .section:empty {
   }
 }
 
+/* external links decoration */
 .external-link-icon::after {
   content: url("../icons/icon-external-link.svg");
   margin-left: 5px;
@@ -505,6 +506,7 @@ main .section:empty {
   pointer-events: none;
 }
 
+/* rating section */
 main .section.rating {
   display: block;
 }
@@ -584,6 +586,7 @@ main .section.rating .default-content-wrapper a.button:hover {
   }
 }
 
+/* Quick exit button styling */
 .button-container a[title="Quick exit"] {
   display: block;
   width: 100%;
@@ -597,4 +600,20 @@ main .section.rating .default-content-wrapper a.button:hover {
 
 .button-container a[title="Quick exit"]:hover {
   background-color: var(--button-hover-color);
+}
+
+/* article pages links */
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]),
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]) {
+  all: unset;
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--link-color);
+}
+
+main .section.article-long .default-content-wrapper a.button:not([title="Quick exit"]):hover,
+main .section.article-short .default-content-wrapper a.button:not([title="Quick exit"]):hover {
+  color: var(--link-hover-color);
 }
