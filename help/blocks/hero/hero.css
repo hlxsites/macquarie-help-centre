@@ -3,16 +3,16 @@ main .hero-container > div {
 }
 
 main .section.hero-container {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   background-color: transparent;
 }
 
-main .section.hero-container:has(.hero-no-image) {
+.hero.hero-no-image {
   margin: 24px 8px 40px;
 }
 
-main .section.hero-container:has(.hero-img-right) {
+.hero.hero-img-right {
   margin-top: 24px;
 }
 
@@ -137,11 +137,11 @@ main .hero img {
 }
 
 @media (min-width: 600px) {
-  main .section.hero-container:has(.hero-img-right) {
+  .hero.hero-img-right {
     margin: 24px 16px;
   }
 
-  main .section.hero-container:has(.hero-no-image) {
+  .hero.hero-no-image {
     margin: 24px 16px;
   }
 
@@ -212,12 +212,20 @@ main .hero img {
 }
 
 @media (min-width: 900px) {
-  main .section.hero-container:has(.hero-img-right) {
-    margin: 24px;
+  main .section.hero-container {
+    margin: auto 24px;
   }
 
-  main .section.hero-container:has(.hero-no-image) {
-    margin: 24px;
+  .hero.hero-img-bg {
+    margin: auto -24px;
+  }
+
+  .hero.hero-img-right {
+    margin: 24px auto;
+  }
+
+  .hero.hero-no-image {
+    margin: 24px auto;
   }
 
   .hero-outer {
