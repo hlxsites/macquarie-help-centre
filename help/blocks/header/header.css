@@ -7,7 +7,7 @@ header .nav-wrapper {
   color: var(--background-color);
 }
 
-header .nav-wrapper:has(#nav[aria-expanded="false"]) {
+header .nav-wrapper.collapsed {
   min-height: 0;
   max-height: 100vh;
   transition: min-height 0.4s ease 0s;
@@ -15,7 +15,7 @@ header .nav-wrapper:has(#nav[aria-expanded="false"]) {
   background: linear-gradient(to bottom, var(--text-color) 100%, rgba(255,255,255,70%) 100%);
 }
 
-header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+header .nav-wrapper.expanded {
   min-height: 100vh;
   max-height: 0;
   transition: min-height 0.4s ease 0s;
@@ -53,7 +53,7 @@ header nav[aria-expanded="true"] {
     margin-left: 1rem;
   }
 
-  header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+  header .nav-wrapper.expanded {
     /* stylelint-disable-next-line color-function-notation */
     background: linear-gradient(to bottom, var(--text-color) 40%, rgba(255,255,255,70%) 40%);
   }
@@ -69,7 +69,7 @@ header nav[aria-expanded="true"] {
     background-color: var(--text-color);
   }
 
-  header .nav-wrapper:has(#nav[aria-expanded="true"]) {
+  header .nav-wrapper.expanded {
     background: var(--text-color);
     min-height: unset;
     max-height: unset;

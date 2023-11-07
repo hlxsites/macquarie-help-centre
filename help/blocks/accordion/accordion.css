@@ -5,12 +5,12 @@
     background-color: var(--background-color);
   }
 
-  .accordion-wrapper:has(.content-center) {
+  .accordion.content-center {
     margin: auto;
   }
 
   @media (min-width: 600px) {
-    .accordion-wrapper:has(.content-center) {
+    .accordion.content-center {
         width: calc(100% * 2/3);
     }
 
