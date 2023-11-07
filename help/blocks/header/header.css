@@ -79,7 +79,7 @@ header nav[aria-expanded="true"] {
     font-weight: 700;
   }
 
-  header nav[aria-expanded="true"] {
+  header nav[aria-expanded="false"] {
     min-height: 0;
     overflow: visible;
     grid-template:
@@ -348,10 +348,6 @@ header nav .nav-sections ul > li > a:hover {
 
   header nav .nav-sections .mobile-section-heading {
     display: none;
-  }
-
-  header nav[aria-expanded="true"] .nav-sections {
-    align-self: unset;
   }
 
   header nav .nav-sections .nav-drop {
