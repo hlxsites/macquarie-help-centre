@@ -1,6 +1,15 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { addPagingWidget } from '../../scripts/scripts.js';
 
+const errorResultHtml = `
+  <div class="error-messages">
+    <div class="error-message-title p3 error-message-noresults show-error">
+      <img class="error-message-search-icon" src="/help/icons/icon_search_no_results_80.svg">
+      <h1>No results</h1>
+      <p>No results containing your search terms were found.</p>
+      <p>Make sure all words are spelled correctly, try different or more general keywords.</p>  
+    </div>
+  </div>`;
 /**
  * Convert html in text form to document element
  * @param {string} html the html to process
@@ -58,7 +67,6 @@ export function getSearchParams(searchParams) {
     // convert the current page to a number
     currPageItems = parseInt(currPageItems, 10);
   }
-
   const searchTerm = new URLSearchParams(searchParams).get('q');
   return { searchTerm, currPageItems };
 }
@@ -86,15 +94,6 @@ async function searchPages(searchTerm, page, section, block) {
         </div>
       </div>
     `;
-  const errorResultHtml = `
-  <div class="error-messages">
-    <div class="error-message-title p3 error-message-noresults show-error">
-      <img class="error-message-search-icon" src="/help/icons/icon_search_no_results_80.svg">
-      <h1>No results</h1>
-      <p>No results containing your search terms were found.</p>
-      <p>Make sure all words are spelled correctly, try different or more general keywords.</p>  
-    </div>
-  </div>`;
   if (result && result.length === 0) {
     div.innerHTML = errorResultHtml;
   } else {
@@ -211,7 +210,7 @@ export default async function decorate(
   // Get the context path
   const contextPath = url.pathname;
   const section = contextPath.split('/').slice(2, 3)[0] || '';
-  if (searchTerm) {
+  if (searchTerm && searchTerm.length > 2) {
     if (window?.siteindex?.loaded) {
       await searchPages(searchTerm, currPageItems, section, block);
     } else {
@@ -220,6 +219,10 @@ export default async function decorate(
       block.append(div);
       document.addEventListener('dataset-ready', () => searchPages(searchTerm, currPageItems, section, block));
     }
+  } else if (searchTerm) {
+    const div = document.createElement('div');
+    div.innerHTML = errorResultHtml;
+    block.append(div);
   }
   decorateIcons(block);
 }
