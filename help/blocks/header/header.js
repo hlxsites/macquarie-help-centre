@@ -142,6 +142,8 @@ function setAriaLabelToBrand(section, labels) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  // remove empty div
+  block.children[0].remove();
   // fetch nav content
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
