@@ -1,4 +1,9 @@
-.search {
+main .section.search-container {
+ margin-top: 0;
+ margin-bottom: 0;
+}
+
+.search.block {
   margin-top: 1.5rem;
   position: relative;
 }
@@ -73,7 +78,7 @@
   display: flex;
   justify-content: center;
   margin-top: 3.125rem;
-  margin-bottom: 6.25rem;
+  margin-bottom: 3.125rem;
   list-style: none;
   padding-inline-start: unset;
 }
