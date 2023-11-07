@@ -15,8 +15,11 @@ function createAnchorTagLink(tocContentWrapper, hTag) {
 
   // add scroll listener to calculate the active link
   document.getElementsByClassName('content-link')[0].classList.add('active');
+  document.getElementsByClassName('content-link')[0].closest('.first-level')?.classList.add('active');
+
   document.getElementById(contentLinkId).classList.add('scroll-margin');
   sections.push(document.getElementById(contentLinkId));
+
   window.addEventListener('scroll', () => {
     const scrollAmount = window.scrollY;
     sections.forEach((element) => {
@@ -24,8 +27,17 @@ function createAnchorTagLink(tocContentWrapper, hTag) {
         const idName = element.getAttribute('id');
         if (idName === contentLinkId) {
           aLink.classList.add('active');
+          tocContentWrapper.classList.add('active');
+          tocContentWrapper.closest('.first-level')?.classList.add('active');
         } else {
           aLink.classList.remove('active');
+          tocContentWrapper.classList.remove('active');
+
+          // remove active class from parent only if no child is active
+          const firstLevelParent = tocContentWrapper.closest('.first-level');
+          if (firstLevelParent && !firstLevelParent.querySelector('.active')) {
+            tocContentWrapper.closest('.first-level')?.classList.remove('active');
+          }
         }
       }
     });
