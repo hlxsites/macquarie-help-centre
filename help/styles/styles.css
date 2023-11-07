@@ -20,6 +20,7 @@
   --button-color: #0c6cce;
   --button-hover-color: #0458ad;
   --columns-border: #f7f7f7;
+  --columns-article-border: #ccc;
 
   /* article content */
   --article-color: #333;
@@ -62,6 +63,7 @@
   --body-font-family-bold-normal: "MCQGlobal-Bold-Normal","Helvetica","Arial","sans-serif";
   --body-font-family-regular-heavy: "MCQGlobal-Regular-Heavy","Helvetica","Arial","sans-serif";
   --button-font-family: "MCQGlobal-Medium-Normal","Helvetica","Arial","sans-serif";
+  --columns-first-row-font-family: "MCQGlobal-Medium-Normal","Helvetica","Arial","sans-serif";
   --nav-font-family: "MCQGlobal-Medium-Heavy","Helvetica","Arial","sans-serif";
   --heading-font-family: var(--body-font-family-regular-heavy);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
@@ -382,8 +384,7 @@ main .section:empty {
     padding: 32px 24px;
   }
 
-  main .section > .default-content-wrapper,
-  main .section > .video-wrapper {
+  main .section.article-short > div {
     margin: auto;
     width: calc(100% * 2/3);
     line-height: 1.75rem;
