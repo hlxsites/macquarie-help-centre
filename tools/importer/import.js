@@ -62,7 +62,8 @@ function makeLinks(main) {
       }
 
       if (a.href.startsWith('/help')) {
-        u = new URL(a.href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+        const lowercaseHref = a.href.toLowerCase();
+        u = new URL(lowercaseHref, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
       } else if (a.href.startsWith('/assets')) {
         u = new URL(a.href, 'https://www.macquarie.com.au/');
       } else if (a.href.startsWith('/')) {
@@ -268,6 +269,8 @@ export default {
       '.search__bar',
       '.rates-and-fees__left-panel',
       '.modal',
+      '.table_swipe-indicator__icon animate',
+      '.table_swipe-indicator__text',
     ]);
 
     fixHeadings(main);
