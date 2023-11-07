@@ -391,10 +391,6 @@ main .section:empty {
     line-height: 1.75rem;
   }
 
-  main .section > .default-content-wrapper:has(h2#popular-articles) {
-    width: 100%
-  }
-
   .article-long .default-content-wrapper h2 {
     margin-bottom: 40px;
   }

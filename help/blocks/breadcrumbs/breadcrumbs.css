@@ -4,8 +4,8 @@
   order: 1;
 }
 
-main .section.breadcrumbs-container {
-  margin-top: 0;
+.hero.hero-img-bg .breadcrumbs {
+  padding-bottom: 0;
 }
 
 .breadcrumbs-hidden {
