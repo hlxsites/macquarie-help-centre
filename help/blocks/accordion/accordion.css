@@ -98,7 +98,7 @@
   }
 
   .accordion-subcategory-div {
-    transition: min-height 0.3s ease-in-out, max-height 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .accordion-subcategory-div .content {
@@ -164,6 +164,7 @@
         font-size: 1.75rem;
         font-weight: 500;
         padding: 24px 36px 24px 0;
+        line-height: normal;
     }
 
     .accordion-subcategory-div[aria-hidden="false"] .content a span {
