@@ -10,7 +10,8 @@ header .nav-wrapper {
 header .nav-wrapper.collapsed {
   min-height: 0;
   max-height: 100vh;
-  transition: min-height 0.4s ease 0s;
+
+  /* transition: min-height 0.4s ease 0s; */
   /* stylelint-disable-next-line color-function-notation */
   background: linear-gradient(to bottom, var(--text-color) 100%, rgba(255,255,255,70%) 100%);
 }
@@ -18,9 +19,10 @@ header .nav-wrapper.collapsed {
 header .nav-wrapper.expanded {
   min-height: 100vh;
   max-height: 0;
-  transition: min-height 0.4s ease 0s;
+
+  /* transition: min-height 0.4s ease 0s; */
   /* stylelint-disable-next-line color-function-notation */
-  background: linear-gradient(to bottom, var(--text-color) 85%, rgba(255,255,255,70%) 85%);
+  background: linear-gradient(to bottom, var(--text-color) 95%, rgba(255,255,255,70%) 95%);
 }
 
 header nav {
