@@ -98,7 +98,7 @@
   }
 
   .accordion-subcategory-div {
-    transition: min-height 0.3s ease-in-out, max-height 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .accordion-subcategory-div .content {

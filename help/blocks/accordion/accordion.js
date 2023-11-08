@@ -11,9 +11,11 @@ function updateHeightValues(subcategoryDiv, isOpen) {
     subcategoryDiv.style.maxHeight = `calc(${heightValue} * 2)`;
     subcategoryDiv.style.minHeight = heightValue;
     subcategoryDiv.style.height = 'auto';
+    subcategoryDiv.style.opacity = 1;
   } else {
     subcategoryDiv.style.maxHeight = 0;
     subcategoryDiv.style.minHeight = 0;
+    subcategoryDiv.style.opacity = 0;
   }
 }
 
@@ -41,6 +43,7 @@ function updateInitialHeightValues(block) {
       const subcategoryDiv = accordion.querySelector('.accordion-subcategory-div');
       subcategoryDiv.style.maxHeight = 0;
       subcategoryDiv.style.minHeight = 0;
+      subcategoryDiv.style.opacity = 0;
     });
   }, 100);
 }
