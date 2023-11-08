@@ -55,7 +55,7 @@ header nav[aria-expanded="true"] {
 
   header .nav-wrapper.expanded {
     /* stylelint-disable-next-line color-function-notation */
-    background: linear-gradient(to bottom, var(--text-color) 40%, rgba(255,255,255,70%) 40%);
+    background: linear-gradient(to bottom, var(--text-color) 370px, rgba(255,255,255,70%) 370px);
   }
 }
 
