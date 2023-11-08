@@ -1,12 +1,62 @@
-.search {
-  margin-top: 24px;
+main .section.search-container {
+ margin-top: 0;
+ margin-bottom: 0;
+}
+
+.search.block {
+  margin-top: 1.5rem;
+  position: relative;
 }
 
 .search-outer {
-  max-width: 1280px;
+  max-width: 75rem;
   box-sizing: border-box;
   padding: 2px;
   position: relative;
+}
+
+.search .error-messages {
+  margin: 0.25rem 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.search .results-list-title {
+  font-family: var(--body-font-family-bold-normal);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  display: inline;
+}
+
+.search .results-list-link:visited .results-list-title {
+  color: var(--search-visited-color);
+}
+
+.search .results-list {
+  margin: 0 1rem 1rem;
+}
+
+.search .results-list-item {
+  border-bottom: 1px solid var(--body-background-color);
+  padding: 2rem 0;
+}
+
+.search .results-list-link {
+  margin-bottom: 0.5rem;
+}
+
+.search .results-list-link:focus {
+  color: var(--button-hover-color);
+  text-decoration: underline;
+}
+
+.search .results-list-url,.results-list-description {
+  font-size: .875rem;
+  line-height: 1.25rem;
+  word-wrap: break-word;
+}
+
+.search .results-list-url {
+  margin-top: 0.5rem;
 }
 
 .search-input {
@@ -14,14 +64,67 @@
   font-size: 1.125rem;
   line-height: 1.5rem;
   width: 100%;
-  max-height: 75px;
+  max-height: 4.688rem;
   border: 0;
   color: var(--search-text-color);
-  padding: 16px 48px 24px 16px;
+  padding: 1rem 3rem 1.5rem 1rem;
   box-sizing: border-box;
   max-width: unset;
   border-radius: unset;
   margin: 0;
+}
+
+.search ul.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.125rem;
+  margin-bottom: 3.125rem;
+  list-style: none;
+  padding-inline-start: unset;
+}
+
+.search .pagination a {
+  font-size: 16px;
+  color:var(--link-color);
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.search .pagination .notvisible {
+  display: none;
+}
+
+.search .pagination li:nth-of-type(2) a {
+  border-left: 1px solid var(--overlay-background-color);
+}
+
+.search .pagination li.page {
+  background: url('/help/icons/search-arrow.svg') no-repeat center;
+}
+
+.search .pagination li.prev.page {
+  /* Horizontal flip the image */
+  transform: scaleX(-1);
+  margin-right: auto;
+}
+
+.search .pagination li.next.page {
+  /* Horizontal flip the image */
+  margin-left: auto;
+}
+
+.search .pagination li.page.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.search .pagination li a:hover, .search .pagination li.active a {
+  border-bottom: 2px solid var(--search-focus-color);
+}
+
+.search .pagination li.page.disabled a:hover {
+  background-color: inherit;
 }
 
 @media (min-width: 600px) {
@@ -34,22 +137,61 @@
     font-size: 1.125rem;
     line-height: 1.5rem;
   }
+
+  .search .pagination {
+    margin: 0 1.5rem;
+  }
+
+  .search .results-list {
+    margin: 0 1.5rem 1rem;
+  }
+
+  .search .error-messages {
+    margin: 0.25rem 1rem;
+  }
+
 }
 
 @media (min-width: 900px) {
   .search-input {
-    padding: 24px 56px 24px 24px;
+    padding: 1.5rem 3.5rem 1.5rem 1.5rem;
   }
 
   .hero-img-right .search-input {
     font-size: 1.375rem;
     line-height: 1rem;
   }
+
+  .search .pagination {
+    margin: 0 2.5rem;
+  }
+
+  .search .results-list {
+    margin: 0 2.5rem 1rem;
+    max-width: 35.125rem;
+  }
+
+  .search .error-messages {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (min-width: 1200px) {
   .search-input {
-    padding: 24px 80px 24px 40px;
+    padding: 1.5rem 5rem 1.5rem 2.5rem;
+  }
+
+  .pagination {
+    margin: 0 3rem;
+  }
+
+  .search .results-list {
+    margin: 0 2.5rem 1rem;
+    max-width: 43.5rem;
+  }
+
+  .search .error-messages {
+    margin: 0.5rem;
   }
 }
 
@@ -82,22 +224,22 @@
   border: 0;
   padding: 0;
   margin: 0;
-  width: 16px;
-  height: 16px;
-  top: 22px;
-  right: 20px;
+  width: 1rem;
+  height: 1rem;
+  top: 1.375rem;
+  right: 1.25rem;
 }
 
 @media (min-width: 900px) {
   .search-button {
-    top: 32px;
-    right: 30px;
+    top: 2rem;
+    right: 1.875rem;
   }
 }
 
 @media (min-width: 1200px) {
   .search-button {
-    right: 42px;
+    right: 2.625rem;
   }
 }
 
@@ -106,22 +248,22 @@
 }
 
 .search .icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .search-info {
   position: absolute;
   width: calc(100% - 36px);
-  bottom: 16px;
+  bottom: 1rem;
   border-top: 1px solid var(--search-line-info);
   box-sizing: border-box;
-  margin: 0 16px;
+  margin: 0 1rem;
 }
 
 @media (min-width: 900px) {
   .search-info {
-    margin: 0 24px;
+    margin: 0 1.5rem;
     width: calc(100% - 52px);
   }
 }

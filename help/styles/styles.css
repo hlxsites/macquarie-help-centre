@@ -36,6 +36,7 @@
   --search-line-info: #ccc;
   --search-line-error: #e82400;
   --search-focus-color: #0c6cce;
+  --search-visited-color:#064384;
 
   /* breadcrumbs */
   --breadcrumbs-text-color: #333;
@@ -388,10 +389,6 @@ main .section:empty {
     margin: auto;
     width: calc(100% * 2/3);
     line-height: 1.75rem;
-  }
-
-  main .section > .default-content-wrapper:has(h2#popular-articles) {
-    width: 100%
   }
 
   .article-long .default-content-wrapper h2 {
