@@ -155,7 +155,7 @@ function createAccordion(main, document) {
         const valueText = valueElements[index].textContent.trim();
 
         if (keyText && valueText) {
-          accordionData.push([keyText, valueText]);
+          accordionData.push([keyText, valueElements[index].innerHTML]);
         }
       }
     });
