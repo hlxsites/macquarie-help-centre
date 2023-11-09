@@ -340,6 +340,11 @@ export default {
     // feedback section
     const ratingContent = document.querySelector('.three-column-block .list');
     if (ratingContent) {
+      // enforce heading level 3 in rating section
+      ratingContent.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+        h.outerHTML = `<h3>${h.innerHTML}</h3>`;
+      });
+
       main.append(ratingContent.cloneNode(true));
       main.append(WebImporter.DOMUtils.createTable([
         [ 'section-metadata' ],
