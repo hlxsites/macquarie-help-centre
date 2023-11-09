@@ -61,23 +61,18 @@ function makeLinks(main) {
         return;
       }
 
+      // enforce franklin url namespace
       if (a.href.startsWith('/help')) {
-        const lowercaseHref = a.href.toLowerCase();
-        u = new URL(lowercaseHref, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
-      } else if (a.href.startsWith('/assets')) {
-        u = new URL(a.href, 'https://www.macquarie.com.au/');
+        u = new URL(a.href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+        u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
+      // enforce original website namespace
       } else if (a.href.startsWith('/')) {
         u = new URL(a.href, 'https://www.macquarie.com.au/');
+      // keep all non http(s) urls as is
       } else {
         u = new URL(a.href);
-        //u.hostname = 'main--macquarie-help-centre--hlxsites.hlx.page';
       }
-
-      // Remove .html extension
-      if (u.pathname.endsWith('.html')) {
-        u.pathname = u.pathname.slice(0, -5);
-      }
-
+      
       a.href = u.toString();
 
       if (a.textContent === ori) {
@@ -155,7 +150,7 @@ function createAccordion(main, document) {
         const valueText = valueElements[index].textContent.trim();
 
         if (keyText && valueText) {
-          accordionData.push([keyText, valueText]);
+          accordionData.push([keyText, valueElements[index].innerHTML]);
         }
       }
     });
@@ -257,6 +252,8 @@ export default {
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
+      '.header-parsys',
+      '.footer-parsys',
       'header',
       'footer',
       '#skip-content',
@@ -280,10 +277,35 @@ export default {
       if (table.rows.length > 0 && table.rows[0].cells.length > 0 ) {
         // get number of columns
         const nCols = Math.max(...[...table.querySelectorAll('tr')].map((tr) => tr.querySelectorAll('td, th').length));
+        
+        table.querySelectorAll('[rowspan]').forEach((cell) => {
+          cell.removeAttribute('rowspan');
+        });
+        table.querySelectorAll('tr').forEach((tr) => {
+          // if the row has less cells than the number of columns, add empty cells
+          if (tr.cells.length < nCols) {
+            for (let i = tr.cells.length; i < nCols; i++) {
+              tr.innerHTML = '<td>&nbsp;</td>' + tr.innerHTML;
+              // tr.insertCell();
+            }
+          }
+        });
+
         // select table target where to prepend the new line
         let target = table.querySelector('tbody') || table;
+
         // prepend the new columns block header
         target.innerHTML = `<tr><th colspan=${nCols}>columns</th></tr>` + target.innerHTML;
+      }
+    });
+
+    // fix table cells with br which are not wrapped in a paragraph
+    main.querySelectorAll('td br, th br').forEach(target => {
+      if (!target.closest('p')) {
+        const cell = target.closest('th, td');
+        if (cell) {
+          cell.innerHTML = `<p>${cell.innerHTML}</p>`;
+        }
       }
     });
 
@@ -323,6 +345,11 @@ export default {
     // feedback section
     const ratingContent = document.querySelector('.three-column-block .list');
     if (ratingContent) {
+      // enforce heading level 3 in rating section
+      ratingContent.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+        h.outerHTML = `<h3>${h.innerHTML}</h3>`;
+      });
+
       main.append(ratingContent.cloneNode(true));
       main.append(WebImporter.DOMUtils.createTable([
         [ 'section-metadata' ],
