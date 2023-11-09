@@ -1,4 +1,4 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons, sampleRUM } from '../../scripts/lib-franklin.js';
 import { addPagingWidget } from '../../scripts/scripts.js';
 
 const errorResultHtml = `
@@ -158,6 +158,11 @@ async function searchPages(searchTerm, page, section, block) {
         }
       }
     }
+  }
+  if (result.length > 0) {
+    sampleRUM('search', { source: '.search > input', target: searchTerm, pageNum: page });
+  } else {
+    sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchTerm, pageNum: page });
   }
   const resultsDiv = block.querySelector('.results');
   if (resultsDiv) {
