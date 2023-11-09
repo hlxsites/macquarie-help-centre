@@ -299,6 +299,16 @@ export default {
       }
     });
 
+    // fix table cells with br which are not wrapped in a paragraph
+    main.querySelectorAll('td br, th br').forEach(target => {
+      if (!target.closest('p')) {
+        const cell = target.closest('th, td');
+        if (cell) {
+          cell.innerHTML = `<p>${cell.innerHTML}</p>`;
+        }
+      }
+    });
+
     const h1 = document.querySelector('.hero-bfs h1');
     const searchbar = document.querySelector('.hero-bfs .search-anywhere');
     if (searchbar) {
