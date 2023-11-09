@@ -61,23 +61,18 @@ function makeLinks(main) {
         return;
       }
 
+      // enforce franklin url namespace
       if (a.href.startsWith('/help')) {
-        const lowercaseHref = a.href.toLowerCase();
-        u = new URL(lowercaseHref, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
-      } else if (a.href.startsWith('/assets')) {
-        u = new URL(a.href, 'https://www.macquarie.com.au/');
+        u = new URL(a.href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+        u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
+      // enforce original website namespace
       } else if (a.href.startsWith('/')) {
         u = new URL(a.href, 'https://www.macquarie.com.au/');
+      // keep all non http(s) urls as is
       } else {
         u = new URL(a.href);
-        //u.hostname = 'main--macquarie-help-centre--hlxsites.hlx.page';
       }
-
-      // Remove .html extension
-      if (u.pathname.endsWith('.html')) {
-        u.pathname = u.pathname.slice(0, -5);
-      }
-
+      
       a.href = u.toString();
 
       if (a.textContent === ori) {
