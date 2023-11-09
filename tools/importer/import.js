@@ -282,8 +282,23 @@ export default {
       if (table.rows.length > 0 && table.rows[0].cells.length > 0 ) {
         // get number of columns
         const nCols = Math.max(...[...table.querySelectorAll('tr')].map((tr) => tr.querySelectorAll('td, th').length));
+        
+        table.querySelectorAll('[rowspan]').forEach((cell) => {
+          cell.removeAttribute('rowspan');
+        });
+        table.querySelectorAll('tr').forEach((tr) => {
+          // if the row has less cells than the number of columns, add empty cells
+          if (tr.cells.length < nCols) {
+            for (let i = tr.cells.length; i < nCols; i++) {
+              tr.innerHTML = '<td>&nbsp;</td>' + tr.innerHTML;
+              // tr.insertCell();
+            }
+          }
+        });
+
         // select table target where to prepend the new line
         let target = table.querySelector('tbody') || table;
+
         // prepend the new columns block header
         target.innerHTML = `<tr><th colspan=${nCols}>columns</th></tr>` + target.innerHTML;
       }
