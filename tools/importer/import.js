@@ -257,6 +257,8 @@ export default {
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
+      '.header-parsys',
+      '.footer-parsys',
       'header',
       'footer',
       '#skip-content',
