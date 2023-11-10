@@ -11,6 +11,8 @@
   "dependencies": {
     "crawlee": "3.5.8",
     "exceljs": "^4.4.0",
-    "jsdom": "22.1.0"
+    "franklin-bulk-shared": "^1.13.3",
+    "img-diff-js": "^0.5.2",
+    "jsdom": "^22.1.0"
   }
 }
