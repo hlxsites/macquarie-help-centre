@@ -2,13 +2,14 @@ import fs from 'fs';
 import path from 'path';
 
 import  ExcelJS from 'exceljs';
+import { JSDOM } from 'jsdom';
 
 
 const DATASET = 'dataset-hc-anchor-links';
 const OUTPUT_FILE = `${DATASET}-analysis.xlsx`;
 
 const XLSX_BLOG_REQS_SHEET_NAME = DATASET;
-const XLSX_BLOG_REQS_SHEET_HEADERS = [ 'url', 'redirect', 'anchor links', 'html tables', 'list with start attribute', 'video embed', 'feedback widget', 'template metatag', '429 Too Many Requests' ];
+const XLSX_BLOG_REQS_SHEET_HEADERS = [ 'url', 'redirect', 'anchor links', 'html tables', 'list with start attribute', 'video embed', 'feedback widget', 'template metatag', 'anchor links to another imported page', '429 Too Many Requests' ];
 
 
 const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
@@ -30,6 +31,7 @@ const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
   const helpFeedbackWidget = [];
   const templateMeta = [];
   const threeColumnBlock = [];
+  const externalAnchorLinks = [];
 
   const pageData = [];
 
@@ -58,6 +60,7 @@ const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
         tooManyRequests: 0,
         helpFeedbackWidget: 0,
         templateMeta: template || '',
+        externalAnchorLinks: 0,
       };
 
       /**
@@ -150,7 +153,7 @@ const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
           url: json.url,
           n,
         });
-        console.log('three-column-block', json.url, n);
+        // console.log('three-column-block', json.url, n);
         // data.helpFeedbackWidget = n;
       }
       
@@ -165,6 +168,24 @@ const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
         });
         data.tooManyRequests = 1;
       }
+
+      /**
+       * collect anchor links targetting different /help (imported) page
+       */
+
+      const { document } = (new JSDOM(json.outerHTML)).window;
+
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && (href.startsWith('https://www.macqu') || href.startsWith('/'))) {
+          if (href.includes('/help') && href.includes('#')) {
+            externalAnchorLinks.push({ href });
+            data.externalAnchorLinks += 1;
+          }
+        }
+      });
+
+
 
       pageData.push(data);
     } catch(e) {
@@ -181,11 +202,12 @@ const JSON_FOLDER = `storage-${DATASET}/datasets/${DATASET}`;
   console.log('Pages with help feedback widget:', helpFeedbackWidget.length);
   console.log('Pages with template metatag:', templateMeta.length);
   console.log('Pages with three-column-block:', threeColumnBlock.length);
+  console.log('Pages with external anchor links to another imported page:', externalAnchorLinks.length);
   console.log('Pages with 429 Too Many Requests:', tooManyRequest.length);
 
   // write to excel
   pageData.forEach(page => {
-    sheet1.addRow([ page.url, page.redirect, page.anchorLinks, page.htmlTables, page.listWithStartAttr, page.videoEmbed, page.helpFeedbackWidget, page.templateMeta, page.tooManyRequests ]);
+    sheet1.addRow([ page.url, page.redirect, page.anchorLinks, page.htmlTables, page.listWithStartAttr, page.videoEmbed, page.helpFeedbackWidget, page.templateMeta, page.externalAnchorLinks, page.tooManyRequests ]);
   });
   await workbook.xlsx.writeFile(OUTPUT_FILE);
 })();
