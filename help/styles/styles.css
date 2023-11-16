@@ -514,7 +514,7 @@ main .section.rating .default-content-wrapper {
   width: unset;
 }
 
-main .section.rating .default-content-wrapper h3 {
+main .section.rating .default-content-wrapper h2 {
   font-size: 1.25rem;
   margin-bottom: 20px;
   font-family: var(--button-font-family);
