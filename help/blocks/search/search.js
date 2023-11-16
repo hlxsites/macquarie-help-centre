@@ -162,7 +162,7 @@ async function searchPages(searchTerm, page, section, block) {
   if (result.length > 0) {
     sampleRUM('search', { source: '.search > input', target: searchTerm, pageNum: page });
   } else {
-    sampleRUM('nullsearch', { source: '.search > input', target: searchTerm, pageNum: page });
+    sampleRUM('nullsearch', { source: '.search > input', target: searchTerm });
   }
   const resultsDiv = block.querySelector('.results');
   if (resultsDiv) {
