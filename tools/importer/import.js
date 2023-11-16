@@ -347,7 +347,7 @@ export default {
     if (ratingContent) {
       // enforce heading level 3 in rating section
       ratingContent.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-        h.outerHTML = `<h3>${h.innerHTML}</h3>`;
+        h.outerHTML = `<h2>${h.innerHTML}</h2>`;
       });
 
       main.append(ratingContent.cloneNode(true));
