@@ -55,22 +55,24 @@ const createMetadata = (main, document) => {
 function makeLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     try {
-      const ori = a.href;
+      const href = a.getAttribute('href');
+      const ori = href;
       let u;
-      if (a.href.startsWith('http://') || a.href.startsWith('https://')) {
+
+      if (href.startsWith('http://') || href.startsWith('https://')) {
         return;
       }
 
       // enforce franklin url namespace
-      if (a.href.startsWith('/help')) {
-        u = new URL(a.href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+      if (href.startsWith('/help')) {
+        u = new URL(href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
         u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
       // enforce original website namespace
-      } else if (a.href.startsWith('/')) {
-        u = new URL(a.href, 'https://www.macquarie.com.au/');
+      } else if (href.startsWith('/')) {
+        u = new URL(href, 'https://www.macquarie.com.au/');
       // keep all non http(s) urls as is
       } else {
-        u = new URL(a.href);
+        u = new URL(href);
       }
       
       a.href = u.toString();
@@ -79,7 +81,7 @@ function makeLinks(main) {
         a.textContent = a.href;
       }
     } catch (err) {
-      console.warn(`Unable to make absolute link for ${a.href}: ${err.message}`);
+      console.warn(`Unable to make absolute link for ${href}: ${err.message}`);
     }
   });
 }
