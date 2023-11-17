@@ -282,17 +282,31 @@ export default {
           cell.removeAttribute('rowspan');
         });
         table.querySelectorAll('tr').forEach((tr) => {
+          // compute number of cells
+          let rowNCols = 0;
+          tr.querySelectorAll('td, th').forEach((cell) => {
+            if (cell.hasAttribute('colspan')) {
+              rowNCols += parseInt(cell.getAttribute('colspan'), 10);
+            } else {
+              rowNCols++;
+            }
+          });
+
           // if the row has less cells than the number of columns, add empty cells
-          if (tr.cells.length < nCols) {
-            for (let i = tr.cells.length; i < nCols; i++) {
+          if (rowNCols < nCols) {
+            for (let i = rowNCols; i < nCols; i++) {
               tr.innerHTML = '<td>&nbsp;</td>' + tr.innerHTML;
-              // tr.insertCell();
             }
           }
         });
 
         // select table target where to prepend the new line
         let target = table.querySelector('tbody') || table;
+
+        // convert table headers into bold cells
+        target.querySelectorAll('th').forEach((th) => {
+          th.outerHTML = `<td><b>${th.innerHTML}</b></td>`;
+        });
 
         // prepend the new columns block header
         target.innerHTML = `<tr><th colspan=${nCols}>columns</th></tr>` + target.innerHTML;
