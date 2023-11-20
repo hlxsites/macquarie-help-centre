@@ -3,4 +3,4 @@ sitemaps:
      origin: https://www.macquarie.com.au
      source: /help/query-index.json
      destination: /help/sitemap.xml
-     Lastmod: YYYY-MM-DD
+     lastmod: YYYY-MM-DD
