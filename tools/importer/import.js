@@ -55,22 +55,24 @@ const createMetadata = (main, document) => {
 function makeLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     try {
-      const ori = a.href;
+      const href = a.getAttribute('href');
+      const ori = href;
       let u;
-      if (a.href.startsWith('http://') || a.href.startsWith('https://')) {
+
+      if (href.startsWith('http://') || href.startsWith('https://')) {
         return;
       }
 
       // enforce franklin url namespace
-      if (a.href.startsWith('/help')) {
-        u = new URL(a.href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+      if (href.startsWith('/help')) {
+        u = new URL(href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
         u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
       // enforce original website namespace
-      } else if (a.href.startsWith('/')) {
-        u = new URL(a.href, 'https://www.macquarie.com.au/');
+      } else if (href.startsWith('/')) {
+        u = new URL(href, 'https://www.macquarie.com.au/');
       // keep all non http(s) urls as is
       } else {
-        u = new URL(a.href);
+        u = new URL(href);
       }
       
       a.href = u.toString();
@@ -79,7 +81,7 @@ function makeLinks(main) {
         a.textContent = a.href;
       }
     } catch (err) {
-      console.warn(`Unable to make absolute link for ${a.href}: ${err.message}`);
+      console.warn(`Unable to make absolute link for ${href}: ${err.message}`);
     }
   });
 }
@@ -282,17 +284,31 @@ export default {
           cell.removeAttribute('rowspan');
         });
         table.querySelectorAll('tr').forEach((tr) => {
+          // compute number of cells
+          let rowNCols = 0;
+          tr.querySelectorAll('td, th').forEach((cell) => {
+            if (cell.hasAttribute('colspan')) {
+              rowNCols += parseInt(cell.getAttribute('colspan'), 10);
+            } else {
+              rowNCols++;
+            }
+          });
+
           // if the row has less cells than the number of columns, add empty cells
-          if (tr.cells.length < nCols) {
-            for (let i = tr.cells.length; i < nCols; i++) {
+          if (rowNCols < nCols) {
+            for (let i = rowNCols; i < nCols; i++) {
               tr.innerHTML = '<td>&nbsp;</td>' + tr.innerHTML;
-              // tr.insertCell();
             }
           }
         });
 
         // select table target where to prepend the new line
         let target = table.querySelector('tbody') || table;
+
+        // convert table headers into bold cells
+        target.querySelectorAll('th').forEach((th) => {
+          th.outerHTML = `<td><b>${th.innerHTML}</b></td>`;
+        });
 
         // prepend the new columns block header
         target.innerHTML = `<tr><th colspan=${nCols}>columns</th></tr>` + target.innerHTML;
