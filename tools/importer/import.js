@@ -56,32 +56,34 @@ function makeLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     try {
       const href = a.getAttribute('href');
-      const ori = href;
-      let u;
-
-      if (href.startsWith('http://') || href.startsWith('https://')) {
-        return;
-      }
-
-      // enforce franklin url namespace
-      if (href.startsWith('/help')) {
-        u = new URL(href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
-        u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
-      // enforce original website namespace
-      } else if (href.startsWith('/')) {
-        u = new URL(href, 'https://www.macquarie.com.au/');
-      // keep all non http(s) urls as is
-      } else {
-        u = new URL(href);
-      }
-      
-      a.href = u.toString();
-
-      if (a.textContent === ori) {
-        a.textContent = a.href;
+      if (href && !href.startsWith('#')) {
+        const ori = href;
+        let u;
+  
+        if (href.startsWith('http://') || href.startsWith('https://')) {
+          return;
+        }
+  
+        // enforce franklin url namespace
+        if (href.startsWith('/help')) {
+          u = new URL(href, 'https://main--macquarie-help-centre--hlxsites.hlx.page/');
+          u.pathname = WebImporter.FileUtils.sanitizePath(u.pathname.replace(/\.html$/, '').replace(/\/$/, ''));
+        // enforce original website namespace
+        } else if (href.startsWith('/')) {
+          u = new URL(href, 'https://www.macquarie.com.au/');
+        // keep all non http(s) urls as is
+        } else {
+          u = new URL(href);
+        }
+        
+        a.href = u.toString();
+  
+        if (a.textContent === ori) {
+          a.textContent = a.href;
+        }
       }
     } catch (err) {
-      console.warn(`Unable to make absolute link for ${href}: ${err.message}`);
+      console.warn(`Unable to make absolute link for ${a.href}: ${err.message}`);
     }
   });
 }
