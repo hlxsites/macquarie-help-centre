@@ -2,14 +2,10 @@ import {
   createTag,
 } from '../../scripts/lib-franklin.js';
 
-export default async function decorate(block) {
-  const notification = block.querySelector('.notification');
-  const child = notification.querySelector(':nth-child(1)');
-  const warningText = child.querySelector(':nth-child(1)').innerText;
-  const toBeRemoved = notification.parentNode.parentNode;
-  const notificationBlock = toBeRemoved.parentNode;
-
+export default async function decorate(notificationBlock) {
   const icon = createTag('div', { class: 'notification alert-icon update' }, '');
+  const toBeRemoved = notificationBlock.querySelector('div > div');
+  const warningText = toBeRemoved.innerText;
   const contentText = createTag('p', {}, warningText);
   const content = createTag('div', { class: 'notification alert-content' }, contentText);
   const span = createTag('span', { class: 'notification sr-only' }, 'Close');
@@ -23,7 +19,7 @@ export default async function decorate(block) {
   notificationBlock.append(content);
   notificationBlock.append(closeButton);
 
-  const main = block.parentNode.parentNode.parentNode;
+  const main = notificationBlock.parentNode.parentNode.parentNode;
   const notificationContainer = main.querySelector('.notification-container');
   const body = main.parentNode;
   const header = body.querySelector('header');
