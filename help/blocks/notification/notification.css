@@ -1,0 +1,87 @@
+.notification-wrapper {
+	background-color: #e6f6ff;
+	border-top: 2px solid #0c6cce;
+}
+
+.notification.block {
+	box-sizing: border-box;
+	height: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1280px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 20px 16px;
+}
+
+.notification.alert-icon.update {
+	box-sizing: border-box;
+	margin-right: 15px;
+	height: 16px;
+	width: 16px;
+	margin-top: 4px;
+	background: url("../../icons/icon_info_16_update.svg");
+}
+
+.notification.alert-content {
+	box-sizing: border-box;
+	flex: 1;
+}
+
+.notification.alert-content > p {
+	box-sizing: border-box;
+	margin: 0;
+	line-height: 1.25rem;
+}
+
+.notification.alert-close-button {
+	box-sizing: border-box;
+	color: #000;
+	text-decoration: underline;
+	background-color: transparent;
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin-left: 15px;
+	border: 0;
+}
+
+.notification.sr-only {
+	color: #000;
+	box-sizing: border-box;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	clip-path: inset(50%);
+	border: 0;
+}
+
+.close-icon {
+	width: 16px;
+	height: 16px;
+	position: relative;
+	cursor: pointer;
+}
+
+.close-icon::before,
+.close-icon::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 15px;
+	background-color: black;
+}
+
+.close-icon::before {
+	transform: rotate(45deg);
+}
+
+.close-icon::after {
+	transform: rotate(-45deg);
+}
+
